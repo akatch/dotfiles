@@ -1,0 +1,67 @@
+!!
+!! .Xresources
+!!
+
+!! Appearance
+*background: black
+*foreground: #a0a0a0
+URxvt*scrollBar: false
+!!URxvt*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+URxvt*font: xft:terminus:pixelsize=12:antialias=true
+!URxvt*letterSpace: 1
+!URxvt*modifier: alt
+XTerm*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+XTerm*letterSpace: 1
+!Xft.dpi: 96
+
+!! Transparency
+URxvt*transparent: true
+URxvt*inheritPixmap: true
+URxvt*shading: 20
+
+!! Clickable URLs
+URxvt.perl-ext-common: default,matcher,tabbed
+URxvt.perl-ext: searchable-scrollback<C-s>
+!!URxvt.url-launcher: chromium
+!!URxvt.url-launcher: google-chrome
+!!URxvt.urlLauncher: midori
+URxvt.url-launcher: firefox
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@!-]*[\\w/-]
+
+!! Tabs
+URxvt.tabbed.tabbar-fg: 8
+URxvt.tabbed.tabbar-bg: -1
+URxvt.tabbed.tab-fg: 2
+URxvt.tabbed.tab-bg: -1
+
+!! Keybindings
+URxvt*eightBitInput:   false
+URxvt*metaSendsEscape: true
+XTerm*eightBitInput:   false
+XTerm*metaSendsEscape: true
+
+! black
+*.color0  : #2E2E34
+*.color8  : #555555
+! ! red
+*.color1  : #f92672 
+*.color9  : #ff5995
+! ! green
+*.color2  : #82b414
+*.color10 : #b6e354
+! ! yellow
+*color3:    #fd971f
+*color11:   #feed6c
+! ! blue
+*.color4  : #55aaff
+*.color12 : #65b2ff
+! ! magenta
+*.color5  : #8c54fe
+*.color13 : #b691ff
+! ! cyan
+*.color6  : #66d9ef
+*.color14 : #76e1ef
+! ! white
+*color7:    #ccccc6
+*color15:   #f8f8f2
