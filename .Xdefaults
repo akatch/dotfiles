@@ -5,12 +5,13 @@
 !! Appearance
 *background: black
 *foreground: #a0a0a0
-URxvt*scrollBar: false
+*scrollBar: false
 !!URxvt*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 URxvt*font: xft:terminus:pixelsize=12:antialias=true
+URxvt*boldFont: xft:terminus:style=Bold:pixelsize=12:antialias=true
 !URxvt*letterSpace: 1
 !URxvt*modifier: alt
-XTerm*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!*font: -*-terminus-medium-r-*-*-*-*-*-*-*-*-*-*
 XTerm*letterSpace: 1
 !Xft.dpi: 96
 
@@ -40,6 +41,7 @@ URxvt*eightBitInput:   false
 URxvt*metaSendsEscape: true
 XTerm*eightBitInput:   false
 XTerm*metaSendsEscape: true
+URxvt.searchable-scrollback: CM-s
 
 ! black
 *.color0  : #2E2E34
