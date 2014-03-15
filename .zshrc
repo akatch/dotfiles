@@ -56,6 +56,8 @@ export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
 export PERL_UTF8_LOCALE=1 PERL_UNICODE=AS
 
+# fix ctrl-s
+
 # 
 # Colors
 #
