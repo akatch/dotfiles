@@ -21,6 +21,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
+alias usg='du -h --max-depth=1 -x'
 
 # apt
 alias acs="apt-cache search"

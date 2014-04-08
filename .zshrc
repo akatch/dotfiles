@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt appendhistory autocd extendedglob notify
 unsetopt beep nomatch
 bindkey -v
@@ -38,6 +38,7 @@ alias acs="apt-cache search"
 alias acp="apt-cache policy"
 alias acsh="apt-cache show"
 alias agi="apt-get install"
+alias usg='du -h --max-depth=1 -x'
 
 ansibleSetup() {
     ansible $1 -m setup > ~/$1.txt
