@@ -38,7 +38,7 @@ alias acs="apt-cache search"
 alias acp="apt-cache policy"
 alias acsh="apt-cache show"
 alias agi="apt-get install"
-alias usg='du -h --max-depth=1 -x'
+alias usg='sudo du -h --max-depth=1 -x'
 
 ansibleSetup() {
     ansible $1 -m setup > ~/$1.txt
