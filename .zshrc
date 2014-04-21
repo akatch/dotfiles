@@ -111,8 +111,8 @@ exit_smiley() {
 }
 
 exit_code_prompt() {
-PROMPT="${bgreen}» ${green}%m ${bgreen}[${green}%d${bgreen}] %(?.${green}^_^.${red}-_-) ${bgreen}»
-$bgreen» ${normal}"
+PROMPT="${bgreen}> ${green}%m ${bgreen}[${green}%d${bgreen}] %(?.${green}^_^.${red}-_-) ${bgreen}>
+$bgreen> ${normal}"
 RPROMPT="%(?..${bgreen}[${red}%?${bgreen}] )${normal}"
 }
 exit_code_prompt
