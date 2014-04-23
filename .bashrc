@@ -13,6 +13,7 @@ fi
 # Alias definitions.
 #
 
+alias sudo='sudo '
 alias norsk='setxkbmap no'
 alias eng='setxkbmap us'
 #alias cal='cal -3'
