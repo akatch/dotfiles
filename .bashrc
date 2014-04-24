@@ -23,12 +23,14 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
 alias usg='sudo du -h --max-depth=1 -x'
+alias srcb='source ~/.bashrc'
 
 # apt
 alias acs="apt-cache search"
 alias acp="apt-cache policy"
 alias acsh="apt-cache show"
 alias agi="apt-get install"
+alias aga="apt-get autoremove"
 
 case "$TERM" in
     rxvt-unicode-256color)
