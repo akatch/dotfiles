@@ -33,13 +33,15 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
+alias usg='sudo du -h --max-depth=1 -x'
+alias srcz='source ~/.zshrc'
 
 # apt
 alias acs="apt-cache search"
 alias acp="apt-cache policy"
 alias acsh="apt-cache show"
 alias agi="apt-get install"
-alias usg='sudo du -h --max-depth=1 -x'
+alias aga="apt-get autoremove"
 
 ansibleSetup() {
     ansible $1 -m setup > ~/$1.txt
