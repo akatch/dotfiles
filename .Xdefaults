@@ -41,7 +41,14 @@ URxvt*eightBitInput:   false
 URxvt*metaSendsEscape: true
 XTerm*eightBitInput:   false
 XTerm*metaSendsEscape: true
+
+!! Scroll behavior
+URxvt.keysim.Control-s: 
 URxvt.searchable-scrollback: CM-s
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+urxvt*saveLines: 10000
 
 ! black
 *.color0: #2E2E34
