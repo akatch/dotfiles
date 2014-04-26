@@ -22,7 +22,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
-alias usg='sudo du -h --max-depth=1 -x'
+alias usg='du -h --max-depth=1 -x'
 alias srcb='source ~/.bashrc'
 
 # apt

@@ -33,7 +33,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
-alias usg='sudo du -h --max-depth=1 -x'
+alias usg='du -h --max-depth=1 -x'
 alias srcz='source ~/.zshrc'
 
 # apt
@@ -61,6 +61,7 @@ export LESSCHARSET=utf-8
 export PERL_UTF8_LOCALE=1 PERL_UNICODE=AS
 
 # fix ctrl-s
+stty -ixon
 
 # 
 # Colors
