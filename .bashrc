@@ -32,9 +32,11 @@ alias acsh="apt-cache show"
 alias agi="apt-get install"
 alias aga="apt-get autoremove"
 
+alias musync='rsync -az --no-perms --delete-before --delete-excluded --exclude="/vault/music/.tor/*" /vault/music/ /media/ally/0123-4567/MUSIC'
+
 case "$TERM" in
     rxvt-unicode-256color)
-        TERM=rxvt-unicode
+        TERM=xterm-color
         ;;
 esac
 

@@ -1,6 +1,6 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=10000
+HISTSIZE=100000
 SAVEHIST=10000
 setopt appendhistory autocd extendedglob notify
 unsetopt beep nomatch
@@ -29,12 +29,15 @@ alias norsk='setxkbmap no'
 alias eng='setxkbmap us'
 alias 3cal='cal -3'
 alias isomount='sudo mount -o loop,exec'
-alias ll='ls -l'
+alias ll='ls -lh'
 alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
 alias usg='du -h --max-depth=1 -x'
-alias srcz='source ~/.zshrc'
+alias z='source ~/.zshrc'
+
+# ssh
+alias ssh='TERM=xterm-color ssh'
 
 # apt
 alias acs="apt-cache search"
@@ -43,17 +46,30 @@ alias acsh="apt-cache show"
 alias agi="apt-get install"
 alias aga="apt-get autoremove"
 
+# ansible
+# [create|decrypt|edit|encrypt|rekey]
+alias av-create='ansible-vault create --vault-password-file=/home/ally/.ansible/vault '
+#alias av-decrypt='ansible-vault decrypt --vault-password-file=/home/ally/.ansible/vault '
+alias av-edit='ansible-vault edit --vault-password-file=/home/ally/.ansible/vault '
+alias av-encrypt='ansible-vault encrypt --vault-password-file=/home/ally/.ansible/vault '
+alias av-rekey='ansible-vault rekey --vault-password-file=/home/ally/.ansible/vault '
+alias ansible-playbook='ansible-playbook --vault-password-file=/home/ally/.ansible/vault '
+alias ansible='ansible --vault-password-file=/home/ally/.ansible/vault '
+
 ansibleSetup() {
-    ansible $1 -m setup > ~/$1.txt
+    ansible $1 -m setup --vault-password-file=/home/ally/.ansible/vault > ~/$1.txt
 }
 alias accio=ansibleSetup
+
+alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/ally/0123-4567/MUSIC'
 
 export STEAMLIBS=${HOME}/steam-beta/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${STEAMLIBS}
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export DISPLAY=:0
-export PATH="$PATH:/home/ally/bin:/opt/cisco/anyconnect/bin"
+export ANSIBLE_CONFIG=/home/ally/.ansible.cfg
+export PATH="$PATH:/home/ally/bin:/opt/cisco/anyconnect/bin:/home/ally/bin/packer"
 
 # UTF8
 export LANG=en_US.UTF-8
