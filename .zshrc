@@ -56,6 +56,11 @@ alias av-rekey='ansible-vault rekey --vault-password-file=/home/ally/.ansible/va
 alias ansible-playbook='ansible-playbook --vault-password-file=/home/ally/.ansible/vault '
 alias ansible='ansible --vault-password-file=/home/ally/.ansible/vault '
 
+createPasswordHash() {
+    python -c 'from passlib.hash import sha256_crypt; print sha256_crypt.encrypt("$1")'
+}
+alias genhash=createPasswordHash
+
 ansibleSetup() {
     ansible $1 -m setup --vault-password-file=/home/ally/.ansible/vault > ~/$1.txt
 }
