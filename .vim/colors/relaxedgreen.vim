@@ -12,7 +12,7 @@
 "                in the shared colors directory (/usr/shared/vim/vim<version>/colors/),
 "                then load it with :colorscheme relaxedgreen
 " ----------------------------------------------------------------------------------------------------------------------------------
-set background=dark
+"set background=dark
 hi clear
 if exists("syntax_on")
   syntax reset
@@ -62,8 +62,8 @@ highlight Statement     term=standout     ctermfg=darkred                       
 highlight StatusLine    term=reverse      ctermfg=darkgreen ctermbg=NONE                 gui=none guibg=#228822 guifg=#000000
 highlight StatusLineNC  term=reverse      ctermfg=darkgreen ctermbg=blue                  gui=none guibg=#336633 guifg=#000000
 
-highlight TabLine       term=reverse      ctermfg=darkgray ctermbg=NONE                 guibg=#222222 guifg=#228822
-highlight TabLineFill   term=reverse      ctermfg=black ctermbg=NONE       		        guibg=#222222 guifg=#226622
+highlight TabLine       term=reverse      cterm=reverse ctermfg=black ctermbg=darkgray    guibg=#222222 guifg=#228822
+highlight TabLineFill   term=reverse      ctermfg=black ctermbg=green       		  guibg=#222222 guifg=#226622
 highlight TabLineSel    term=reverse      ctermfg=green ctermbg=NONE                     guibg=#228822 guifg=#222222
 
 highlight Title         term=reverse      ctermfg=black ctermbg=green                     guifg=#000000 guibg=#00ff00
