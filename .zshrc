@@ -1,17 +1,35 @@
-# Lines configured by zsh-newuser-install
+#
+# ~/.zshrc
+#
+
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=10000
 setopt appendhistory autocd extendedglob notify
 unsetopt beep nomatch
 bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
 zstyle :compinstall filename '/home/ally/.zshrc'
-
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+
+### from https://github.com/graysky2/configs/blob/master/dotfiles/.zshrc
+setopt hist_expire_dups_first
+setopt hist_ignore_space
+setopt inc_append_history
+setopt share_history
+
+# fix zsh annoying history behavior
+h() { if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi; }
+
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '\eOA' up-line-or-beginning-search
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\eOB' down-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
+### end stuff from graysky2
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -20,10 +38,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
 fi
 
-#
-# Alias definitions.
-#
+# Alias definitions
 
+# general stuff
 alias sudo='sudo '
 alias norsk='setxkbmap no'
 alias eng='setxkbmap us'
@@ -56,17 +73,28 @@ alias av-rekey='ansible-vault rekey --vault-password-file=/home/ally/.ansible/va
 alias ansible-playbook='ansible-playbook --vault-password-file=/home/ally/.ansible/vault '
 alias ansible='ansible --vault-password-file=/home/ally/.ansible/vault '
 
+# create a SHA256 hash
 createPasswordHash() {
     python -c 'from passlib.hash import sha256_crypt; print sha256_crypt.encrypt("$1")'
 }
 alias genhash=createPasswordHash
 
+# summon ansible facts
 ansibleSetup() {
     ansible $1 -m setup --vault-password-file=/home/ally/.ansible/vault > ~/$1.txt
 }
 alias accio=ansibleSetup
 
+# search for processes and keep column headings
+processSearch() {
+    ps aux | egrep "$1|PID"
+}
+alias psgrep=processSearch
+
+# sync music to Sansa Clip Zip
 alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/ally/0123-4567/MUSIC'
+
+alias rdesktop='rdesktop -g 1400x900'
 
 export STEAMLIBS=${HOME}/steam-beta/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${STEAMLIBS}
@@ -131,13 +159,10 @@ kwhite="%{[05;37m%}"
 
 normal="%{[0m%}"
 
-exit_smiley() {
-    # code for shiny exit code smiley here
-}
-
+# prompt
 exit_code_prompt() {
-PROMPT="${bgreen}> ${green}%m ${bgreen}[${green}%d${bgreen}] %(?.${green}^_^.${red}-_-) ${bgreen}>
+  PROMPT="${bgreen}> ${green}%m ${bgreen}[${green}%d${bgreen}] %(?.${green}^_^.${red}-_-) ${bgreen}>
 $bgreen> ${normal}"
-RPROMPT="%(?..${bgreen}[${red}%?${bgreen}] )${normal}"
+  RPROMPT="%(?..${bgreen}[${red}%?${bgreen}] )${normal}"
 }
 exit_code_prompt
