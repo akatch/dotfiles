@@ -26,7 +26,6 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
 alias usg='du -h --max-depth=1 -x'
-alias z='source ~/.zshrc'
 
 # ssh
 alias ssh='TERM=xterm-color ssh'
