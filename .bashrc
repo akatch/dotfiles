@@ -26,6 +26,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lah='ls -lah'
 alias usg='du -h --max-depth=1 -x'
+alias b='source ~/.bashrc'
+alias nocomment='grep -Ev '\''^(#|$)'\'''
 
 # ssh
 alias ssh='TERM=xterm-color ssh'
@@ -38,6 +40,7 @@ alias agi="apt-get install"
 alias aga="apt-get autoremove"
 
 # ansible
+alias am='ansible-doc -s '
 # [create|decrypt|edit|encrypt|rekey]
 alias av-create='ansible-vault create --vault-password-file=/home/ally/.ansible/vault '
 #alias av-decrypt='ansible-vault decrypt --vault-password-file=/home/ally/.ansible/vault '
