@@ -9,6 +9,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
 fi
 
+if [ -e /etc/profile.d/default.sh ]; then
+    source /etc/profile.d/default.sh
+fi
+
 #
 # Alias definitions.
 #
