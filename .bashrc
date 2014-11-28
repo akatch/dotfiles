@@ -10,7 +10,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if [ -e /etc/profile.d/default.sh ]; then
-    source /etc/profile.d/default.sh
+    . /etc/profile.d/default.sh
 fi
 
 #
@@ -125,7 +125,6 @@ export PS1="$b_green> $green\h $b_green[$green\w$b_green] >\n> $normal"
 export RPROMPT="${b_green}[${red}\${?##0}${bgreen}]"
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
-export DISPLAY=:0
 export PATH=$PATH:/opt/cisco/anyconnect/bin
 
 #. ~/.utf8
