@@ -4,25 +4,25 @@
 
 !! Appearance
 *background: black
-*foreground: #D7D7D7
+*foreground: #CCCCCC
 *scrollBar: false
-!!URxvt*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-URxvt*font: xft:terminus:pixelsize=12:antialias=true
-URxvt*boldFont: xft:terminus:style=bold:pixelsize=12:antialias=true
-!URxvt*letterSpace: 1
-!URxvt*modifier: alt
-!*font: -*-terminus-medium-r-*-*-*-*-*-*-*-*-*-*
-XTerm*letterSpace: 1
-!Xft.dpi: 96
-
-!! Transparency
 URxvt*transparent: true
 URxvt*inheritPixmap: true
 URxvt*shading: 20
 
+!! Fonts
+URxvt*font: xft:Terminess\ Powerline:pixelsize=14:antialias=true
+URxvt*boldFont: xft:Terminess\ Powerline:pixelsize=14:antialias=true
+!XTerm*font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+!XTerm*boldFont: -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
+Xft.autohint: true
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
 !! Clickable URLs
 URxvt.perl-ext-common: default,matcher,tabbed
-URxvt.perl-ext: searchable-scrollback<C-s>
 !!URxvt.url-launcher: chromium
 !!URxvt.url-launcher: google-chrome
 !!URxvt.urlLauncher: midori
@@ -43,36 +43,35 @@ XTerm*eightBitInput:   false
 XTerm*metaSendsEscape: true
 
 !! Scroll behavior
-URxvt.keysim.Control-s: 
 URxvt.searchable-scrollback: CM-s
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
-urxvt*saveLines: 10000
+URxvt*saveLines: 10000
 
 ! black
 *.color0: #2E2E34
 *.color8: #555555
 ! ! red
-*.color1: #F92672
+*.color1: #FF005C
 *.color9: #FF5995
 ! ! green
 *.color2: #82B414
-*.color10: #B6E354
+*.color10: #C3E282
 ! ! yellow
 *.color3: #FD971F
 *.color11: #FEED6C
 ! ! blue
-*.color4: #55AAFF
+*.color4: #0080FF
 *.color12: #65B2FF
 ! ! magenta
 *.color5: #8C54FE
 *.color13: #B691FF
 ! ! cyan
-*.color6: #66D9EF
+*.color6: #00B08F
 *.color14: #76E1EF
 ! ! white
-*.color7: #D5D5D5 
+*.color7: #CCCCCC
 *.color15: #FFFFFF
 
 ! xscreensaver ---------------------------------------------------------------
@@ -102,14 +101,3 @@ xscreensaver.Dialog.shadowThickness:    2
 xscreensaver.passwd.thermometer.foreground:  #101010
 xscreensaver.passwd.thermometer.background:  #2E2E2E
 xscreensaver.passwd.thermometer.width:       8
-
-! font settings --------------------------------------------------------------
-
-!Xft.autohint: true
-!Xft.antialias: true
-!Xft.hinting: true
-!Xft.hintstyle: hintslight
-!!Xft.dpi: 96
-!Xft.rgba: rgb
-!Xft.lcdfilter: lcddefault
-
