@@ -51,7 +51,7 @@ highlight PmenuThumb    term=reverse      ctermfg=gray ctermbg=NONE             
 highlight PreProc       term=standout     ctermfg=darkgreen                               guifg=#22bb22
 highlight Question      term=standout     ctermfg=red                                     guifg=#ff0000
 highlight Search        term=reverse      ctermfg=black ctermbg=darkgreen                 guifg=#000000 guibg=#228822
-highlight SignColumn                      ctermfg=darkgreen                               guifg=#20de20 guibg=#000000
+highlight SignColumn                      ctermfg=darkgreen ctermbg=NONE                  guifg=#20de20 guibg=#000000
 highlight Special       term=bold         ctermfg=green                                   guifg=#00ff00
 highlight SpecialKey    term=bold         ctermfg=green                                   guifg=#00ff00
 highlight SpellBad      term=reverse      cterm=underline ctermfg=red ctermbg=NONE       gui=undercurl guisp=#ff0000

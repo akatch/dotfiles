@@ -8,7 +8,7 @@ SAVEHIST=10000
 setopt appendhistory autocd extendedglob notify
 unsetopt beep nomatch
 bindkey -v
-zstyle :compinstall filename '/home/ally/.zshrc'
+zstyle :compinstall filename '${HOME}/.zshrc'
 autoload -Uz compinit
 compinit
 
@@ -38,6 +38,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
 fi
 
+if [ -e /etc/profile.d/default.sh ]; then
+    source /etc/profile.d/default.sh
+fi
+
 # Alias definitions
 
 # general stuff
@@ -52,9 +56,10 @@ alias l='ls -CF'
 alias lah='ls -lah'
 alias usg='du -h --max-depth=1 -x'
 alias z='source ~/.zshrc'
+alias nocomment='grep -Ev '\''^(#|$)'\'''
 
 # ssh
-alias ssh='TERM=xterm-color ssh'
+#alias ssh='TERM=xterm-color ssh'
 
 # apt
 alias acs="apt-cache search"
@@ -64,14 +69,16 @@ alias agi="apt-get install"
 alias aga="apt-get autoremove"
 
 # ansible
+
+alias am='ansible-doc -s '
 # [create|decrypt|edit|encrypt|rekey]
-alias av-create='ansible-vault create --vault-password-file=/home/ally/.ansible/vault '
-#alias av-decrypt='ansible-vault decrypt --vault-password-file=/home/ally/.ansible/vault '
-alias av-edit='ansible-vault edit --vault-password-file=/home/ally/.ansible/vault '
-alias av-encrypt='ansible-vault encrypt --vault-password-file=/home/ally/.ansible/vault '
-alias av-rekey='ansible-vault rekey --vault-password-file=/home/ally/.ansible/vault '
-alias ansible-playbook='ansible-playbook --vault-password-file=/home/ally/.ansible/vault '
-alias ansible='ansible --vault-password-file=/home/ally/.ansible/vault '
+#alias av-create='ansible-vault create --vault-password-file=${HOME}/.ansible/vault '
+#alias av-decrypt='ansible-vault decrypt --vault-password-file=${HOME}/.ansible/vault '
+#alias av-edit='ansible-vault edit --vault-password-file=${HOME}/.ansible/vault '
+#alias av-encrypt='ansible-vault encrypt --vault-password-file=${HOME}/.ansible/vault '
+#alias av-rekey='ansible-vault rekey --vault-password-file=${HOME}/.ansible/vault '
+#alias ansible-playbook='ansible-playbook --vault-password-file=${HOME}/.ansible/vault '
+#alias ansible='ansible --vault-password-file=${HOME}/.ansible/vault'
 
 # create a SHA256 hash
 createPasswordHash() {
@@ -81,7 +88,7 @@ alias genhash=createPasswordHash
 
 # summon ansible facts
 ansibleSetup() {
-    ansible $1 -m setup --vault-password-file=/home/ally/.ansible/vault > ~/$1.txt
+    ansible $1 -m setup --vault-password-file=${HOME}/.ansible/vault > /etc/ansible/facts.d/$1.facts
 }
 alias accio=ansibleSetup
 
@@ -92,25 +99,36 @@ processSearch() {
 alias psgrep=processSearch
 
 # sync music to Sansa Clip Zip
-alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/ally/0123-4567/MUSIC'
+alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/${USER}/0123-4567/MUSIC'
 
 alias rdesktop='rdesktop -g 1400x900'
 
+# new hyde post
+newPost() {
+    vim ~/hyde/_posts/`date +%F`-$1.md
+}
+alias newpost=newPost
+
+# mutt
+alias ogmail='mutt -f imaps://a.n.katch@gmail.com@imap.gmail.com:993/'
+alias wiscmail='mutt -f imaps://wiscmail.wisc.edu'
+alias oopmbx='mutt -f imap://akatch@openmailbox.org@imap.openmailbox.org:143/'
+alias opmbx='mutt -f imap://alex.bowles@openmailbox.org@imap.openmailbox.org:143/'
+alias gmail='mutt -f imaps://bowlesalx@gmail.com@imap.gmail.com:993/'
+
+# environment variables
 export STEAMLIBS=${HOME}/steam-beta/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${STEAMLIBS}
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
-export DISPLAY=:0
-export ANSIBLE_CONFIG=/home/ally/.ansible.cfg
-export PATH="$PATH:/home/ally/bin:/opt/cisco/anyconnect/bin:/home/ally/bin/packer"
+export ANSIBLE_CONFIG=${HOME}/.ansible.cfg
+export PATH="$PATH:${HOME}/bin:/opt/cisco/anyconnect/bin:${HOME}/bin/packer"
 
 # UTF8
 export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
 export PERL_UTF8_LOCALE=1 PERL_UNICODE=AS
-
-# fix ctrl-s
-stty -ixon
+export LC_ALL=en_US.UTF-8
 
 # 
 # Colors
@@ -157,12 +175,12 @@ kmagenta="%{[05;35m%}"
 kcyan="%{[05;36m%}"
 kwhite="%{[05;37m%}"
 
-normal="%{[0m%}"
+normal="%{[0;0m%}"
 
 # prompt
 exit_code_prompt() {
-  PROMPT="${bgreen}> ${green}%m ${bgreen}[${green}%d${bgreen}] %(?.${green}^_^.${red}-_-) ${bgreen}>
-$bgreen> ${normal}"
-  RPROMPT="%(?..${bgreen}[${red}%?${bgreen}] )${normal}"
+  PROMPT="${bgreen}> ${green}%M ${bgreen}[${green}%d${bgreen}] ${bgreen}>
+${bgreen}> ${normal}"
+  RPROMPT="${bgreen}[%(?..${red}%?)${bgreen}]${normal}"
 }
 exit_code_prompt
