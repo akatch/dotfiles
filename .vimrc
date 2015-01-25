@@ -7,32 +7,33 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-" My Bundles here:
-Bundle 'mtth/scratch.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'bling/vim-airline'
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'ntpeters/vim-better-whitespace'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'tpope/vim-sensible'
+" My Plugins here:
+Plugin 'mtth/scratch.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'bling/vim-airline'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-sensible'
 
+call vundle#end()
 filetype plugin indent on
 
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured bundles
+" :PluginInstall(!)    - install(update) bundles
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after Plugin command are not allowed..
 """""" End Vundle stuff """"""
 
 if has("syntax")
