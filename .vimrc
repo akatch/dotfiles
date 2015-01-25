@@ -3,15 +3,17 @@
 "
 
 """""" Vundle stuff """"""
+" First run:
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" vim +PluginInstall +qall
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" let Vundle manage Vundle
-Plugin 'gmarik/vundle'
 
 " My Plugins here:
+Plugin 'gmarik/Vundle.vim'
 Plugin 'mtth/scratch.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
@@ -65,7 +67,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set breakindent
 
 " tab like irssi
 nmap <C-p> :tabprevious<cr>
@@ -73,7 +74,7 @@ nmap <C-n> :tabnext<cr>
 nmap <C-t> :tabnew<cr>
 
 " insert newline without entering insert mode
-nmap <S-Enter> O<esc>
+nmap <silent> <S-Enter> O<esc><CR>
 
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-j> :wincmd j<CR>
@@ -143,6 +144,9 @@ autocmd FileType markdown set expandtab
 " Leader shortcuts
 "
 
+" source vimrc
+nmap <leader>S :so $MYVIMRC<CR>
+
 " Open Vimrc
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
@@ -172,7 +176,7 @@ nnoremap <silent> <leader>w :AirlineToggleWhitespace<CR>
 " And Strip it
 nnoremap <silent> <leader>W :StripWhitespace<CR>
 
-" prettify
+" Fix indentation
 nnoremap <leader>= gg=G``
 
 " Table Format (markdown files only)
@@ -205,10 +209,12 @@ endif
     " 1. acquire powerline fonts:
     "    git clone https://github.com/powerline/fonts.git
     "    cp fonts/* ~/.fonts/
-    " 2. disable bitmap fonts:
+    " 2. enable bitmap fonts:
     "    sudo dpkg-reconfigure fontconfig-config
     "    answer "yes" to the third question
-    "    restart X
+    " 3. xset +fp ~/.fonts
+    " 4. fc-cache -fv
+    " 5. restart X
 
 "" these are the defaults
 "let g:airline_left_sep = ''
