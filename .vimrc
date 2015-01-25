@@ -74,6 +74,11 @@ nmap <C-t> :tabnew<cr>
 " insert newline without entering insert mode
 nmap <S-Enter> O<esc>
 
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
 " Save backup to first available of:
 " ./.vim-backup/
 " ~/.vim/backup/
@@ -194,7 +199,7 @@ if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
 
-"" powerline symbols
+" powerline symbols
 " To get these to work in debian you must:
     " 1. acquire powerline fonts:
     "    git clone https://github.com/powerline/fonts.git
