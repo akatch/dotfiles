@@ -88,7 +88,7 @@ alias genhash=createPasswordHash
 
 # summon ansible facts
 ansibleSetup() {
-    ansible $1 -m setup --vault-password-file=${HOME}/.ansible/vault > /etc/ansible/facts.d/$1.facts
+    ansible $1 -m setup > /etc/ansible/facts.d/$1.facts
 }
 alias accio=ansibleSetup
 
@@ -108,6 +108,12 @@ newPost() {
     vim ~/hyde/_posts/`date +%F`-$1.md
 }
 alias newpost=newPost
+
+# grepfi
+grepVi() {
+    vim `grep -Hni <pattern> <file> | awk -F ":" '{print $1 " +" $2}' | head -n 1`
+}
+alias grepvi=grepVi
 
 # mutt
 alias ogmail='mutt -f imaps://a.n.katch@gmail.com@imap.gmail.com:993/'
@@ -130,7 +136,7 @@ export LESSCHARSET=utf-8
 export PERL_UTF8_LOCALE=1 PERL_UNICODE=AS
 export LC_ALL=en_US.UTF-8
 
-# 
+#
 # Colors
 #
 
@@ -179,8 +185,9 @@ normal="%{[0;0m%}"
 
 # prompt
 exit_code_prompt() {
-  PROMPT="${bgreen}> ${green}%M ${bgreen}[${green}%d${bgreen}] ${bgreen}>
-${bgreen}> ${normal}"
-  RPROMPT="${bgreen}[%(?..${red}%?)${bgreen}]${normal}"
+    PROMPT="${bgreen}┌─${green}%M ${bgreen}[${green}%d${bgreen}]${bgreen}─>
+${bgreen}└>${normal} "
+    RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
+    PS2="${bgreen}└>${normal} "
 }
 exit_code_prompt
