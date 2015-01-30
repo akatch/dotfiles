@@ -57,6 +57,8 @@ alias lah='ls -lah'
 alias usg='du -h --max-depth=1 -x'
 alias z='source ~/.zshrc'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
+alias e='vim -p '
+alias se='sudo -E vim -p '
 
 # ssh
 #alias ssh='TERM=xterm-color ssh'
@@ -72,13 +74,11 @@ alias aga="apt-get autoremove"
 
 alias am='ansible-doc -s '
 # [create|decrypt|edit|encrypt|rekey]
-#alias av-create='ansible-vault create --vault-password-file=${HOME}/.ansible/vault '
-#alias av-decrypt='ansible-vault decrypt --vault-password-file=${HOME}/.ansible/vault '
-#alias av-edit='ansible-vault edit --vault-password-file=${HOME}/.ansible/vault '
-#alias av-encrypt='ansible-vault encrypt --vault-password-file=${HOME}/.ansible/vault '
-#alias av-rekey='ansible-vault rekey --vault-password-file=${HOME}/.ansible/vault '
-#alias ansible-playbook='ansible-playbook --vault-password-file=${HOME}/.ansible/vault '
-#alias ansible='ansible --vault-password-file=${HOME}/.ansible/vault'
+alias av-create='ansible-vault create '
+alias av-decrypt='ansible-vault decrypt '
+alias av-edit='ansible-vault edit '
+alias av-encrypt='ansible-vault encrypt '
+alias av-rekey='ansible-vault rekey '
 
 # create a SHA256 hash
 createPasswordHash() {
@@ -121,6 +121,9 @@ alias wiscmail='mutt -f imaps://wiscmail.wisc.edu'
 alias oopmbx='mutt -f imap://akatch@openmailbox.org@imap.openmailbox.org:143/'
 alias opmbx='mutt -f imap://alex.bowles@openmailbox.org@imap.openmailbox.org:143/'
 alias gmail='mutt -f imaps://bowlesalx@gmail.com@imap.gmail.com:993/'
+
+# subliminal
+alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
 
 # environment variables
 export STEAMLIBS=${HOME}/steam-beta/lib
@@ -184,10 +187,7 @@ kwhite="%{[05;37m%}"
 normal="%{[0;0m%}"
 
 # prompt
-exit_code_prompt() {
-    PROMPT="${bgreen}┌─${green}%M ${bgreen}[${green}%d${bgreen}]${bgreen}─>
+PROMPT="${bgreen}┌─${green}%M ${bgreen}[${green}%d${bgreen}]${bgreen}─>
 ${bgreen}└>${normal} "
-    RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
-    PS2="${bgreen}└>${normal} "
-}
-exit_code_prompt
+RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
+PS2="${bgreen}└>${normal} "
