@@ -14,6 +14,7 @@ call vundle#begin()
 
 " My Plugins here:
 Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'mtth/scratch.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
