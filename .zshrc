@@ -45,23 +45,19 @@ fi
 # Alias definitions
 
 # general stuff
-alias sudo='sudo '
 alias norsk='setxkbmap no'
 alias eng='setxkbmap us'
 alias 3cal='cal -3'
 alias isomount='sudo mount -o loop,exec'
 alias ll='ls -lh'
 alias la='ls -A'
-alias l='ls -CF'
 alias lah='ls -lah'
 alias usg='du -h --max-depth=1 -x'
 alias z='source ~/.zshrc'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 alias e='vim -p '
 alias se='sudo -E vim -p '
-
-# ssh
-#alias ssh='TERM=xterm-color ssh'
+alias sudo='sudo -E '
 
 # apt
 alias acs="apt-cache search"
@@ -69,16 +65,17 @@ alias acp="apt-cache policy"
 alias acsh="apt-cache show"
 alias agi="apt-get install"
 alias aga="apt-get autoremove"
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
 
 # ansible
 
 alias am='ansible-doc -s '
-# [create|decrypt|edit|encrypt|rekey]
-alias av-create='ansible-vault create '
-alias av-decrypt='ansible-vault decrypt '
-alias av-edit='ansible-vault edit '
-alias av-encrypt='ansible-vault encrypt '
-alias av-rekey='ansible-vault rekey '
+alias avc='ansible-vault create '
+alias avd='ansible-vault decrypt '
+alias ave='ansible-vault edit '
+alias avx='ansible-vault encrypt '
+alias avr='ansible-vault rekey '
 
 # create a SHA256 hash
 createPasswordHash() {
@@ -108,19 +105,6 @@ newPost() {
     vim ~/hyde/_posts/`date +%F`-$1.md
 }
 alias newpost=newPost
-
-# grepfi
-grepVi() {
-    vim `grep -Hni <pattern> <file> | awk -F ":" '{print $1 " +" $2}' | head -n 1`
-}
-alias grepvi=grepVi
-
-# mutt
-alias ogmail='mutt -f imaps://a.n.katch@gmail.com@imap.gmail.com:993/'
-alias wiscmail='mutt -f imaps://wiscmail.wisc.edu'
-alias oopmbx='mutt -f imap://akatch@openmailbox.org@imap.openmailbox.org:143/'
-alias opmbx='mutt -f imap://alex.bowles@openmailbox.org@imap.openmailbox.org:143/'
-alias gmail='mutt -f imaps://bowlesalx@gmail.com@imap.gmail.com:993/'
 
 # subliminal
 alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
@@ -187,7 +171,7 @@ kwhite="%{[05;37m%}"
 normal="%{[0;0m%}"
 
 # prompt
-PROMPT="${bgreen}┌─${green}%M ${bgreen}[${green}%d${bgreen}]${bgreen}─>
+export PROMPT="${bgreen}┌─${green}%M ${bgreen}[${green}%d${bgreen}]${bgreen}─>
 ${bgreen}└>${normal} "
-RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
-PS2="${bgreen}└>${normal} "
+export RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
+export PS2="${bgreen}└>${normal} "
