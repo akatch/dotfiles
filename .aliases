@@ -1,0 +1,77 @@
+#
+# ~/.aliases
+#
+
+## General stuff
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias norsk='setxkbmap no'
+alias eng='setxkbmap us'
+alias 3cal='cal -3'
+alias isomount='sudo mount -o loop,exec'
+alias ll='ls -lh'
+alias la='ls -A'
+alias lah='ls -lah'
+alias usg='du -h --max-depth=1 -x'
+alias z='. ~/.zshrc'
+alias b='. ~/.bashrc'
+alias nocomment='grep -Ev '\''^(#|$)'\'''
+alias e='vim -p '
+alias se='sudo -E vim -p '
+alias sudo='sudo -E '
+
+## Apt
+alias acs="apt-cache search"
+alias acp="apt-cache policy"
+alias acsh="apt-cache show"
+alias agi="apt-get install"
+alias aga="apt-get autoremove"
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
+
+## Ansible
+alias am='ansible-doc -s '
+alias avc='ansible-vault create '
+alias avd='ansible-vault decrypt '
+alias ave='ansible-vault edit '
+alias avx='ansible-vault encrypt '
+alias avr='ansible-vault rekey '
+
+## Alert stuff
+alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
+alert_picture='/usr/share/icons/Adwaita/scalable/apps/utilities-terminal-symbolic.svg'
+alias alert='notify-send -i "$alert_picture" "FINISHED: $alert_helper"'
+
+## Functions
+# summon ansible facts
+ansibleSetup() {
+    mkdir -p ~/ansible/facts.d/
+    ansible $1 -m setup > ~/ansible/facts.d/$1.facts
+}
+
+# create a SHA256 hash
+createPasswordHash() {
+    python -c 'from passlib.hash import sha256_crypt; print sha256_crypt.encrypt("$1")'
+}
+
+# new hyde post
+newPost() {
+    vim ~/hyde/_posts/`date +%F`-$1.md
+}
+
+# search for processes and keep column headings
+processSearch() {
+    ps aux | egrep "$1|PID"
+}
+
+## Aliases to functions
+alias psgrep=processSearch
+alias genhash=createPasswordHash
+alias newpost=newPost
+alias accio=ansibleSetup
+
+## Random
+# sync music to Sansa Clip Zip
+alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/${USER}/0123-4567/MUSIC'
+alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
+alias rdesktop='rdesktop -g 1400x900'

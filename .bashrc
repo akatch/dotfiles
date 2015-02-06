@@ -13,81 +13,10 @@ if [ -e /etc/profile.d/default.sh ]; then
     . /etc/profile.d/default.sh
 fi
 
-#
-# Alias definitions.
-#
-
-# Alias definitions
-
-# general stuff
-alias sudo='sudo '
-alias norsk='setxkbmap no'
-alias eng='setxkbmap us'
-alias 3cal='cal -3'
-alias isomount='sudo mount -o loop,exec'
-alias ll='ls -lh'
-alias la='ls -A'
-alias l='ls -CF'
-alias lah='ls -lah'
-alias usg='du -h --max-depth=1 -x'
-alias b='source ~/.bashrc'
-alias nocomment='grep -Ev '\''^(#|$)'\'''
-
-# ssh
-alias ssh='TERM=xterm-color ssh'
-
-# apt
-alias acs="apt-cache search"
-alias acp="apt-cache policy"
-alias acsh="apt-cache show"
-alias agi="apt-get install"
-alias aga="apt-get autoremove"
-
-# ansible
-alias am='ansible-doc -s '
-# [create|decrypt|edit|encrypt|rekey]
-alias av-create='ansible-vault create --vault-password-file=/home/ally/.ansible/vault '
-#alias av-decrypt='ansible-vault decrypt --vault-password-file=/home/ally/.ansible/vault '
-alias av-edit='ansible-vault edit --vault-password-file=/home/ally/.ansible/vault '
-alias av-encrypt='ansible-vault encrypt --vault-password-file=/home/ally/.ansible/vault '
-alias av-rekey='ansible-vault rekey --vault-password-file=/home/ally/.ansible/vault '
-alias ansible-playbook='ansible-playbook --vault-password-file=/home/ally/.ansible/vault '
-alias ansible='ansible --vault-password-file=/home/ally/.ansible/vault '
-
-# create a SHA256 hash
-createPasswordHash() {
-    python -c 'from passlib.hash import sha256_crypt; print sha256_crypt.encrypt("$1")'
-}
-alias genhash=createPasswordHash
-
-# summon ansible facts
-ansibleSetup() {
-    ansible $1 -m setup --vault-password-file=/home/ally/.ansible/vault > ~/$1.txt
-}
-alias accio=ansibleSetup
-
-# search for processes and keep column headings
-processSearch() {
-    ps aux | egrep "$1|PID"
-}
-alias psgrep=processSearch
-
-# sync music to Sansa Clip Zip
-alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/ally/0123-4567/MUSIC'
-
-alias rdesktop='rdesktop -g 1400x900'
-
-# Search for processes and include column names
-processSearch() {
-    ps aux | egrep "$1|PID"
-}
-alias psgrep=processSearch
-
-# Summon facts
-ansibleSetup() {
-    ansible $1 -m setup --vault-password-file=/home/ally/.ansible/vault > ~/$1.txt
-}
-alias accio=ansibleSetup
+# source aliases
+if [ -e  ~/.aliases ]; then
+  . ~/.aliases
+fi
 
 case "$TERM" in
     rxvt-unicode-256color)

@@ -34,80 +34,16 @@ bindkey '\e[B' down-line-or-beginning-search
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b ~/.dircolors`"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
+fi
+
+# source aliases
+if [ -e  ~/.aliases ]; then
+    . ~/.aliases
 fi
 
 if [ -e /etc/profile.d/default.sh ]; then
-    source /etc/profile.d/default.sh
+    . /etc/profile.d/default.sh
 fi
-
-# Alias definitions
-
-# general stuff
-alias norsk='setxkbmap no'
-alias eng='setxkbmap us'
-alias 3cal='cal -3'
-alias isomount='sudo mount -o loop,exec'
-alias ll='ls -lh'
-alias la='ls -A'
-alias lah='ls -lah'
-alias usg='du -h --max-depth=1 -x'
-alias z='source ~/.zshrc'
-alias nocomment='grep -Ev '\''^(#|$)'\'''
-alias e='vim -p '
-alias se='sudo -E vim -p '
-alias sudo='sudo -E '
-
-# apt
-alias acs="apt-cache search"
-alias acp="apt-cache policy"
-alias acsh="apt-cache show"
-alias agi="apt-get install"
-alias aga="apt-get autoremove"
-alias update='sudo apt-get update'
-alias upgrade='sudo apt-get upgrade'
-
-# ansible
-
-alias am='ansible-doc -s '
-alias avc='ansible-vault create '
-alias avd='ansible-vault decrypt '
-alias ave='ansible-vault edit '
-alias avx='ansible-vault encrypt '
-alias avr='ansible-vault rekey '
-
-# create a SHA256 hash
-createPasswordHash() {
-    python -c 'from passlib.hash import sha256_crypt; print sha256_crypt.encrypt("$1")'
-}
-alias genhash=createPasswordHash
-
-# summon ansible facts
-ansibleSetup() {
-    ansible $1 -m setup > /etc/ansible/facts.d/$1.facts
-}
-alias accio=ansibleSetup
-
-# search for processes and keep column headings
-processSearch() {
-    ps aux | egrep "$1|PID"
-}
-alias psgrep=processSearch
-
-# sync music to Sansa Clip Zip
-alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/${USER}/0123-4567/MUSIC'
-
-alias rdesktop='rdesktop -g 1400x900'
-
-# new hyde post
-newPost() {
-    vim ~/hyde/_posts/`date +%F`-$1.md
-}
-alias newpost=newPost
-
-# subliminal
-alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
 
 # environment variables
 export STEAMLIBS=${HOME}/steam-beta/lib
@@ -122,6 +58,7 @@ export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
 export PERL_UTF8_LOCALE=1 PERL_UNICODE=AS
 export LC_ALL=en_US.UTF-8
+
 
 #
 # Colors
