@@ -38,11 +38,7 @@ fi
 
 # source aliases
 if [ -e  ~/.aliases ]; then
-    . ~/.aliases
-fi
-
-if [ -e /etc/profile.d/default.sh ]; then
-    . /etc/profile.d/default.sh
+    source ~/.aliases
 fi
 
 # environment variables
