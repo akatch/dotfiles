@@ -155,7 +155,7 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 set pastetoggle=<leader>p
 
 " Open ScratchPad
-nmap <leader>s :tabedit ~/documents/Dropbox/Scratchpad.md<cr>
+nmap <leader>s :tabedit ~/SpiderOak\ Hive/scratchpad.md<cr>
 
 " Turn off and on numbers
 nmap <leader>n :set number!<CR>
