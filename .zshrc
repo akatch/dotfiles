@@ -41,13 +41,31 @@ if [ -e  ~/.aliases ]; then
     source ~/.aliases
 fi
 
+# tmux completion
+bash_completion_tmux=`which bash_completion_tmux.sh`
+if [ -e $bash_completion_tmux ]; then
+    source bash_completion_tmux.sh
+fi
+
+## Cool zsh stuff
+bindkey -v
+
+# vi style incremental search
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
+
+# change into directory foo with 'foo' instead of 'cd foo'
+setopt AUTO_CD
+
 # environment variables
 export STEAMLIBS=${HOME}/steam-beta/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${STEAMLIBS}
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export ANSIBLE_CONFIG=${HOME}/.ansible.cfg
-export PATH="$PATH:${HOME}/bin:/opt/cisco/anyconnect/bin:${HOME}/bin/packer"
+export PATH="${HOME}/bin:$PATH:/opt/cisco/anyconnect/bin:${HOME}/bin/packer"
 
 # UTF8
 export LANG=en_US.UTF-8

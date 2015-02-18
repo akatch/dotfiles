@@ -14,6 +14,11 @@ if [ -e  ~/.aliases ]; then
     source ~/.aliases
 fi
 
+# tmux completion
+if [ -e `which bash_completion_tmux.sh` ]; then
+    source bash_completion_tmux.sh
+fi
+
 case "$TERM" in
     rxvt-unicode-256color)
         TERM=xterm-color
