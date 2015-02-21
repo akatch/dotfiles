@@ -2,10 +2,17 @@
 " ~/.vimrc
 "
 
+" Automatically grab Vundle
+if empty(glob('~/.vim/bundle/Vundle.vim'))
+  silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  autocmd VimEnter * PluginInstall * qall
+endif
+
 """""" Vundle stuff """"""
 " First run:
 " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " vim +PluginInstall +qall
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -20,11 +27,14 @@ Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-git'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-sensible'
+Plugin 'tmux-plugins/vim-tmux'
+Plugin 'guns/xterm-color-table.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -34,9 +44,6 @@ filetype plugin indent on
 " :PluginInstall(!)    - install(update) bundles
 " :PluginSearch(!) foo - search(or refresh cache first) for foo
 " :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Plugin command are not allowed..
 """""" End Vundle stuff """"""
 
 if has("syntax")
@@ -59,7 +66,6 @@ set smartcase
 set incsearch
 set scrolloff=2
 set number
-set undofile
 set backup
 set writebackup
 set ttyfast
@@ -68,6 +74,10 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+set cursorline nocursorcolumn
+
+" fix annoying search highlighting behavior
+noremap <silent> <Space> :silent noh<Bar>echo<CR>
 
 " tab like irssi
 nmap <C-p> :tabprevious<cr>
@@ -126,15 +136,15 @@ if exists("+undofile")
 endif
 
 " Use favorite color scheme
-colorscheme relaxedgreen
+colorscheme chillaxedgreen
 
 " Highlight chars that go over the 80-column limit for certain filetypes
-au FileType cpp       match ErrorMsg '\%>80v.\+'
-au FileType py        match ErrorMsg '\%>80v.\+'
+au FileType cpp match ErrorMsg '\%>80v.\+'
+au FileType py match ErrorMsg '\%>80v.\+'
 au FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
 
 " Limit the line length for markdown
-autocmd FileType markdown set tw=80
+"autocmd FileType markdown set tw=80 "or don't bc damn its annoying
 autocmd FileType markdown setlocal spell
 autocmd FileType markdown set tabstop=2
 autocmd FileType markdown set softtabstop=2
@@ -157,7 +167,7 @@ set pastetoggle=<leader>p
 " Open ScratchPad
 nmap <leader>s :tabedit ~/SpiderOak\ Hive/scratchpad.md<cr>
 
-" Turn off and on numbers
+" Toggle line numbers
 nmap <leader>n :set number!<CR>
 
 " Update Tags
@@ -166,6 +176,10 @@ if has("unix")
   if s:uname == "Darwin\n"
     " Do Mac stuff here
     nnoremap <silent> <Leader>t :!/usr/local/bin/ctags -R -f ./.git/tags .<CR>
+    " Yank text to OSX clipboard
+    noremap <leader>y "*y
+    noremap <leader>yy "*Y
+    noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
   endif
 else
   nnoremap <silent> <Leader>t :!ctags -R -f ./.git/tags .<CR>
@@ -200,6 +214,9 @@ endif
 let g:airline_theme = 'murmur'
 let g:airline_powerline_fonts = 1
 set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
