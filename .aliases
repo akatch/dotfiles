@@ -16,9 +16,13 @@ alias usg='du -h --max-depth=1 -x'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
+alias sudo='sudo -E '
+alias term='urxvt -g 100x50'
+alias matrix='cmatrix -b -u 10'
+
+## vim
 alias e='vim -p '
 alias se='sudo -E vim -p '
-alias sudo='sudo -E '
 
 ## Apt
 alias acs="apt-cache search"
@@ -38,6 +42,7 @@ alias avx='ansible-vault encrypt '
 alias avr='ansible-vault rekey '
 
 ## Alert stuff
+# usage: execute --long-running --command; alert;
 alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
 alert_picture='/usr/share/icons/Adwaita/scalable/apps/utilities-terminal-symbolic.svg'
 alias alert='notify-send -i "$alert_picture" "FINISHED: $alert_helper"'
@@ -75,3 +80,12 @@ alias accio=ansibleSetup
 alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/${USER}/0123-4567/MUSIC'
 alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
 alias rdesktop='rdesktop -g 1400x900'
+
+## Colors for less
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
