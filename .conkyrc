@@ -2,6 +2,12 @@
 # ~/.conkyrc
 #
 
+# Colors
+color0 555555
+color1 gray60 # info
+color2 a9ee29 # square brackets
+color3 gray40 # data type / date&time
+
 background yes
 use_xft yes
 xftfont Terminess Powerline:pixelsize=14
@@ -9,7 +15,8 @@ xftalpha 1
 update_interval 1
 total_run_times 0
 own_window yes
-own_window_transparent yes
+own_window_transparent no
+own_window_colour 0b0b0b
 own_window_type desktop
 own_window_hints undecorated,above,sticky,skip_taskbar,skip_pager
 double_buffer yes
@@ -22,7 +29,7 @@ default_shade_color black
 default_outline_color black
 alignment bottom
 gap_x 1080
-gap_y 425
+gap_y 423
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -32,13 +39,9 @@ default_bar_size 30 7
 use_spacer left
 #text_buffer_size 1024
 #maximum_width 1920
+minimum_size 1920
 temperature_unit fahrenheit
-
-# Colors
-color0 555555
-color1 white
-color2 9ccb19
 
 
 TEXT
-${color0}| ${color2}${time %d %h %Y} ${color2}${time %H:%M:%S} ${color0}|${color1} ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN cloud_cover 5}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN temperature 5}°F ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN wind_speed 5}mph ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN wind_dir 5} ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN humidity 5}% ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN weather 5} ${color0}| ${color2}${audacious_status} ${color2}[${audacious_position}]: ${color1}${scroll 50${audacious_title 350}} ${alignr}${color0}| ${color2}load: ${color1}${loadavg 1}  ${loadavg 2}  ${loadavg 3} ${color0}| ${color2}mem: ${color1}${memperc}% ${color0}| ${color2}${font DejaVu Sans}↑${font}: ${color1}${upspeedf eth0}KB/s ${color0}| ${color2}${font DejaVu Sans}↓${font}:${color1}${downspeedf eth0}KB/s ${color0}| ${color2}io: ${color1}${diskio} ${color0}| ${color2}/: ${color1}${fs_used_perc /}% ${color0}| ${color2}/home: ${color1}${fs_used_perc /home}% ${color0}| ${color2}/vault: ${color1}${fs_used_perc /vault}% ${color0}|
+${color2} [ ${color1}${time %d %h %Y} ${color3}| ${color1}CST: ${time %H:%M:%S} ${color3}| ${color1}UTC: ${utime %H:%M:%S} ${color2}]  [${color1} ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN cloud_cover 5}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN temperature 5}°F ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN wind_speed 5}mph ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN wind_dir 5} ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN humidity 5}% ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ KMSN weather 5} ${color2}]  [ ${color3}${audacious_status} ${color3}[${audacious_position}]: ${color1}${scroll 35${audacious_title 350}} ${color2}]  [ ${color3}load: ${color1}${loadavg 1}  ${loadavg 2}  ${loadavg 3} ${color3}mem: ${color1}${memperc}% ${color3}${font DejaVu Sans}↑${font}: ${color1}${upspeedf eth0}KB/s ${color3}${font DejaVu Sans}↓${font}:${color1}${downspeedf eth0}KB/s ${color3}io: ${color1}${diskio} ${color3}/: ${color1}${fs_used_perc /}% ${color3}/home: ${color1}${fs_used_perc /home}% ${color3}/vault: ${color1}${fs_used_perc /vault}% ${color2}]
