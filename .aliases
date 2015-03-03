@@ -2,6 +2,13 @@
 # ~/.aliases
 #
 
+## rbenv
+rbenv_exists=`which rbenv`
+if [ -e $rbenv_exists ]; then
+    eval "$(rbenv init -)"
+    alias be='bundle exec'
+fi
+
 ## General stuff
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
