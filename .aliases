@@ -3,11 +3,24 @@
 #
 
 ## rbenv
-rbenv_exists=`which rbenv`
+rbenv_exists=`which rbenv` &> /dev/null
 if [ -e $rbenv_exists ]; then
     eval "$(rbenv init -)"
     alias be='bundle exec'
+    alias development='export RAILS_ENV=development'
+    alias test='export RAILS_ENV=test'
+    alias qa='export RAILS_ENV=qa'
 fi
+
+## mutt
+#if [ -e ~/.mutt/mailiases ]; then
+#    source ~/.mutt/mailiases
+#fi
+alias gmail='mutt -F ~/.mutt/account.gmail'
+alias hireology='mutt -F ~/.mutt/account.hireology'
+alias opmbx='mutt -F ~/.mutt/account.opmbx'
+alias agmail='mutt -F ~/.mutt/account.gmail.old'
+alias aopmbx='mutt -F ~/.mutt/account.opmbx.old'
 
 ## General stuff
 alias ls='ls --color=auto'
@@ -26,6 +39,8 @@ alias nocomment='grep -Ev '\''^(#|$)'\'''
 alias sudo='sudo -E '
 alias term='urxvt -g 100x50'
 alias matrix='cmatrix -b -u 10'
+alias pp='~/bin/privatepaste.py -s daemoniz'
+alias pa='~/bin/privatepaste.py -s abowles'
 
 ## vim
 alias e='vim -p '
@@ -47,6 +62,8 @@ alias avd='ansible-vault decrypt '
 alias ave='ansible-vault edit '
 alias avx='ansible-vault encrypt '
 alias avr='ansible-vault rekey '
+alias ap='ansible-playbook'
+alias ans='ansible'
 
 ## Alert stuff
 # usage: execute --long-running --command; alert;
@@ -58,7 +75,7 @@ alias alert='notify-send -i "$alert_picture" "FINISHED: $alert_helper"'
 # summon ansible facts
 ansibleSetup() {
     mkdir -p ~/ansible/facts.d/
-    ansible $1 -m setup > ~/ansible/facts.d/$1.facts
+    ansible $1 -m setup -i $2 > ~/ansible/facts.d/$1.facts
 }
 
 # create a SHA256 hash
