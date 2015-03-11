@@ -42,7 +42,7 @@ if [ -e  ~/.aliases ]; then
 fi
 
 # tmux completion
-bash_completion_tmux=`which bash_completion_tmux.sh`
+bash_completion_tmux=`which bash_completion_tmux.sh` &> /dev/null
 if [ -e $bash_completion_tmux ]; then
     source bash_completion_tmux.sh
 fi
@@ -73,6 +73,26 @@ export LESSCHARSET=utf-8
 export PERL_UTF8_LOCALE=1 PERL_UNICODE=AS
 export LC_ALL=en_US.UTF-8
 
+# Git prompt
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats \
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats       \
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+
+zstyle ':vcs_info:*' enable git cvs svn
+
+# or use pre_cmd, see man zshcontrib
+unset grey
+vcs_info_wrapper() {
+  vcs_info
+  if [ -n "$vcs_info_msg_0_" ]; then
+    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+  fi
+}
+RPROMPT=$'$(vcs_info_wrapper)'
 
 #
 # Colors
@@ -89,7 +109,7 @@ cyan="%{[0;36m%}"
 white="%{[0;37m%}"
 
 # bold (grey is actually bold black)
-grey="%{[01;30m%}"
+gray="%{[01;30m%}"
 bred="%{[01;31m%}"
 bgreen="%{[01;32m%}"
 byellow="%{[01;33m%}"
@@ -124,5 +144,5 @@ normal="%{[0;0m%}"
 # prompt
 export PROMPT="${bgreen}┌─${green}%M ${bgreen}[${green}%d${bgreen}]${bgreen}─>
 ${bgreen}└>${normal} "
-export RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
+#export RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
 export PS2="${bgreen}└>${normal} "
