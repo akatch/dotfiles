@@ -66,6 +66,7 @@ export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 export ANSIBLE_CONFIG=${HOME}/.ansible.cfg
 export PATH="${HOME}/bin:$PATH:/opt/cisco/anyconnect/bin:${HOME}/bin/packer"
+export DISABLE_AUTO_TITLE="true"
 
 # UTF8
 export LANG=en_US.UTF-8
