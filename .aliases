@@ -93,11 +93,17 @@ processSearch() {
     ps aux | egrep "$1|PID"
 }
 
+# ipa hbactest
+ipahbactest() {
+    ipa hbactest --user=$1 --host=$2 --service=sshd
+}
+
 ## Aliases to functions
 alias psgrep=processSearch
 alias genhash=createPasswordHash
 alias newpost=newPost
 alias accio=ansibleSetup
+alias hbt=ipahbactest
 
 ## Random
 # sync music to Sansa Clip Zip
