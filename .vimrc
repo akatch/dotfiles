@@ -5,14 +5,10 @@
 " Automatically grab Vundle
 if empty(glob('~/.vim/bundle/Vundle.vim'))
   silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  autocmd VimEnter PluginInstall
+  silent :PluginInstall
 endif
 
 """""" Vundle stuff """"""
-" First run:
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" vim +PluginInstall +qall
-
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -83,6 +79,8 @@ noremap <silent> <Space> :silent noh<Bar>echo<CR>
 nmap <C-p> :tabprevious<cr>
 nmap <C-n> :tabnext<cr>
 nmap <C-t> :tabnew<cr>
+nmap <A-p> :bufferprevious<cr>
+nmap <A-n> :buffernext<cr>
 
 " insert newline without entering insert mode
 "nmap <silent> <S-Enter> O<esc><CR>
