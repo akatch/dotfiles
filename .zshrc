@@ -64,7 +64,6 @@ export STEAMLIBS=${HOME}/steam-beta/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${STEAMLIBS}
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
-export ANSIBLE_CONFIG=${HOME}/.ansible.cfg
 export PATH="${HOME}/bin:$PATH:/opt/cisco/anyconnect/bin:${HOME}/bin/packer"
 export DISABLE_AUTO_TITLE="true"
 
@@ -145,5 +144,4 @@ normal="%{[0;0m%}"
 # prompt
 export PROMPT="${bgreen}┌─${green}%M ${bgreen}[${green}%d${bgreen}]${bgreen}─>
 ${bgreen}└>${normal} "
-#export RPROMPT="%(?..${bgreen}[${red}%?${bgreen}]${normal})"
 export PS2="${bgreen}└>${normal} "
