@@ -44,7 +44,7 @@ alias pa='~/bin/privatepaste.py -s abowles'
 
 ## vim
 alias e='vim -p '
-alias se='sudo -E vim -p '
+alias se='sudo -e '
 
 ## Apt
 alias acs="apt-cache search"
@@ -63,7 +63,7 @@ alias ave='ansible-vault edit '
 alias avx='ansible-vault encrypt '
 alias avr='ansible-vault rekey '
 alias ap='ansible-playbook'
-alias ans='ansible'
+alias a='ansible'
 
 ## Alert stuff
 # usage: execute --long-running --command; alert;
