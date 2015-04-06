@@ -13,9 +13,6 @@ if [ -e $rbenv_exists ]; then
 fi
 
 ## mutt
-#if [ -e ~/.mutt/mailiases ]; then
-#    source ~/.mutt/mailiases
-#fi
 alias gmail='mutt -F ~/.mutt/account.gmail'
 alias hireology='mutt -F ~/.mutt/account.hireology'
 alias opmbx='mutt -F ~/.mutt/account.opmbx'
