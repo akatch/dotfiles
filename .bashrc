@@ -14,6 +14,11 @@ if [ -e  ~/.aliases ]; then
     source ~/.aliases
 fi
 
+# source profile
+if [ -e ~/.profile ]; then
+    source ~/.profile
+fi
+
 # tmux completion
 if [ -e `which bash_completion_tmux.sh` ]; then
     source bash_completion_tmux.sh
