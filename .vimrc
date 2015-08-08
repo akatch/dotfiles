@@ -5,7 +5,7 @@
 " Automatically grab Vundle
 if empty(glob('~/.vim/bundle/Vundle.vim'))
   silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  silent :PluginInstall
+  autocmd VimEnter * :PluginInstall
 endif
 
 """""" Vundle stuff """"""
@@ -51,26 +51,24 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-"set hidden         " Hide buffers when they are abandoned
 set autowrite
+set background=dark
+set cursorline nocursorcolumn
+set expandtab
+set hidden
+set ignorecase
+set incsearch
+set mouse=r
+set number
+set scrolloff=2
+set shiftwidth=4
+set showcmd
 set showmatch
 set smartindent
-set background=dark
-set showcmd
-set ignorecase
 set smartcase
-set incsearch
-set scrolloff=2
-set number
-set backup
-set writebackup
-set ttyfast
-set mouse=r
-set tabstop=4
 set softtabstop=4
-set shiftwidth=4
-set expandtab
-set cursorline nocursorcolumn
+set tabstop=4
+set ttyfast
 
 " fix annoying search highlighting behavior
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
@@ -104,6 +102,7 @@ set backupdir-=~/
 set backupdir^=~/.vim/backup/
 set backupdir^=./.vim-backup/
 set backup
+set writebackup
 
 " Save swpfiles to first available of:
 " ./.vim-swap/
