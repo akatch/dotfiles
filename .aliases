@@ -34,6 +34,7 @@ alias usg='du -h --max-depth=1 -x'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias c='clear'
+alias hc='cd && clear'
 alias nocomment='grep -Ev '\''^(#|$)'\'''
 alias sudo='sudo -E '
 alias term='urxvt -g 100x50'
@@ -70,6 +71,9 @@ alias avr='ansible-vault rekey '
 alias ap='time ansible-playbook'
 alias a='time ansible'
 alias gather='env-hlgy && time ansible-playbook $HOME/ansible/hireology/playbooks/gather-facts.yml -i $HOME/ansible/hireology/all'
+
+## postgres
+alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
 ## Alert stuff
 # usage: execute --long-running --command; alert;
