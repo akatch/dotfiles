@@ -134,7 +134,7 @@ if exists("+undofile")
 endif
 
 " Use favorite color scheme
-colorscheme chillaxedgreen.vim
+colorscheme chillaxedgreen
 
 " Highlight chars that go over the 80-column limit for certain filetypes
 au FileType cpp match ErrorMsg '\%>80v.\+'
