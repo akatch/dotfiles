@@ -140,5 +140,5 @@ normal="%{[0;0m%}"
 # prompt
 export PROMPT="${gray}┌─${magenta}(${green}%M${magenta})${gray}-${magenta}[${green}%d${magenta}]${gray}->
 ${gray}└>${normal} "
-export RPROMPT=$'${gray}<-${normal}$(vcs_info_wrapper)'
+export RPROMPT=$'$(vcs_info_wrapper)'
 export PS2="${gray}└>${normal} "
