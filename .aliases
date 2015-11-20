@@ -62,6 +62,7 @@ alias update='sudo apt-get update'
 alias upgrade='sudo apt-get upgrade'
 
 ## Ansible
+alias ad='ansible-doc '
 alias am='ansible-doc -s '
 alias avc='ansible-vault create '
 alias avd='ansible-vault decrypt '
@@ -144,11 +145,15 @@ alias qa-deploy=ansibleQADeploy
 alias vmreset=vmwareReset
 
 ## Git
-alias gco=gitCheckout
+alias gco='git checkout'
 alias gst='git status'
+
+## Clipboard
+alias copy='xclip -selection clipboard'
 
 ## Random
 # sync music to Sansa Clip Zip
 alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/${USER}/0123-4567/MUSIC'
 alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
 alias rdesktop='rdesktop -g 1400x900'
+alias prettyjson='python -m json.tool'
