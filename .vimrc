@@ -142,7 +142,7 @@ au FileType py match ErrorMsg '\%>80v.\+'
 au FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
 
 " Limit the line length for markdown
-"autocmd FileType markdown set tw=80 "or don't bc damn its annoying
+autocmd FileType markdown set tw=90 "or don't bc damn its annoying
 autocmd FileType markdown setlocal spell
 autocmd FileType markdown set tabstop=2
 autocmd FileType markdown set softtabstop=2
@@ -242,3 +242,31 @@ endif
 "let g:airline_symbols.linenr = ''
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
+
+" vim-airline word count
+" This combines several ideas from:
+" http://stackoverflow.com/questions/114431/fast-word-count-function-in-vim
+let g:word_count="<unknown>"
+function WordCount()
+   return g:word_count
+endfunction
+function UpdateWordCount()
+   let lnum = 1
+   let n = 0
+   while lnum <= line('$')
+       let n = n + len(split(getline(lnum)))
+       let lnum = lnum + 1
+   endwhile
+   let g:word_count = n
+endfunction
+
+" Update the count when cursor is idle in command or insert mode.
+" Update when idle for 1000 msec (default is 4000 msec).
+set updatetime=1000
+augroup WordCounter
+   au! CursorHold,CursorHoldI * call UpdateWordCount()
+augroup END
+
+" Replaces the encoding section with word count when in a markdown file
+autocmd FileType markdown let g:airline_section_y = airline#section#create(['%{WordCount()} words'])
+autocmd FileType text let g:airline_section_y = airline#section#create(['%{WordCount()} words'])
