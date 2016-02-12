@@ -69,7 +69,8 @@ alias avd='ansible-vault decrypt '
 alias ave='ansible-vault edit '
 alias avx='ansible-vault encrypt '
 alias avr='ansible-vault rekey '
-alias ap='time ansible-playbook'
+alias avv='ansible-vault view '
+alias ap='time ansible-playbook --diff'
 alias a='time ansible'
 alias gather='env-hlgy && time ansible-playbook $HOME/ansible/hireology/playbooks/gather-facts.yml -i $HOME/ansible/hireology/all'
 
@@ -149,7 +150,8 @@ alias gco='git checkout'
 alias gst='git status'
 
 ## Clipboard
-alias copy='xclip -selection clipboard'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
 ## Random
 # sync music to Sansa Clip Zip
@@ -157,3 +159,4 @@ alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" 
 alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
 alias rdesktop='rdesktop -g 1400x900'
 alias prettyjson='python -m json.tool'
+alias hibot-restart='ansible build -m service -a "name=hibot state=restarted" -i $HOME/ansible/hireology/qa -s'
