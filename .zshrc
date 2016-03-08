@@ -3,7 +3,7 @@
 #
 
 HISTFILE=~/.histfile
-HISTSIZE=100000
+HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory autocd extendedglob notify
 unsetopt beep nomatch
@@ -35,11 +35,7 @@ bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 ### end stuff from graysky2
 
-# vi command mode or something idk
-set -o vi
-bindkey -v
-
-# enable color support of ls and also add handy aliases
+# enable color support
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b ~/.dircolors`"
 fi
@@ -60,22 +56,15 @@ if [ -e $bash_completion_tmux ]; then
     source bash_completion_tmux.sh
 fi
 
-# vi style incremental search
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward
-
-# change into directory foo with 'foo' instead of 'cd foo'
-setopt AUTO_CD
-
 # Git prompt
 setopt prompt_subst
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' actionformats \
-    '%F{5}(%F{2}%s%F{5})%F{8}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+    '%F{2}%b %F{3}%a%f'
+    #'%F{5}(%F{2}%s%F{5})%F{8}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats       \
-    '%F{5}[%F{2}%b%F{5}]%f '
+    '%b'
+    #' %F{8}< %F{2}%b %F{8}>%f '
     #'%F{5}(%F{2}%s%F{5})%F{8}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
@@ -89,6 +78,8 @@ vcs_info_wrapper() {
     echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
   fi
 }
+
+git_branch=$'$(vcs_info_wrapper)'
 
 #
 # Colors
@@ -114,32 +105,10 @@ bmagenta="%{[01;35m%}"
 bcyan="%{[01;36m%}"
 bwhite="%{[01;37m%}"
 
-# underscore
-ublack="%{[04;30m%}"
-ugrey="%{[01;04;30m%}"
-ured="%{[04;31m%}"
-ugreen="%{[04;32m%}"
-uyellow="%{[04;33m%}"
-ublue="%{[04;34m%}"
-umagenta="%{[04;35m%}"
-ucyan="%{[04;36m%}"
-uwhite="%{[04;37m%}"
-
-# blinking
-kgrey="%{[01;05;30m%}"
-kred="%{[05;31m%}"
-kgreen="%{[05;32m%}"
-kyellow="%{[05;33m%}"
-kblue="%{[05;34m%}"
-kmagenta="%{[05;35m%}"
-kcyan="%{[05;36m%}"
-kwhite="%{[05;37m%}"
-
 normal="%{[0;0m%}"
 
 
 # prompt
-export PROMPT="${gray}┌─${magenta}(${green}%M${magenta})${gray}-${magenta}[${green}%d${magenta}]${gray}->
-${gray}└>${normal} "
-export RPROMPT=$'$(vcs_info_wrapper)'
-export PS2="${gray}└>${normal} "
+export PS1=" ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+export PS2="   ${gray}>${normal} "
+export RPROMPT="${gray}<%(?.${green}.${yellow}) ${git_branch} ${gray}>${normal}"
