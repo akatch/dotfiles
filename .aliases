@@ -7,15 +7,12 @@ rbenv_exists=`which rbenv` > /dev/null 2>&1
 if [ -e $rbenv_exists ]; then
     eval "$(rbenv init -)"
     alias be='bundle exec'
-    alias development='export RAILS_ENV=development'
-    alias test='export RAILS_ENV=test'
-    alias qa='export RAILS_ENV=qa'
 fi
 
 ## mutt
 alias gmail='mutt -F ~/.mutt/account.gmail'
-alias hireology='mutt -F ~/.mutt/account.hireology'
-alias wits='mutt -F ~/.mutt/account.witsmd'
+#alias hireology='mutt -F ~/.mutt/account.hireology'
+#alias wits='mutt -F ~/.mutt/account.witsmd'
 alias opmbx='mutt -F ~/.mutt/account.opmbx'
 alias agmail='mutt -F ~/.mutt/account.gmail.old'
 alias aopmbx='mutt -F ~/.mutt/account.opmbx.old'
@@ -25,7 +22,6 @@ alias ls='ls --color=auto'
 alias g='grep --color=auto --exclude-dir=.git'
 alias norsk='setxkbmap no'
 alias eng='setxkbmap us'
-alias 3cal='cal -3'
 alias isomount='sudo mount -o loop,exec'
 alias ll='ls -lh'
 alias la='ls -A'
@@ -35,18 +31,13 @@ alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias c='clear'
 alias hc='cd && clear'
-alias nocomment='grep -Ev '\''^(#|$)'\'''
 alias sudo='sudo -E '
-alias term='urxvt -g 100x50'
 alias matrix='cmatrix -b -u 10'
-alias pp='~/bin/privatepaste.py -s daemoniz'
-alias pa='~/bin/privatepaste.py -s abowles'
 alias ta='tmux attach'
-alias pb='time packer build'
 
 ## workspaces
-alias env-wits='. ~/.ENV_WITS'
-alias env-hlgy='. ~/.ENV_HLGY'
+alias imagemover='. ~/.ENV_WITS'
+alias hireology='. ~/.ENV_HLGY'
 
 ## vim
 alias e='vim -p '
@@ -56,10 +47,10 @@ alias se='sudo -e '
 alias acs="apt-cache search"
 alias acp="apt-cache policy"
 alias acsh="apt-cache show"
-alias agi="apt-get install"
-alias aga="apt-get autoremove"
-alias update='sudo apt-get update'
-alias upgrade='sudo apt-get upgrade'
+alias ai="sudo apt install"
+alias aa="sudo apt autoremove"
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
 
 ## Ansible
 alias ad='ansible-doc '
@@ -70,35 +61,28 @@ alias ave='ansible-vault edit '
 alias avx='ansible-vault encrypt '
 alias avr='ansible-vault rekey '
 alias avv='ansible-vault view '
-alias ap='time ansible-playbook --diff'
+alias ap='ansible-playbook --diff'
 alias a='time ansible'
-alias gather='env-hlgy && time ansible-playbook $HOME/ansible/hireology/playbooks/gather-facts.yml -i $HOME/ansible/hireology/all'
+alias atest='ap playbooks/test.yml'
+
+## Vagrant
+alias v='vagrant'
+alias vu='time vagrant up --parallel'
+alias vd='vagrant destroy --force'
+alias vr='time vagrant reload'
+alias vs='vagrant ssh'
+alias vst='vagrant status'
+alias vp='time vagrant provision'
+alias vsc='vagrant ssh-config'
 
 ## postgres
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
 ## Alert stuff
 # usage: execute --long-running --command; alert;
-alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
+alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
 alert_picture='/usr/share/icons/Adwaita/scalable/apps/utilities-terminal-symbolic.svg'
 alias alert='notify-send -i "$alert_picture" "FINISHED: $alert_helper"'
-
-## Functions
-# summon ansible facts
-ansibleSetup() {
-    mkdir -p ~/ansible/facts.d/
-    ansible $1 -m setup -i $2 > ~/ansible/facts.d/$1.facts
-}
-
-# create a SHA256 hash
-createPasswordHash() {
-    python -c 'from passlib.hash import sha256_crypt; print sha256_crypt.encrypt("$1")'
-}
-
-# new hyde post
-newPost() {
-    vim ~/hyde/_posts/`date +%F`-$1.md
-}
 
 # search for processes and keep column headings
 processSearch() {
@@ -110,17 +94,6 @@ ipahbactest() {
     ipa hbactest --user=$1 --host=$2 --service=sshd
 }
 
-## ssh stuff
-agent() {
-    eval $(ssh-agent) > /dev/null 2>&1
-    ssh-add ~/.ssh/id_hireology ~/.ssh/WITSkeypair1.pem ~/.ssh/id_ansible > /dev/null 2>&1
-}
-
-## Ansible deploys
-ansibleQADeploy() {
-    time ansible-playbook ~/ansible/hireology/playbooks/deploy-qa.yml -i all -e "hosts=$2 release_branch=$1"
-}
-
 ## VMware snapshot management
 vmwareReset() {
     vmrun -T ws stop ~/vmware/$1/$1.vmx
@@ -129,24 +102,24 @@ vmwareReset() {
     vmrun -T ws start ~/vmware/$1/$1.vmx
 }
 
-## Git checkouts
-gitCheckout() {
-    git checkout $1
-    git pull origin $1
+## History grep
+histgrep() {
+    history | grep $1
+}
+
+## Make JSON pretty
+pjson() {
+    python -m json.tool $1 | less
 }
 
 ## Aliases to functions
 alias psgrep=processSearch
-alias mkpass=createPasswordHash
-alias newpost=newPost
-alias accio=ansibleSetup
 alias hbt=ipahbactest
-alias agnt=agent
-alias qa-deploy=ansibleQADeploy
 alias vmreset=vmwareReset
+alias hg=histgrep
+alias pj=pjson
 
 ## Git
-alias gco='git checkout'
 alias gst='git status'
 
 ## Clipboard
@@ -159,6 +132,7 @@ alias xpaste='xsel --input'
 # sync music to Sansa Clip Zip
 alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/${USER}/0123-4567/MUSIC'
 alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
-alias rdesktop='rdesktop -g 1400x900'
-alias prettyjson='python -m json.tool'
-alias hibot-restart='ansible build -m service -a "name=hibot state=restarted" -i $HOME/ansible/hireology/qa -s'
+alias hibot-restart='ansible build -m service -a "name=hibot state=restarted" -i $HOME/Projects/Hireology/ansible/qa -s'
+alias notes='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
+alias deployed='deploy-qa --deployed'
+alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
