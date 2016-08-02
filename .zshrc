@@ -109,6 +109,11 @@ normal="%{[0;0m%}"
 
 
 # prompt
-export PS1=" ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+# consider trying these!    
+#export PS1=" ${bblue}%m ${blue}${bcyan} %d ${cyan}${green} ${normal} "
+#export PS1="
+# ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+export PS1="
+ %(?.${green}.${yellow})%m ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
 export PS2="   ${gray}>${normal} "
 export RPROMPT="${gray}<%(?.${green}.${yellow}) ${git_branch} ${gray}>${normal}"
