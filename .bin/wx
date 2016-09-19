@@ -67,7 +67,7 @@ rvr() {
 }
 
 phenomena() {
-    phen=`echo $metar | awk -F 'RMK' '{print $1}' | grep -o '\(+\|-\)\b\(MI\|BL\|BC\|SH\|PR\|DR\|TS\|FZ\)\?\(DZ\|IC\|UP\|RA\|PL\|SN\|GR\|SG\|GS\)\?\(BR\|SA\|FU\|HZ\|VA\|PY\|DU\)\?\(SQ\|FC\|SS\|DS\|PO\)\?' | tr "\n" " "`
+    phen=`awk -F 'RMK' '{print $1}' <<< $metar | grep -o '\(\(+\|-\|\bVC\)\?\b\(MI\|BL\|BC\|SH\|PR\|DR\|TS\|FZ\)\?\(DZ\|IC\|UP\|RA\|PL\|SN\|GR\|SG\|GS\)\?\(BR\|SA\|FU\|HZ\|VA\|PY\|DU\|FG\)\?\(SQ\|FC\|SS\|DS\|PO\)\?\)'`
 
     case ${phen[0]} in
         +*) qual="heavy" ;;
@@ -102,6 +102,7 @@ phenomena() {
         *BR*) obsc="mist" ;;
         *SA*) obsc="sand" ;;
         *FU*) obsc="smoke" ;;
+        *FG*) obsc="fog" ;;
         *HZ*) obsc="haze" ;;
         *VA*) obsc="volcanic ash" ;;
         *PY*) obsc="spray" ;;
@@ -127,13 +128,14 @@ phenomena() {
 }
 
 condition() {
-    cond=(`echo $metar | grep -o '\(\(CLR\|SKC\|FEW\|SCT\|BKN\|OVC\|VV\)\([0-9]\+\)\?\(\|TCU\|CB\)\?\)\+' | tr "\n" " "`)
+    cond=(`grep -o '\(\(CLR\|SKC\|FEW\|SCT\|BKN\|OVC\|VV\)\([0-9]\+\)\?\(\|TCU\|CB\)\?\)\+' <<< $metar`)
     case ${cond[${#cond[@]} - 1]} in
         CLR*|SKC*) condition="clear" ;;
         FEW*) condition="partly cloudy" ;;
         SCT*) condition="cloudy" ;;
         BKN*) condition="mostly cloudy" ;;
         OVC*) condition="overcast" ;;
+        VV*) condition="vertical visibility" ;;
         **) condition="" ;;
     esac
 
