@@ -51,8 +51,7 @@ if [ -e ~/.profile ]; then
 fi
 
 # tmux completion
-bash_completion_tmux=`which bash_completion_tmux.sh` > /dev/null 2>&1
-if [ -e $bash_completion_tmux ]; then
+if [[ -z `which bash_completion_tmux.sh` ]]; then
     source bash_completion_tmux.sh
 fi
 
