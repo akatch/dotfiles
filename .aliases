@@ -3,8 +3,7 @@
 #
 
 ## rbenv
-rbenv_exists=`which rbenv` > /dev/null 2>&1
-if [ -e $rbenv_exists ]; then
+if [[ -z `which rbenv` ]]; then
     eval "$(rbenv init -)"
     alias be='bundle exec'
 fi
@@ -18,9 +17,8 @@ alias agmail='mutt -F ~/.mutt/account.gmail.old'
 alias aopmbx='mutt -F ~/.mutt/account.opmbx.old'
 
 ## General stuff
-#alias ls='ls --color=auto'
 alias ls='ls -G'
-alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs'
+alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
 alias norsk='setxkbmap no'
 alias eng='setxkbmap us'
 alias isomount='sudo mount -o loop,exec'
@@ -64,8 +62,13 @@ alias avr='ansible-vault rekey '
 alias avv='ansible-vault view '
 alias ap='ansible-playbook --diff'
 alias a='time ansible'
-alias atest='ap playbooks/test.yml -i'
+alias atest='ap playbooks/test.yml'
 alias aping='a all -m ping -i'
+alias adbg=ansible_debug
+
+ansible_debug() {
+    ansible all -m debug -a var=$1 -i $2
+}
 
 ansible_debug() {
   a all -m debug -a "var=$1" -i $2
