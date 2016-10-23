@@ -70,12 +70,6 @@ ansible_debug() {
     ansible all -m debug -a var=$1 -i $2
 }
 
-ansible_debug() {
-  a all -m debug -a "var=$1" -i $2
-}
-
-alias adbg=ansible_debug
-
 ## Vagrant
 alias v='vagrant'
 alias vu='time vagrant up --parallel'
