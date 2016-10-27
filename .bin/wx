@@ -138,7 +138,7 @@ condition() {
         **) condition="" ;;
     esac
 
-    echo $condition
+    printf " %s" $condition
 }
 
 visibility() {
