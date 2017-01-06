@@ -17,21 +17,19 @@ alias agmail='mutt -F ~/.mutt/account.gmail.old'
 alias aopmbx='mutt -F ~/.mutt/account.opmbx.old'
 
 ## General stuff
-alias ls='ls -G'
 alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
-alias norsk='setxkbmap no'
-alias eng='setxkbmap us'
 alias isomount='sudo mount -o loop,exec'
-alias ll='ls -lh'
-alias la='ls -A'
-alias lah='ls -lah'
+alias l='ls -lh'
+alias la='ls -lah'
+alias lr='ls -R'
 alias usg='du -h --max-depth=1 -x'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias c='clear'
-alias hc='cd && clear'
 alias sudo='sudo -E '
 alias matrix='cmatrix -b -u 10'
+# Force tmux to assume terminal supports 256 colors
+alias tmux='tmux -2'
 alias ta='tmux attach'
 
 ## workspaces
@@ -79,32 +77,14 @@ alias vs='vagrant ssh'
 alias vst='vagrant status'
 alias vp='time vagrant provision'
 alias vsc='vagrant ssh-config'
+alias vpp='time vagrant provision --provision-with'
 
 ## postgres
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
-## Alert stuff
-# usage: execute --long-running --command; alert;
-alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
-alert_picture='/usr/share/icons/Adwaita/scalable/apps/utilities-terminal-symbolic.svg'
-alias alert='notify-send -i "$alert_picture" "FINISHED: $alert_helper"'
-
 # search for processes and keep column headings
 processSearch() {
     ps aux | egrep "$1|PID"
-}
-
-# ipa hbactest
-ipahbactest() {
-    ipa hbactest --user=$1 --host=$2 --service=sshd
-}
-
-## VMware snapshot management
-vmwareReset() {
-    vmrun -T ws stop ~/vmware/$1/$1.vmx
-    last=`vmrun -T ws listSnapshots ~/vmware/$1/$1.vmx | tail -n 1`
-    vmrun -T ws revertToSnapshot ~/vmware/$1/$1.vmx ""$last""
-    vmrun -T ws start ~/vmware/$1/$1.vmx
 }
 
 ## History grep
@@ -119,8 +99,6 @@ pjson() {
 
 ## Aliases to functions
 alias psgrep=processSearch
-alias hbt=ipahbactest
-alias vmreset=vmwareReset
 alias hg=histgrep
 alias pj=pjson
 
@@ -134,11 +112,6 @@ alias xcopy='xsel --output'
 alias xpaste='xsel --input'
 
 ## Random
-# sync music to Sansa Clip Zip
-alias musync='rsync -az --no-perms --delete --delete-excluded --exclude=".tor*" --exclude="_tor*" /vault/music/ /media/${USER}/0123-4567/MUSIC'
-alias sub='subliminal -l en --providers addic7ed opensubtitles tvsubtitles thesubdb -- '
-alias hibot-restart='ansible build -m service -a "name=hibot state=restarted" -i $HOME/Projects/Hireology/ansible/qa -s'
-alias notes='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
+alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
 alias deployed='deploy-qa --deployed'
 alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
-alias cat='lolcat'
