@@ -21,11 +21,9 @@ STATION=KMSN
 # STATION=KMDW
 # STATION=KHNB
 DATA_URI="data/observations/metar/stations/$STATION.TXT"
-#DATA_URL="http://weather.noaa.gov/pub/$DATA_URI"
 DATA_URL="http://tgftp.nws.noaa.gov/$DATA_URI"
 CACHE="$HOME/.cache/wx/metar"
-TMP_CACHE="$HOME/.cache/wx/tmp"
-TMP_CACHE_INTERVAL=5
+CACHE_INTERVAL=5
 TIMEOUT=10
 PLATFORM=$(uname -a | awk '{ print $1 }')
 
@@ -43,13 +41,11 @@ _check_md5sum() {
 }
 
 refresh() {
-    curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL | tr "\n" " " > $TMP_CACHE
-    if [[ "$?" -eq 0 && ! -f $CACHE ]]; then
-        cp $TMP_CACHE $CACHE
-    fi
-    if [[ "$?" -eq 0 && $(_check_md5sum $TMP_CACHE) != $(_check_md5sum $CACHE) ]]; then
-        cat $TMP_CACHE >> $(dirname $CACHE)/hist
-        cp $TMP_CACHE $CACHE
+    data=$(curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL)
+    rc=$?
+    data=$(echo $data | tr "\n" " ")
+    if [[ "$rc" -eq 0 && "$data" != "" &&  $(_check_md5sum <<< $data) != $(_check_md5sum $CACHE) ]]; then
+        echo $data > $CACHE
     fi
 }
 
@@ -238,6 +234,6 @@ temp() {
 }
 
 $1 $2
-if test $(find $TMP_CACHE -mmin +$TMP_CACHE_INTERVAL); then
+if test $(find $CACHE -mmin +$CACHE_INTERVAL); then
     refresh
 fi
