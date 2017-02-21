@@ -9,26 +9,21 @@ if [[ -z `which rbenv` ]]; then
 fi
 
 ## mutt
-alias gmail='mutt -F ~/.mutt/account.gmail'
-#alias hireology='mutt -F ~/.mutt/account.hireology'
-#alias wits='mutt -F ~/.mutt/account.witsmd'
-alias opmbx='mutt -F ~/.mutt/account.opmbx'
-alias agmail='mutt -F ~/.mutt/account.gmail.old'
-alias aopmbx='mutt -F ~/.mutt/account.opmbx.old'
+alias mail_gmail='mutt -F ~/.mutt/account.gmail'
+alias mail_hlgy='mutt -F ~/.mutt/account.hireology'
+alias mail_im='mutt -F ~/.mutt/account.witsmd'
+alias mail_opmbx='mutt -F ~/.mutt/account.opmbx'
 
 ## General stuff
 alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
 alias isomount='sudo mount -o loop,exec'
-alias l='ls -lh'
-alias la='ls -lah'
-alias lr='ls -R'
-alias usg='du -h --max-depth=1 -x'
+alias l='ls -lh --color'
+alias la='ls -lah --color'
+alias lr='ls -R --color'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias c='clear'
 alias sudo='sudo -E '
-alias matrix='cmatrix -b -u 10'
-# Force tmux to assume terminal supports 256 colors
 alias tmux='tmux -2'
 alias ta='tmux attach'
 
@@ -62,9 +57,8 @@ alias ap='ansible-playbook --diff'
 alias a='time ansible'
 alias atest='ap playbooks/test.yml'
 alias aping='a all -m ping -i'
-alias adbg=ansible_debug
 
-ansible_debug() {
+adbg() {
     ansible all -m debug -a var=$1 -i $2
 }
 
@@ -83,24 +77,19 @@ alias vpp='time vagrant provision --provision-with'
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
 # search for processes and keep column headings
-processSearch() {
+psgrep() {
     ps aux | egrep "$1|PID"
 }
 
 ## History grep
-histgrep() {
+hg() {
     history | grep $1
 }
 
 ## Make JSON pretty
-pjson() {
+pj() {
     python -m json.tool $1 | less
 }
-
-## Aliases to functions
-alias psgrep=processSearch
-alias hg=histgrep
-alias pj=pjson
 
 ## Git
 alias gst='git status'
@@ -115,3 +104,10 @@ alias xpaste='xsel --input'
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
 alias deployed='deploy-qa --deployed'
 alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
+alias nb=newsbeuter
+
+alias directions='echo "Turn onto Buick Street between the Walgreens and the 7/11, then turn right into the Park Village parking lot. Our building is the first one on the right, and there is an intercom on the side of the building nearest the 7/11." | pbcopy'
+
+if [[ ! -z `which vimpager` ]]; then
+  alias psql='PAGER=vimpager psql';
+fi
