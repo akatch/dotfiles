@@ -23,11 +23,16 @@ STATION=KMSN
 DATA_URI="data/observations/metar/stations/$STATION.TXT"
 DATA_URL="http://tgftp.nws.noaa.gov/$DATA_URI"
 CACHE="$HOME/.cache/wx/metar"
-CACHE_INTERVAL=5
 TIMEOUT=10
 PLATFORM=$(uname -a | awk '{ print $1 }')
 
 metar=`cat $CACHE`
+
+_check_last_modified() {
+    src=$(date --date="$(curl -I -s $DATA_URL | grep Last-Modified | awk -F': ' '{ print $2 }')" +'%s')
+    cache=$(date -r $CACHE +'%s')
+    [[ "$src" > "$cache" ]] && return 1 || return 0
+}
 
 _check_md5sum() {
     case $PLATFORM in
@@ -41,12 +46,8 @@ _check_md5sum() {
 }
 
 refresh() {
-    data=$(curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL)
-    rc=$?
-    data=$(echo $data | tr "\n" " ")
-    if [[ "$rc" -eq 0 && "$data" != "" &&  $(_check_md5sum <<< $data) != $(_check_md5sum $CACHE) ]]; then
-        echo $data > $CACHE
-    fi
+    data=$(curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL | tr "\n" " ")
+    [[ "$data" != "" &&  $(_check_md5sum <<< $data) != $(_check_md5sum $CACHE) ]] && echo $data > $CACHE
 }
 
 metar() {
@@ -233,7 +234,4 @@ temp() {
     _temperature_conversion $temp $1
 }
 
-$1 $2
-if test $(find $CACHE -mmin +$CACHE_INTERVAL); then
-    refresh
-fi
+$1 $2 && _check_last_modified l| refresh
