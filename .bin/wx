@@ -21,16 +21,18 @@ STATION=KMSN
 # STATION=KMDW
 # STATION=KHNB
 DATA_URI="data/observations/metar/stations/$STATION.TXT"
-#DATA_URL="http://weather.noaa.gov/pub/$DATA_URI"
 DATA_URL="http://tgftp.nws.noaa.gov/$DATA_URI"
 CACHE="$HOME/.cache/wx/metar"
-TMP_CACHE="$HOME/.cache/wx/tmp"
-TMP_CACHE_INTERVAL=5
 TIMEOUT=10
-SEPARATOR="#[fg=colour27]#[fg=colour33]"
 PLATFORM=$(uname -a | awk '{ print $1 }')
 
 metar=`cat $CACHE`
+
+_check_last_modified() {
+    src=$(date --date="$(curl -I -s $DATA_URL | grep Last-Modified | awk -F': ' '{ print $2 }')" +'%s')
+    cache=$(date -r $CACHE +'%s')
+    [[ "$src" > "$cache" ]] && return 1 || return 0
+}
 
 _check_md5sum() {
     case $PLATFORM in
@@ -44,14 +46,8 @@ _check_md5sum() {
 }
 
 refresh() {
-    curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL | tr "\n" " " > $TMP_CACHE
-    if [[ "$?" -eq 0 && ! -f $CACHE ]]; then
-        cp $TMP_CACHE $CACHE
-    fi
-    if [[ "$?" -eq 0 && $(_check_md5sum $TMP_CACHE) != $(_check_md5sum $CACHE) ]]; then
-        cat $TMP_CACHE >> $(dirname $CACHE)/hist
-        cp $TMP_CACHE $CACHE
-    fi
+    data=$(curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL | tr "\n" " ")
+    [[ "$data" != "" &&  $(_check_md5sum <<< $data) != $(_check_md5sum $CACHE) ]] && echo $data > $CACHE
 }
 
 metar() {
@@ -120,7 +116,7 @@ phenomena() {
 
     if [[ -n "$qual" || -n "$desc" || -n "$precip" || -n "$obsc" || -n "$other" ]]
     then
-        printf "%s " $qual $desc $precip $obsc $other $SEPARATOR
+        printf " %s" $qual $desc $precip $obsc $other
         exit 0
     else
         exit 1
@@ -139,13 +135,7 @@ condition() {
         **) condition="" ;;
     esac
 
-    if [[ -n "$condition" ]]
-    then
-        printf "%s " $condition $SEPARATOR
-        exit 0
-    else
-        exit 1
-    fi
+    printf " %s" $condition
 }
 
 visibility() {
@@ -156,60 +146,76 @@ altimeter() {
     grep -o 'A[0-9]\{4\}' <<< $metar
 }
 
-wind() {
-    wind_direction_speed=$(grep -o '[A-Z0-9]\+\(G[0-9]\+\)\?KT' <<< $metar)
-    if test `echo $wind_direction_speed | grep -o 'G[0-9]\{2\}'`
-    then
-        wind_speed=$(grep -o '[0-9]\{2\}G[0-9]\{2\}KT' <<< $wind_direction_speed | awk -F 'G' '{print $1 * 1.151}' | bc)
-        gusting=`echo $wind_direction_speed | grep -o 'G[0-9]\{2\}' | awk -F 'G' '{print $2 * 1.151}' | bc`
-    else
-        wind_speed=`echo $wind_direction_speed | grep -o '[0-9][0-9]KT' | awk -F 'KT' '{print $1 * 1.151}' | bc`
-    fi
-    wd=`echo $wind_direction_speed | cut -c 1-3`
+_wind_speed_conversion() {
+    cf=1
+    case $2 in
+        kph|KPH) cf=1.852 ;;
+        mph|MPH) cf=1.151 ;;
+        **) break ;;
+    esac
+    bc <<< "$1 * $cf"
+}
+
+_wind_speed(){
+    read wind_speed gusting <<< $(echo $metar | grep -o '\([0-9]\{2\}G\)\?[0-9]\{2\}KT' | awk -F 'G' '{ printf "%d %d", $1, $2 }')
+}
+
+_wind_direction() {
+    wd=$(printf "%.3s" $(echo $metar | grep -o '\(VRB\|[0-9]\{3\}\)\([0-9]\{2\}G\)\?[0-9]\{2\}KT'))
 
     if [[ "$wd" == "VRB" ]]
     then
         wind_direction="variable"
-    else
-        wd=`echo $wd | bc`
+        return 0
+    fi
+
+    wd=`echo $wd | bc`
+    if ((1<=wd && wd<=78)) || ((347<=wd && wd<=360)); then
         if ((1<=wd && wd<=11)) || ((347<=wd && wd<=360)); then wind_direction="N"
         elif ((12<=wd && wd<=33)); then wind_direction="NNE"
         elif ((34<=wd && wd<=56)); then wind_direction="NE"
         elif ((57<=wd && wd<=78)); then wind_direction="ENE"
-        elif ((79<=wd && wd<=101)); then wind_direction="E"
+        fi
+    elif ((79<=wd && wd<=168)); then
+        if ((79<=wd && wd<=101)); then wind_direction="E"
         elif ((102<=wd && wd<=123)); then wind_direction="ESE"
         elif ((124<=wd && wd<=146)); then wind_direction="SE"
         elif ((147<=wd && wd<=168)); then wind_direction="SSE"
-        elif ((167<=wd && wd<=191)); then wind_direction="S"
+        fi
+    elif ((167<=wd && wd<=258)); then
+        if ((167<=wd && wd<=191)); then wind_direction="S"
         elif ((192<=wd && wd<=213)); then wind_direction="SSW"
         elif ((214<=wd && wd<=236)); then wind_direction="SW"
         elif ((237<=wd && wd<=258)); then wind_direction="WSW"
-        elif ((259<=wd && wd<=281)); then wind_direction="W"
+        fi
+    elif ((259<=wd && wd<=346)); then
+        if ((259<=wd && wd<=281)); then wind_direction="W"
         elif ((282<=wd && wd<=303)); then wind_direction="WNW"
         elif ((304<=wd && wd<=326)); then wind_direction="NW"
         elif ((327<=wd && wd<=346)); then wind_direction="NNW"
-        else
-            wind_direction=""
         fi
     fi
+}
 
-    if [[ "$wind_speed" == 0 || -z "$wind_speed" ]]
-    then
+wind() {
+    _wind_speed
+    _wind_direction
+
+    if [[ "$wind_speed" -eq 0 || -z "$wind_speed" ]]; then
         printf "calm"
-    elif test `echo $wind_direction_speed | grep -o 'G[0-9]\{2\}'`
-    then
-        printf "%s %.0fmph gusting to %.0fmph" $wind_direction $wind_speed $gusting
+    elif [[ "$gusting" -eq 0 ]]; then
+        printf "%s %.0fmph" $wind_direction $(_wind_speed_conversion $wind_speed mph)
     else
-        printf "%s %.0fmph\n" $wind_direction $wind_speed
+        printf "%s %.0f-%.0fmph" $wind_direction $(_wind_speed_conversion $wind_speed mph) $(_wind_speed_conversion $gusting mph)
     fi
 }
 
 _temperature_dewpoint() {
-    temperature_dewpoint=`grep -o '\s\([0-9]\{2\}\/[0-9]\{2\}\)\s' <<< $metar`
-    read temp dp <<< $(awk -F '/' '{ printf "%d %d", $1, $2 }' <<< $temperature_dewpoint)
+    temperature_dewpoint=`grep -o '\s\(M\)\?\([0-9]\{2\}\/\(M\)\?[0-9]\{2\}\)\s' <<< $metar`
+    read temp dp <<< $(awk -F '/' '{ printf "%d %d", $1, $2 }' <<< $(echo $temperature_dewpoint | sed 's/M/-/g'))
 }
 
-_degree_conversion() {
+_temperature_conversion() {
     case $2 in
         k|K) bc <<< "$1 + 270" | awk '{printf "%.0fK\n", $0}' ;;
         f|F) bc <<< "$1 * 9 / 5 + 32" | awk '{printf "%.0f°F\n", $0}' ;;
@@ -225,11 +231,7 @@ humidity() {
 
 temp() {
     _temperature_dewpoint
-    _degree_conversion $temp $1
+    _temperature_conversion $temp $1
 }
 
-if test $(find $TMP_CACHE -mmin +$TMP_CACHE_INTERVAL); then
-    refresh
-fi
-
-$1 $2
+$1 $2 && _check_last_modified l| refresh
