@@ -15,6 +15,7 @@ alias mail_im='mutt -F ~/.mutt/account.witsmd'
 alias mail_opmbx='mutt -F ~/.mutt/account.opmbx'
 
 ## General stuff
+alias ls='ls -G'
 alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
 alias isomount='sudo mount -o loop,exec'
 alias l='ls -lh --color'
@@ -57,6 +58,8 @@ alias ap='ansible-playbook --diff'
 alias a='time ansible'
 alias atest='ap playbooks/test.yml'
 alias aping='a all -m ping -i'
+alias adbg=ansible_debug
+
 
 adbg() {
     ansible all -m debug -a var=$1 -i $2
