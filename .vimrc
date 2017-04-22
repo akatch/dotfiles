@@ -4,8 +4,8 @@
 
 " Automatically grab Vundle
 if empty(glob('~/.vim/bundle/Vundle.vim'))
-  silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  autocmd VimEnter * :PluginInstall
+    silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    autocmd VimEnter * :PluginInstall
 endif
 
 """""" Vundle stuff """"""
@@ -18,19 +18,14 @@ call vundle#begin()
 " My Plugins here:
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'mtth/scratch.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'bling/vim-airline'
+"Plugin 'bling/vim-airline'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-git'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'tpope/vim-sensible'
-Plugin 'tmux-plugins/vim-tmux'
-Plugin 'guns/xterm-color-table.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -43,12 +38,12 @@ filetype plugin indent on
 """""" End Vundle stuff """"""
 
 if has("syntax")
-  syntax on
+    syntax on
 endif
 
 " Jump to the last position when reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 set autowrite
@@ -69,6 +64,9 @@ set smartcase
 set softtabstop=4
 set tabstop=4
 set ttyfast
+
+" TODO: show full filename in statusline
+" TODO: make commandline color6
 
 " fix annoying search highlighting behavior
 noremap <silent> <Space> :silent noh<Bar>echo<CR>
@@ -94,7 +92,7 @@ nmap <silent> <C-l> :wincmd l<CR>
 " ~/.vim/backup/
 " ./
 if isdirectory($HOME . '/.vim/backup') == 0
-  :silent !mkdir -p ~/.vim/backup >/dev/null 1>&1
+    :silent !mkdir -p ~/.vim/backup >/dev/null 1>&1
 endif
 set backupdir-=.
 set backupdir+=.
@@ -110,7 +108,7 @@ set writebackup
 " ~/tmp/
 " .
 if isdirectory($HOME . '/.vim/swap') == 0
-  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+    :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
 endif
 set directory=./.vim-swap//
 set directory+=~/.vim/swap//
@@ -121,33 +119,31 @@ set directory+=.
 set viminfo+=n~/.vim/viminfo
 
 if exists("+undofile")
-  " undofile - This allows you to use undos after exiting and restarting
-  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-  " :help undo-persistence
-  " This is only present in 7.3+
-  if isdirectory($HOME . '/.vim/undo') == 0
-    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-  endif
-  set undodir=./.vim-undo//
-  set undodir+=~/.vim/undo//
-  set undofile
+    " undofile - This allows you to use undos after exiting and restarting
+    " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+    " :help undo-persistence
+    " This is only present in 7.3+
+    if isdirectory($HOME . '/.vim/undo') == 0
+        :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+    endif
+    set undodir=./.vim-undo//
+    set undodir+=~/.vim/undo//
+    set undofile
 endif
 
 " Use favorite color scheme
-colorscheme chillaxedgreen
+colorscheme cyberpunklisafrank
 
 " Highlight chars that go over the 80-column limit for certain filetypes
 au FileType cpp match ErrorMsg '\%>80v.\+'
 au FileType py match ErrorMsg '\%>80v.\+'
-au FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
+"au FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
 
 " Limit the line length for markdown
-autocmd FileType markdown set tw=90 "or don't bc damn its annoying
+autocmd FileType markdown set tw=90 tabstop=2 softtabstop=2 shiftwidth=2 "or don't bc damn its annoying
 autocmd FileType markdown setlocal spell
-autocmd FileType markdown set tabstop=2
-autocmd FileType markdown set softtabstop=2
-autocmd FileType markdown set shiftwidth=2
-autocmd FileType markdown set expandtab
+autocmd FileType sh set tabstop=4 softtabstop=4 shiftwidth=4
 
 "
 " Leader shortcuts
@@ -164,28 +160,29 @@ set pastetoggle=<leader>p
 
 " Open ScratchPad
 nmap <leader>s :tabedit ~/SpiderOak\ Hive/scratchpad.md<cr>
+nmap <leader>m :tabedit ~/documents/txt/notes.txt<cr>
 
 " Toggle line numbers
 nmap <leader>n :set number!<CR>
 
 " Update Tags
 if has("unix")
-  let s:uname = system("uname")
-  if s:uname == "Darwin\n"
-    " Do Mac stuff here
-    nnoremap <silent> <Leader>t :!/usr/local/bin/ctags -R -f ./.git/tags .<CR>
-    " Yank text to OSX clipboard
-    noremap <leader>y "*y
-    noremap <leader>yy "*Y
-    noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
-  endif
+    let s:uname = system("uname")
+    if s:uname == "Darwin\n"
+        " Do Mac stuff here
+        nnoremap <silent> <Leader>t :!/usr/local/bin/ctags -R -f ./.git/tags .<CR>
+        " Yank text to OSX clipboard
+        noremap <leader>y "*y
+        noremap <leader>yy "*Y
+        noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+    endif
 else
-  nnoremap <silent> <Leader>t :!ctags -R -f ./.git/tags .<CR>
+    nnoremap <silent> <Leader>t :!ctags -R -f ./.git/tags .<CR>
 endif
 
 " Whitespace stuff
 " Whitespace Highlight Toggle
-nnoremap <silent> <leader>w :AirlineToggleWhitespace<CR>
+"nnoremap <silent> <leader>w :AirlineToggleWhitespace<CR>
 " And Strip it
 nnoremap <silent> <leader>W :StripWhitespace<CR>
 
@@ -193,80 +190,19 @@ nnoremap <silent> <leader>W :StripWhitespace<CR>
 nnoremap <leader>= gg=G``
 
 " Table Format (markdown files only)
-nnoremap <silent> <leader>T :TableFormat<CR>
+"nnoremap <silent> <leader>T :TableFormat<CR>
 
 " Toggle SemanticHighlighting
-nnoremap <silent> <Leader>h :SemanticHighlightToggle<CR>
+"nnoremap <silent> <Leader>h :SemanticHighlightToggle<CR>
 
 " Tab align along = or :
 if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-  nmap <Leader>a> :Tabularize /=><CR>
-  vmap <Leader>a> :Tabularize /=><CR>
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+    nmap <Leader>a> :Tabularize /=><CR>
+    vmap <Leader>a> :Tabularize /=><CR>
 endif
 
-"vim-airline stuff
-let g:airline_theme = 'murmur'
-let g:airline_powerline_fonts = 1
-set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
-
-" powerline symbols
-" To get these to work in debian you must:
-    " 1. acquire powerline fonts:
-    "    git clone https://github.com/powerline/fonts.git
-    "    cp fonts/* ~/.fonts/
-    " 2. enable bitmap fonts:
-    "    sudo dpkg-reconfigure fontconfig-config
-    "    answer "yes" to the third question
-    " 3. xset +fp ~/.fonts
-    " 4. fc-cache -fv
-    " 5. restart X
-
-"" these are the defaults
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" vim-airline word count
-" This combines several ideas from:
-" http://stackoverflow.com/questions/114431/fast-word-count-function-in-vim
-let g:word_count="<unknown>"
-function WordCount()
-   return g:word_count
-endfunction
-function UpdateWordCount()
-   let lnum = 1
-   let n = 0
-   while lnum <= line('$')
-       let n = n + len(split(getline(lnum)))
-       let lnum = lnum + 1
-   endwhile
-   let g:word_count = n
-endfunction
-
-" Update the count when cursor is idle in command or insert mode.
-" Update when idle for 1000 msec (default is 4000 msec).
-set updatetime=1000
-augroup WordCounter
-   au! CursorHold,CursorHoldI * call UpdateWordCount()
-augroup END
-
-" Replaces the encoding section with word count when in a markdown file
-autocmd FileType markdown let g:airline_section_y = airline#section#create(['%{WordCount()} words'])
-autocmd FileType text let g:airline_section_y = airline#section#create(['%{WordCount()} words'])
+" TODO: statusbar - add git branch, full filename, current mode
