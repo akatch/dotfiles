@@ -1,0 +1,51 @@
+!!
+!! .Xdefaults
+!!
+
+*font: -*-terminesspowerline-medium-*-normal-*-16-*-*-*-*-*-*-1
+!,-*-symbol-*-*-*-*-*-*-*-*-*-*-*-*
+*font1: -*-terminesspowerline-medium-*-normal-*-20-*-*-*-*-*-*-1
+*font2: -*-terminesspowerline-medium-*-normal-*-22-*-*-*-*-*-*-1
+*font3: -*-terminesspowerline-medium-*-normal-*-24-*-*-*-*-*-*-1
+*font4: -*-terminesspowerline-medium-*-normal-*-28-*-*-*-*-*-*-1
+*font5: -*-terminesspowerline-medium-*-normal-*-32-*-*-*-*-*-*-1
+
+*allowBoldFonts: false
+!*eightBitInput: false
+!*metaSendsEscape: true
+*saveLines: 10000
+*scrollKey: true
+*locale: true
+*utf8: 1
+*allowScrollLock: true
+*cursorColor: rgb:26/26/26
+!*cursorUnderLine: true
+*cursorBlink: true
+
+!! Colors
+*background: rgb:08/08/08
+*foreground: rgb:76/76/76
+! black
+*.color0: rgb:12/12/12
+*.color8: rgb:3a/3a/3a
+! red   203 / 197
+*.color1: rgb:ff/00/5f
+*.color9: rgb:ff/5f/5f
+! green  28 / 64
+*.color2: rgb:00/87/00
+*.color10: rgb:5f/87/00
+! yellow 172 / 178
+*.color3: rgb:df/87/00
+*.color11: rgb:df/af/00
+! blue
+*.color4: rgb:00/5f/df
+*.color12: rgb:00/87/df
+! magenta 162 / 169
+*.color5: rgb:df/00/87
+*.color13: rgb:df/5f/af
+! cyan 24 / 30
+*.color6: rgb:00/5f/87
+*.color14: rgb:00/87/87
+! white
+*.color7: rgb:cc/cc/cc
+*.color15: rgb:ff/ff/ff
