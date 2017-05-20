@@ -49,10 +49,14 @@ alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
 alias nb=newsbeuter
 
 ## workspaces
+alias t='~/.bin/tmux-session-setup '
+alias tmux='tmux -2 '
 alias im='~/.bin/tmux-session-setup imagemover'
 alias hlgy='~/.bin/tmux-session-setup hireology'
 # TODO attach if named session exists else create
-alias ta='tmux attach -t'
+alias ta='tmux -2 attach -t'
+alias hireology='source ~/.ENV_HLGY'
+alias imagemover='source ~/.ENV_imagemover'
 
 ## Git
 alias gst='git status'
@@ -114,7 +118,7 @@ psgrep() {
 }
 
 ## History grep
-hg() {
+h() {
     history | grep $1
 }
 
