@@ -160,7 +160,7 @@ _wind_speed_conversion() {
     case $2 in
         kph|KPH) cf=1.852 ;;
         mph|MPH) cf=1.151 ;;
-        **) break ;;
+        **) ;;
     esac
     bc <<< "$1 * $cf"
 }
@@ -226,8 +226,8 @@ _temperature_dewpoint() {
 
 _temperature_conversion() {
     case $2 in
-        k|K) bc <<< "$1 + 270" | awk '{printf "%.0fK\n", $0}' ;;
-        f|F) bc <<< "$1 * 9 / 5 + 32" | awk '{printf "%.0f°F\n", $0}' ;;
+        k|K) bc <<< "$1 + 270" | awk '{printf "%.0fK", $0}' ;;
+        f|F) bc <<< "$1 * 9 / 5 + 32" | awk '{printf "%.0f°F", $0}' ;;
         **) printf "%d°C" $1 ;;
     esac
 }

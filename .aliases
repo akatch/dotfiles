@@ -22,7 +22,7 @@ if [[ `uname` == "Linux" ]]; then
     alias xcopy='xsel --output'
     alias xpaste='xsel --input'
     alias l='ls -lh --color'
-    alias la='ls -lah --color'
+    alias lah='ls -lah --color'
     alias lr='ls -R --color'
 fi
 
@@ -42,6 +42,7 @@ alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias c='clear'
 alias nc='nc -v'
+alias ly=lynx
 
 ## Random
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
@@ -89,6 +90,7 @@ alias ap='time ansible-playbook --diff'
 alias a='time ansible'
 alias atest='ap playbooks/test.yml'
 alias aping='a all -m ping -i'
+alias agi='ansible-galaxy init '
 
 adbg() {
     ansible all -m debug -a var=$1 -i $2

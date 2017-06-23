@@ -2,13 +2,11 @@
 !! .Xdefaults
 !!
 
-*font: -*-terminesspowerline-medium-*-normal-*-16-*-*-*-*-*-*-1
-!,-*-symbol-*-*-*-*-*-*-*-*-*-*-*-*
-*font1: -*-terminesspowerline-medium-*-normal-*-20-*-*-*-*-*-*-1
-*font2: -*-terminesspowerline-medium-*-normal-*-22-*-*-*-*-*-*-1
-*font3: -*-terminesspowerline-medium-*-normal-*-24-*-*-*-*-*-*-1
-*font4: -*-terminesspowerline-medium-*-normal-*-28-*-*-*-*-*-*-1
-*font5: -*-terminesspowerline-medium-*-normal-*-32-*-*-*-*-*-*-1
+*font: -*-noto mono-*-*-*-*-*-*-*-*-*-*-*-1
+!*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-1
+!*font: -*-terminesspowerline-medium-*-normal-*-*-*-*-*-*-*-*-1
+!*VT100.utf8Fonts.font: -*-terminus-medium-r-normal-*-18-*-*-*-*-*-*-1
+!*VT100.utf8Fonts.font: -misc-fixed-medium-r-normal-*-20-200-*-*-*-*-*-1
 
 *allowBoldFonts: false
 !*eightBitInput: false
@@ -16,7 +14,7 @@
 *saveLines: 10000
 *scrollKey: true
 *locale: true
-*utf8: 1
+*utf8: true
 *allowScrollLock: true
 *cursorColor: rgb:26/26/26
 !*cursorUnderLine: true
