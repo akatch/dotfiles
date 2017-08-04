@@ -3,8 +3,7 @@
 #
 
 ## rbenv
-if [[ -z `which rbenv` ]]; then
-    eval "$(rbenv init -)"
+if [[ -z `which bundle` || -d $HOME/.rbenv ]]; then
     alias be='bundle exec'
 fi
 
@@ -30,9 +29,9 @@ fi
 if [[ `uname` == "Darwin" ]]; then
     alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
     alias noshowhidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-    alias l='ls -lh'
-    alias la='ls -lah'
-    alias lr='ls -R'
+    alias l='ls -lhG'
+    alias la='ls -lahG'
+    alias lr='ls -RG'
 fi
 
 ## General stuff
@@ -48,10 +47,11 @@ alias ly=lynx
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
 alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
 alias nb=newsbeuter
+alias whatsmyip='lynx -dump "https://www.google.com/search?q=what%27s+my+ip" | grep -B1 "Your public IP address"'
 
 ## workspaces
 alias t='~/.bin/tmux-session-setup '
-alias tmux='tmux -2 '
+alias tmux='tmux -2 -u '
 alias im='~/.bin/tmux-session-setup imagemover'
 alias hlgy='~/.bin/tmux-session-setup hireology'
 # TODO attach if named session exists else create
@@ -71,11 +71,11 @@ alias se='sudo -e '
 alias acs="apt-cache search"
 alias acp="apt-cache policy"
 alias acsh="apt-cache show"
-alias ai="sudo apt install"
-alias aa="sudo apt autoremove"
-alias ar="sudo apt remove"
-alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
+alias ai="sudo apt-get install"
+alias aa="sudo apt-get autoremove"
+alias ar="sudo apt-get remove"
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
 
 ## Ansible
 alias ad='ansible-doc'

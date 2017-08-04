@@ -16,6 +16,10 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/rbenv-ctags'
+Plugin 'udalov/kotlin-vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -24,8 +28,8 @@ if has("syntax")
     syntax on
 endif
 
-colorscheme cyberpunklisafrank
-set background=dark shiftwidth=4 tabstop=4 softtabstop=4 laststatus=2
+colorscheme oceans
+set background=dark laststatus=2
 set nocompatible ignorecase nohlsearch ttyfast expandtab autoindent number cursorline nocursorcolumn
 
 " Insert cursor at previous position
@@ -54,6 +58,11 @@ nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
-nmap <leader>n :set number!<CR>
-nmap <leader>p :set paste!<CR>
+nmap <silent> <leader>n :set number!<CR>
+nmap <silent> <leader>p :set paste!<CR>
+nmap <silent> <leader>t :0tabe ~/sync/todo.txt<CR>
+nmap <silent> <leader>r :so ~/.vimrc<CR>
+nmap <silent> <leader>v :tabe ~/.vimrc<CR>
 nmap <silent> <leader>W :StripWhitespace<CR>
+nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
+nmap <silent> <leader>c :color oceans<CR>

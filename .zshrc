@@ -37,7 +37,7 @@ bindkey '\e[B' down-line-or-beginning-search
 
 # enable color support
 if [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b ~/.dircolors`"
+    eval "`dircolors -b ~/.config/dircolors`"
 fi
 
 # source aliases
