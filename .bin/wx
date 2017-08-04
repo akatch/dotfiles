@@ -24,13 +24,22 @@ DATA_URI="data/observations/metar/stations/$STATION.TXT"
 DATA_URL="http://tgftp.nws.noaa.gov/$DATA_URI"
 CACHE="$HOME/.cache/wx/metar"
 TIMEOUT=10
-PLATFORM=$(uname -a | awk '{ print $1 }')
+PLATFORM=$(uname)
 
 metar=`cat $CACHE`
 
 _check_last_modified() {
-    src=$(date --date="$(curl -I -s $DATA_URL | grep Last-Modified | awk -F': ' '{ print $2 }')" +'%s')
-    cache=$(date -r $CACHE +'%s')
+    last_modified=$(curl -I -s $DATA_URL | grep Last-Modified | awk -F': ' '{ print $2 }')
+    case $PLATFORM in
+        Linux)
+            src=$(date --date="$last_modified" +'%s')
+            cache=$(date -r $CACHE +'%s')
+        ;;
+        Darwin)
+            src=$(date -j -f "%a, %e %b %Y %T %Z" "$last_modified" "+%s")
+            cache=$(stat -f "%m" $CACHE)
+        ;;
+    esac
     [[ "$src" > "$cache" ]] && return 1 || return 0
 }
 
@@ -151,7 +160,7 @@ _wind_speed_conversion() {
     case $2 in
         kph|KPH) cf=1.852 ;;
         mph|MPH) cf=1.151 ;;
-        **) break ;;
+        **) ;;
     esac
     bc <<< "$1 * $cf"
 }
@@ -217,8 +226,8 @@ _temperature_dewpoint() {
 
 _temperature_conversion() {
     case $2 in
-        k|K) bc <<< "$1 + 270" | awk '{printf "%.0fK\n", $0}' ;;
-        f|F) bc <<< "$1 * 9 / 5 + 32" | awk '{printf "%.0f°F\n", $0}' ;;
+        k|K) bc <<< "$1 + 270" | awk '{printf "%.0fK", $0}' ;;
+        f|F) bc <<< "$1 * 9 / 5 + 32" | awk '{printf "%.0f°F", $0}' ;;
         **) printf "%d°C" $1 ;;
     esac
 }
@@ -234,4 +243,4 @@ temp() {
     _temperature_conversion $temp $1
 }
 
-$1 $2 && _check_last_modified l| refresh
+$1 $2 && _check_last_modified || refresh

@@ -3,8 +3,7 @@
 #
 
 ## rbenv
-if [[ -z `which rbenv` ]]; then
-    eval "$(rbenv init -)"
+if [[ -z `which bundle` || -d $HOME/.rbenv ]]; then
     alias be='bundle exec'
 fi
 
@@ -14,23 +13,55 @@ alias mail_hlgy='mutt -F ~/.mutt/account.hireology'
 alias mail_im='mutt -F ~/.mutt/account.witsmd'
 alias mail_opmbx='mutt -F ~/.mutt/account.opmbx'
 
+## Clipboard
+# only on Linux
+if [[ `uname` == "Linux" ]]; then
+    alias pbcopy='xclip -selection clipboard -in'
+    alias pbpaste='xclip -selection clipboard -out'
+    alias xcopy='xsel --output'
+    alias xpaste='xsel --input'
+    alias l='ls -lh --color'
+    alias lah='ls -lah --color'
+    alias lr='ls -R --color'
+fi
+
+# only on OSX
+if [[ `uname` == "Darwin" ]]; then
+    alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+    alias noshowhidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+    alias l='ls -lhG'
+    alias la='ls -lahG'
+    alias lr='ls -RG'
+fi
+
 ## General stuff
-alias ls='ls -G'
 alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
 alias isomount='sudo mount -o loop,exec'
-alias l='ls -lh --color'
-alias la='ls -lah --color'
-alias lr='ls -R --color'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias c='clear'
-alias sudo='sudo -E '
-alias tmux='tmux -2'
-alias ta='tmux attach'
+alias nc='nc -v'
+alias ly=lynx
+
+## Random
+alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
+alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
+alias nb=newsbeuter
+alias whatsmyip='lynx -dump "https://www.google.com/search?q=what%27s+my+ip" | grep -B1 "Your public IP address"'
 
 ## workspaces
-alias imagemover='. ~/.ENV_WITS'
-alias hireology='. ~/.ENV_HLGY'
+alias t='~/.bin/tmux-session-setup '
+alias tmux='tmux -2 -u '
+alias im='~/.bin/tmux-session-setup imagemover'
+alias hlgy='~/.bin/tmux-session-setup hireology'
+# TODO attach if named session exists else create
+alias ta='tmux -2 attach -t'
+alias hireology='source ~/.ENV_HLGY'
+alias imagemover='source ~/.ENV_imagemover'
+
+## Git
+alias gst='git status'
+alias gco='git checkout'
 
 ## vim
 alias e='vim -p '
@@ -40,10 +71,11 @@ alias se='sudo -e '
 alias acs="apt-cache search"
 alias acp="apt-cache policy"
 alias acsh="apt-cache show"
-alias ai="sudo apt install"
-alias aa="sudo apt autoremove"
-alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
+alias ai="sudo apt-get install"
+alias aa="sudo apt-get autoremove"
+alias ar="sudo apt-get remove"
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
 
 ## Ansible
 alias ad='ansible-doc'
@@ -54,12 +86,11 @@ alias ave='ansible-vault edit'
 alias avx='ansible-vault encrypt'
 alias avr='ansible-vault rekey '
 alias avv='ansible-vault view '
-alias ap='ansible-playbook --diff'
+alias ap='time ansible-playbook --diff'
 alias a='time ansible'
 alias atest='ap playbooks/test.yml'
 alias aping='a all -m ping -i'
-alias adbg=ansible_debug
-
+alias agi='ansible-galaxy init '
 
 adbg() {
     ansible all -m debug -a var=$1 -i $2
@@ -79,38 +110,22 @@ alias vpp='time vagrant provision --provision-with'
 ## postgres
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
+if [[ ! -z `which vimpager` ]]; then
+    alias psql='PAGER=vimpager psql';
+fi
+
 # search for processes and keep column headings
 psgrep() {
     ps aux | egrep "$1|PID"
 }
 
 ## History grep
-hg() {
+h() {
     history | grep $1
 }
 
 ## Make JSON pretty
 pj() {
-    python -m json.tool $1 | less
+    #python -m json.tool $1 | less
+    jq . $1 | less
 }
-
-## Git
-alias gst='git status'
-
-## Clipboard
-alias pbcopy='xclip -selection clipboard -in'
-alias pbpaste='xclip -selection clipboard -out'
-alias xcopy='xsel --output'
-alias xpaste='xsel --input'
-
-## Random
-alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
-alias deployed='deploy-qa --deployed'
-alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
-alias nb=newsbeuter
-
-alias directions='echo "Turn onto Buick Street between the Walgreens and the 7/11, then turn right into the Park Village parking lot. Our building is the first one on the right, and there is an intercom on the side of the building nearest the 7/11." | pbcopy'
-
-if [[ ! -z `which vimpager` ]]; then
-  alias psql='PAGER=vimpager psql';
-fi
