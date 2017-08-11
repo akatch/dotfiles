@@ -23,6 +23,9 @@ Plugin 'udalov/kotlin-vim'
 call vundle#end()
 
 filetype plugin indent on
+autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
+autocmd Filetype ansible setlocal shiftwidth=2 tabstop=2
+autocmd Filetype ruby setlocal shiftwidth=2 tabstop=2
 
 if has("syntax")
     syntax on
