@@ -26,6 +26,7 @@ filetype plugin indent on
 autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
 autocmd Filetype ansible setlocal shiftwidth=2 tabstop=2
 autocmd Filetype ruby setlocal shiftwidth=2 tabstop=2
+autocmd Filetype markdown setlocal shiftwidth=4 tabstop=4
 
 if has("syntax")
     syntax on

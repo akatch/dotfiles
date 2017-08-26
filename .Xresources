@@ -1,10 +1,11 @@
 !!
-!! .Xdefaults
+!! .Xresources
 !!
 
-*font: -*-noto mono-*-*-*-*-*-*-*-*-*-*-*-1
+!*font: -*-noto mono-*-*-*-*-*-*-*-*-*-*-*-1
 !*faceName: xft:Noto Mono:antialias=false:pixelsize=14
 
+*font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
 *allowBoldFonts: false
 !*eightBitInput: false
 !*metaSendsEscape: true

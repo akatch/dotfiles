@@ -28,7 +28,7 @@ hi VisualNOS     term=reverse       cterm=none ctermfg=none ctermbg=234
 hi Cursor        term=none          cterm=none ctermbg=237 ctermfg=none
 hi CursorIM      term=reverse       cterm=none ctermbg=237 ctermfg=none
 hi CursorColumn  term=none          cterm=bold ctermbg=233 ctermfg=none
-hi SignColumn                      	ctermfg=70 ctermbg=none
+hi SignColumn                      	ctermfg=168 ctermbg=none
 hi ColorColumn   term=none          ctermfg=70 ctermbg=none
 hi CursorLine    term=none          cterm=none ctermbg=233 ctermfg=none
 hi CursorLineNr  term=none          cterm=none ctermfg=34 ctermbg=none
@@ -49,7 +49,7 @@ hi PmenuThumb    term=reverse      	ctermfg=gray ctermbg=none
 
 " characters
 hi MatchParen    term=bold          ctermbg=none ctermfg=220
-hi Delimiter     term=bold         	ctermfg=70 ctermbg=none
+hi Delimiter     term=bold         	ctermfg=35 ctermbg=none
 hi SpecialChar   term=bold         	ctermfg=64 ctermbg=none
 hi Special       term=bold         	ctermfg=34 ctermbg=none
 
@@ -60,7 +60,7 @@ hi Number        term=none    	    ctermfg=36 ctermbg=none
 hi Float         term=none 	        ctermfg=37 ctermbg=none
 
 " keywords
-hi Operator      term=none          ctermfg=76 ctermbg=none
+hi Operator      term=none          ctermfg=72 ctermbg=none
 hi Question      term=none     	    ctermfg=37 ctermbg=none
 hi Directory     term=underline    	ctermfg=33 ctermbg=none
 hi Function      term=standout     	ctermfg=32 ctermbg=none
@@ -70,7 +70,7 @@ hi Statement     term=standout     	ctermfg=66 ctermbg=none
 hi link Exception     Statement
 hi link Keyword       Statement
 hi link Label         Statement
-hi PreProc       term=standout     	ctermfg=70 ctermbg=none
+hi PreProc       term=standout     	ctermfg=34 ctermbg=none
 hi link Define         PreProc
 hi link Include        PreProc
 hi link Macro          PreProc
@@ -93,21 +93,21 @@ hi SpecialComment       term=italic    ctermfg=242 ctermbg=none
 hi Folded       term=italic         ctermfg=239 ctermbg=none
 hi FoldColumn       term=italic         ctermfg=239 ctermbg=none
 hi Title         term=reverse      	ctermfg=61 ctermbg=none
-hi Search        term=reverse      	cterm=none ctermfg=30 ctermbg=none
-hi IncSearch     term=reverse    cterm=none ctermfg=30 ctermbg=none
-hi Tag           term=bold         	ctermfg=76 ctermbg=none
+hi Search        term=reverse      	cterm=none ctermfg=30 ctermbg=235
+hi IncSearch     term=reverse    cterm=none ctermfg=30 ctermbg=235
+hi Tag           term=bold         	ctermfg=79 ctermbg=none
 
 " types
 hi StorageClass  term=standout     	ctermfg=31 ctermbg=none
-hi String        term=none    	    ctermfg=26 ctermbg=none
+hi String        term=none    	        ctermfg=26 ctermbg=none
 hi Type          term=standout     	ctermfg=33 ctermbg=none
 hi Typedef       term=standout     	ctermfg=32 ctermbg=none
-hi Boolean      term=none    	ctermfg=30 ctermbg=none
+hi Boolean      term=none    	        ctermfg=73 ctermbg=none
 hi Structure     term=standout     	ctermfg=30 ctermbg=none
 
-hi NonText                         	ctermfg=242 ctermbg=none
+hi NonText                         	ctermfg=235 ctermbg=none
 hi Normal                          	ctermfg=none ctermbg=none
-hi SpecialKey    term=bold         	ctermfg=76 ctermbg=none
+hi SpecialKey    term=bold         	ctermfg=37 ctermbg=none
 
 " spelling
 hi SpellBad      term=reverse        cterm=underline	ctermfg=220 ctermbg=none
