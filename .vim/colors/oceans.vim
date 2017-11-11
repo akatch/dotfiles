@@ -38,7 +38,7 @@ hi StatusLineNC  term=reverse      	cterm=none ctermfg=239 ctermbg=none
 hi TabLine       term=none          cterm=none ctermbg=none ctermfg=none
 hi TabLineFill   term=none          cterm=none ctermbg=none
 hi TabLineSel    term=none      	ctermfg=34 ctermbg=none
-hi VertSplit     term=none      	ctermfg=235 ctermbg=none
+hi VertSplit     term=none      	ctermfg=232 ctermbg=235
 
 " menus
 hi WildMenu     term=reverse      	ctermfg=237 ctermbg=none
@@ -93,16 +93,16 @@ hi SpecialComment       term=italic    ctermfg=242 ctermbg=none
 hi Folded       term=italic         ctermfg=239 ctermbg=none
 hi FoldColumn       term=italic         ctermfg=239 ctermbg=none
 hi Title         term=reverse      	ctermfg=61 ctermbg=none
-hi Search        term=reverse      	cterm=none ctermfg=30 ctermbg=235
-hi IncSearch     term=reverse    cterm=none ctermfg=30 ctermbg=235
+hi Search        term=reverse      	cterm=none ctermfg=30 ctermbg=none
+hi IncSearch     term=reverse    cterm=none ctermfg=30 ctermbg=none
 hi Tag           term=bold         	ctermfg=79 ctermbg=none
 
 " types
 hi StorageClass  term=standout     	ctermfg=31 ctermbg=none
-hi String        term=none    	        ctermfg=26 ctermbg=none
+hi String        term=none    	    ctermfg=26 ctermbg=none
 hi Type          term=standout     	ctermfg=33 ctermbg=none
 hi Typedef       term=standout     	ctermfg=32 ctermbg=none
-hi Boolean      term=none    	        ctermfg=73 ctermbg=none
+hi Boolean      term=none    	ctermfg=30 ctermbg=none
 hi Structure     term=standout     	ctermfg=30 ctermbg=none
 
 hi NonText                         	ctermfg=235 ctermbg=none

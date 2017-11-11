@@ -10,9 +10,6 @@
 # http://www.met.tamu.edu/class/metar/quick-metar.html
 # http://www.dixwx.com/wxdecoding.htm
 
-## Symbols: (for future use?)
-# ❅ ☽ ☾ ☂ ☃ ☁ ⚡ ♨ ﹌ 〰 ⚐ ⚑ 〇    
-
 ## Dependencies:
 # bc
 
@@ -64,11 +61,11 @@ metar() {
 }
 
 remarks() {
-    awk -F 'RMK' '{print $2}' <<< $metar
+    awk -F 'RMK' '{print $2}' $CACHE
 }
 
 rvr() {
-    awk '$0 ~ /(R[0-9]+/[0-9]+V?(M|P)[0-9]+FT)/' <<< $metar
+    awk '$0 ~ /\(R\[0-9\]\+\/\[0-9\]\+V?\(M\|P\)\[0-9\]\+FT\)/' $CACHE
 }
 
 phenomena() {
@@ -133,7 +130,7 @@ phenomena() {
 }
 
 condition() {
-    cond=(`grep -o '\(\(CLR\|SKC\|FEW\|SCT\|BKN\|OVC\|VV\)\([0-9]\+\)\?\(\|TCU\|CB\)\?\)\+' <<< $metar`)
+    cond=$(grep -o '\(\(CLR\|SKC\|FEW\|SCT\|BKN\|OVC\|VV\)\([0-9]\+\)\?\(\|TCU\|CB\)\?\)\+' $CACHE)
     case ${cond[${#cond[@]} - 1]} in
         CLR*|SKC*) condition="clear" ;;
         FEW*) condition="partly cloudy" ;;
@@ -148,11 +145,11 @@ condition() {
 }
 
 visibility() {
-    grep -o '\([0-9]\+SM\)' <<< $metar
+    grep -o '\([0-9]\+SM\)' $CACHE
 }
 
 altimeter() {
-    grep -o 'A[0-9]\{4\}' <<< $metar
+    grep -o 'A[0-9]\{4\}' $CACHE
 }
 
 _wind_speed_conversion() {
@@ -166,11 +163,11 @@ _wind_speed_conversion() {
 }
 
 _wind_speed(){
-    read wind_speed gusting <<< $(echo $metar | grep -o '\([0-9]\{2\}G\)\?[0-9]\{2\}KT' | awk -F 'G' '{ printf "%d %d", $1, $2 }')
+    read wind_speed gusting <<< $(grep -o '\([0-9]\{2\}G\)\?[0-9]\{2\}KT' $CACHE | awk -F 'G' '{ printf "%d %d", $1, $2 }')
 }
 
 _wind_direction() {
-    wd=$(printf "%.3s" $(echo $metar | grep -o '\(VRB\|[0-9]\{3\}\)\([0-9]\{2\}G\)\?[0-9]\{2\}KT'))
+    wd=$(printf "%.3s" $(grep -o '\(VRB\|[0-9]\{3\}\)\([0-9]\{2\}G\)\?[0-9]\{2\}KT' $CACHE))
 
     if [[ "$wd" == "VRB" ]]
     then
@@ -220,7 +217,7 @@ wind() {
 }
 
 _temperature_dewpoint() {
-    temperature_dewpoint=`grep -o '\s\(M\)\?\([0-9]\{2\}\/\(M\)\?[0-9]\{2\}\)\s' <<< $metar`
+    temperature_dewpoint=$(grep -o '\s\(M\)\?\([0-9]\{2\}\/\(M\)\?[0-9]\{2\}\)\s' $CACHE)
     read temp dp <<< $(awk -F '/' '{ printf "%d %d", $1, $2 }' <<< $(echo $temperature_dewpoint | sed 's/M/-/g'))
 }
 
@@ -243,4 +240,4 @@ temp() {
     _temperature_conversion $temp $1
 }
 
-$1 $2 && _check_last_modified || refresh
+$@ && _check_last_modified || refresh

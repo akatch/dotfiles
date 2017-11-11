@@ -20,13 +20,13 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/rbenv-ctags'
 Plugin 'udalov/kotlin-vim'
+Plugin 'w0rp/ale'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 
 filetype plugin indent on
-autocmd Filetype yaml setlocal shiftwidth=2 tabstop=2
-autocmd Filetype ansible setlocal shiftwidth=2 tabstop=2
-autocmd Filetype ruby setlocal shiftwidth=2 tabstop=2
-autocmd Filetype markdown setlocal shiftwidth=4 tabstop=4
+autocmd Filetype yaml,ansible,ruby setlocal shiftwidth=2 tabstop=2
 
 if has("syntax")
     syntax on
@@ -34,7 +34,8 @@ endif
 
 colorscheme oceans
 set background=dark laststatus=2
-set nocompatible ignorecase nohlsearch ttyfast expandtab autoindent number cursorline nocursorcolumn
+set nocompatible ignorecase nohlsearch ttyfast expandtab autoindent number cursorline nocursorcolumn incsearch
+set shiftwidth=4 tabstop=4
 
 " Insert cursor at previous position
 if has("autocmd")
@@ -54,9 +55,11 @@ set undodir^=~/.vim/undo/
 set backup writebackup undofile
 
 " Keybinds
-nmap <C-p> :tabprevious<cr>
-nmap <C-n> :tabnext<cr>
-nmap <C-t> :tabnew<cr>
+nmap <silent> <C-p> :tabprevious<cr>
+nmap <silent> <C-n> :tabnext<cr>
+nmap <silent> <C-t> :tabnew<cr>
+" space bar scrolls down 1 page in normal mode
+nmap <silent> <Space> <PageDown><cr>
 
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-j> :wincmd j<CR>
@@ -64,9 +67,20 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 nmap <silent> <leader>n :set number!<CR>
 nmap <silent> <leader>p :set paste!<CR>
-nmap <silent> <leader>t :0tabe ~/sync/todo.txt<CR>
+" show/hide nerdtree
+nmap <silent> <leader>t :NERDTreeToggle<CR>
 nmap <silent> <leader>r :so ~/.vimrc<CR>
 nmap <silent> <leader>v :tabe ~/.vimrc<CR>
 nmap <silent> <leader>W :StripWhitespace<CR>
 nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
 nmap <silent> <leader>c :color oceans<CR>
+
+" pane separators like tmux
+set fillchars+=vert:\│
+
+" ctrlp
+let g:ctrlp_map = '<s-f>'
+let g:ctrlp_switch_buffer = 'Et'
+
+" TODO j2-lint integration
+" TODO new panes bottom / right

@@ -40,30 +40,22 @@ alias isomount='sudo mount -o loop,exec'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias c='clear'
-alias nc='nc -v'
+alias p='ping '
 alias ly=lynx
+alias tmux='tmux -2u '
+alias ta='tmux attach -t'
 
 ## Random
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
 alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
 alias nb=newsbeuter
-alias whatsmyip='lynx -dump "https://www.google.com/search?q=what%27s+my+ip" | grep -B1 "Your public IP address"'
 alias ipt='sudo iptables -L --line-number'
-
-## workspaces
-alias t='tmux-session-setup'
-alias tmux='tmux -2u '
-alias im='tmux-session-setup imagemover'
-alias hlgy='tmux-session-setup hireology'
-# TODO attach if named session exists else create
-alias ta='tmux attach -t'
 
 ## Git
 alias gst='git status'
 alias gco='git checkout'
 alias gs='git stash'
 alias gsa='git stash apply'
-alias fix-conflicts="e $(git status | grep 'both modified' | awk '{print $3}' | tr '\n' ' ')"
 
 ## vim
 alias e='vim -p '
@@ -90,8 +82,6 @@ alias avr='ansible-vault rekey '
 alias avv='ansible-vault view '
 alias ap='time ansible-playbook --diff'
 alias a='time ansible'
-alias atest='ap playbooks/test.yml'
-alias aping='a all -m ping -i'
 alias agi='ansible-galaxy init '
 
 ## Vagrant
