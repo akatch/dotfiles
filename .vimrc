@@ -58,8 +58,6 @@ set backup writebackup undofile
 nmap <silent> <C-p> :tabprevious<cr>
 nmap <silent> <C-n> :tabnext<cr>
 nmap <silent> <C-t> :tabnew<cr>
-" space bar scrolls down 1 page in normal mode
-nmap <silent> <Space> <PageDown><cr>
 
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-j> :wincmd j<CR>
@@ -74,6 +72,8 @@ nmap <silent> <leader>v :tabe ~/.vimrc<CR>
 nmap <silent> <leader>W :StripWhitespace<CR>
 nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
 nmap <silent> <leader>c :color oceans<CR>
+nmap <silent> <A-n> :ALENext<CR>
+nmap <silent> <A-p> :ALEPrevious<CR>
 
 " pane separators like tmux
 set fillchars+=vert:\│
