@@ -8,10 +8,10 @@ if [[ -z `which bundle` || -d $HOME/.rbenv ]]; then
 fi
 
 ## mutt
-alias mail_gmail='mutt -F ~/.mutt/account.gmail'
-alias mail_hlgy='mutt -F ~/.mutt/account.hireology'
-alias mail_im='mutt -F ~/.mutt/account.witsmd'
-alias mail_opmbx='mutt -F ~/.mutt/account.opmbx'
+alias mail='mutt -F ~/.mutt/account.gmail'
+#alias mail_hlgy='mutt -F ~/.mutt/account.hireology'
+#alias mail_im='mutt -F ~/.mutt/account.witsmd'
+#alias mail_opmbx='mutt -F ~/.mutt/account.opmbx'
 
 ## Clipboard
 # only on Linux
@@ -56,6 +56,7 @@ alias gst='git status'
 alias gco='git checkout'
 alias gs='git stash'
 alias gsa='git stash apply'
+alias gsp='git stash pop'
 
 ## vim
 alias e='vim -p '
@@ -69,7 +70,7 @@ alias ai="sudo apt-get install"
 alias aa="sudo apt-get autoremove"
 alias ar="sudo apt-get remove"
 alias update='sudo apt-get update'
-alias upgrade='sudo apt-get upgrade'
+alias upgrade='sudo apt-get update && sudo apt-get upgrade'
 
 ## Ansible
 alias ad='ansible-doc'
@@ -103,17 +104,16 @@ if [[ ! -z `which vimpager` ]]; then
 fi
 
 # search for processes and keep column headings
-psgrep() {
-    ps aux | egrep "$1|PID"
+pg() {
+    ps x | grep --color=auto $1
 }
 
 ## History grep
 h() {
-    history | grep $1
+    history | grep --color=auto $1
 }
 
 ## Make JSON pretty
 pj() {
-    #python -m json.tool $1 | less
     jq . $1 | less
 }

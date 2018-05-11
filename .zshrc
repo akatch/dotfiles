@@ -50,11 +50,6 @@ if [ -e ~/.profile ]; then
     source ~/.profile
 fi
 
-# tmux completion
-if [[ -z `which bash_completion_tmux.sh` ]]; then
-    source bash_completion_tmux.sh
-fi
-
 # Git prompt
 setopt prompt_subst
 autoload -Uz vcs_info
@@ -107,10 +102,6 @@ bwhite="%{[01;37m%}"
 normal="%{[0;0m%}"
 
 # prompt
-# consider trying these!  
-#export PS1=" ${bblue}%m ${blue}${bcyan} %d ${cyan}${green} ${normal} "
-#export PS1="
-# ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
 export PS1="
  %(?.${green}.${yellow})%m ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
 export PS2="   ${gray}>${normal} "

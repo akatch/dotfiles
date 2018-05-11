@@ -1,0 +1,44 @@
+#!/usr/bin/ansible-playbook --diff
+# vim: ft=ansible sw=2 ts=2
+---
+- hosts: localhost
+  tasks:
+  - name: Gather file manifest
+    find:
+      paths: '{{ playbook_dir }}'
+      patterns: '.*'
+      hidden: true
+    register: dotfile_manifest
+    check_mode: no
+
+  - name: Create symlinks
+    file:
+      src: '{{ item.path | relpath(ansible_env.HOME) }}'
+      dest: '{{ ansible_env.HOME }}/{{ item.path | basename }}'
+      state: link
+      force: true
+    with_items: '{{ dotfile_manifest.files | default([]) }}'
+    tags: links
+
+  - name: Gather script manifest
+    find:
+      paths: '{{ playbook_dir }}/.bin'
+    register: script_manifest
+    check_mode: no
+
+  - name: Create symlinks
+    file:
+      src: '{{ item.path | relpath(ansible_env.HOME ~ "/.local/bin") }}'
+      dest: '{{ ansible_env.HOME }}/.local/bin/{{ item.path | basename }}'
+      state: link
+      force: true
+    with_items: '{{ script_manifest.files | default([]) }}'
+    tags: links
+
+  - name: Link vim colors
+    file:
+      src: '{{ (playbook_dir ~ "/.vim/colors") | relpath(ansible_env.HOME ~ "/.vim/") }}/'
+      dest: '{{ ansible_env.HOME }}/.vim/colors'
+      state: link
+      force: true
+
