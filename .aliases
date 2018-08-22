@@ -36,6 +36,8 @@ fi
 
 ## General stuff
 alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
+alias gr='g -r'
+alias gri='g -ri'
 alias isomount='sudo mount -o loop,exec'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'

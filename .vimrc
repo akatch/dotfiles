@@ -23,6 +23,7 @@ Plugin 'udalov/kotlin-vim'
 Plugin 'w0rp/ale'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
 
 filetype plugin indent on
