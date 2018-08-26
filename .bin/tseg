@@ -1,0 +1,65 @@
+#!/bin/bash
+
+## tseg: a system information parser written in Bash
+# Author: a bowles
+
+## Usage:
+#   tseg [ segment [ args ] ]
+
+PLATFORM=$(uname)
+
+# battery
+batt () {
+    #TODO: no estimate becomes ((no)
+    #TODO show when charging
+    case $PLATFORM in
+        Linux)
+            ;;
+        Darwin)
+            pmset -g batt | grep -o '[0-9]\+%; [a-z]\+; [0-9]\+:[0-9]\+' | awk -F '; ' '{ printf "%d%% (%s)", $1, $3 }'
+            ;;
+    esac
+}
+
+# memory
+mem () {
+    case $PLATFORM in
+        "Linux")
+            free -m | grep Mem | awk '{print $3 / $2 * 100}' | awk '{printf "%2.0f", $0}'
+            ;;
+        "Darwin")
+            read used wired unused <<< $(top -l 1 -s 0 | grep PhysMem | grep -o '[0-9]\+' | tr "\n" " ")
+            if ((used<=32)); then
+                used=$(echo "$used * 1024" | bc)
+            fi
+            if ((unused<=32)); then
+                unused=$(echo "$unused * 1024" | bc)
+            fi
+            total=$(echo "$used + $unused" | bc)
+            used_percent=$(echo "scale=2; $used/$total * 100" | bc)
+            printf "%.0f%%" $used_percent
+            ;;
+    esac
+}
+
+# bandwidth
+bw () {
+    dstat -n 1 1 | tail -n 1 | awk '{printf "% 5s ↓↑ %-5s\n", $1, $2}'
+}
+
+# load average
+load_avg () {
+    uptime | awk '{printf "%.2f  %.2f  %.2f", $10, $11, $12}'
+}
+
+# disk stats
+disk_io () {
+    dstat -d --noheaders 1 1 | tail -n 1 | awk '{printf "%s %s\n", $1, $2}'
+}
+
+# disk size
+disk_size () {
+    df -h | grep '^\(\/dev\|\/\/\)' | awk '{ printf " %.2s: %s ", $6, $5 }'
+}
+
+$1 $2

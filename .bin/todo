@@ -1,0 +1,7 @@
+#!/bin/bash
+
+TODO_TXT=$HOME/sync/todo.txt
+DATE="$(date +%Y-%m-%d)"
+
+task="$@"
+sed "s/\(^[A-Za-z]\) \(.*\)/(\1) $DATE \2/g" <<< $task >> $TODO_TXT
