@@ -1,5 +1,8 @@
-#!/usr/bin/ansible-playbook --diff
+#!ansible-playbook --diff
 # vim: ft=ansible sw=2 ts=2
+#
+# Install dotfiles with ansible.
+# Usage: ./install.yml [--check]
 ---
 - hosts: localhost
   tasks:
