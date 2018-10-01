@@ -24,6 +24,7 @@ Plugin 'w0rp/ale'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-commentary'
 call vundle#end()
 
 filetype plugin indent on
@@ -73,8 +74,9 @@ nmap <silent> <leader>v :tabe ~/.vimrc<CR>
 nmap <silent> <leader>W :StripWhitespace<CR>
 nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
 nmap <silent> <leader>c :color oceans<CR>
-nmap <silent> <A-n> :ALENext<CR>
-nmap <silent> <A-p> :ALEPrevious<CR>
+nmap <silent> <A-n> :ALENextWrap<CR>
+nmap <silent> <A-p> :ALEPreviousWrap<CR>
+nmap <silent> <A-d> :ALEDetail<CR>
 
 " pane separators like tmux
 set fillchars+=vert:\│

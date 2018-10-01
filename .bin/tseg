@@ -24,10 +24,10 @@ batt () {
 # memory
 mem () {
     case $PLATFORM in
-        "Linux")
+        Linux)
             free -m | grep Mem | awk '{print $3 / $2 * 100}' | awk '{printf "%2.0f", $0}'
             ;;
-        "Darwin")
+        Darwin)
             read used wired unused <<< $(top -l 1 -s 0 | grep PhysMem | grep -o '[0-9]\+' | tr "\n" " ")
             if ((used<=32)); then
                 used=$(echo "$used * 1024" | bc)
@@ -49,7 +49,7 @@ bw () {
 
 # load average
 load_avg () {
-    uptime | awk '{printf "%.2f  %.2f  %.2f", $10, $11, $12}'
+    uptime | awk '{printf "%.2f  %.2f  %.2f", $(NF-2), $(NF-1), $NF}'
 }
 
 # disk stats
