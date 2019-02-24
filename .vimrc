@@ -69,7 +69,7 @@ nmap <silent> <leader>n :set number!<CR>
 nmap <silent> <leader>p :set paste!<CR>
 " show/hide nerdtree
 nmap <silent> <leader>t :NERDTreeToggle<CR>
-nmap <silent> <leader>r :so ~/.vimrc<CR>
+nmap <leader>r :so ~/.vimrc<CR>
 nmap <silent> <leader>v :tabe ~/.vimrc<CR>
 nmap <silent> <leader>W :StripWhitespace<CR>
 nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
@@ -84,6 +84,11 @@ set fillchars+=vert:\│
 " ctrlp
 let g:ctrlp_map = '<s-f>'
 let g:ctrlp_switch_buffer = 'Et'
+
+" vim-better-whitespace
+let g:better_whitespace_filetypes_blacklist=['mail']
+let g:strip_whitespace_on_save = 1
+"let g:better_whitespace_ctermcolor='214'
 
 " TODO j2-lint integration
 " TODO new panes bottom / right
