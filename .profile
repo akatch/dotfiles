@@ -22,6 +22,16 @@ export LESS_TERMCAP_mb=$'\e[38;5;24m' \
        LESSCHARSET=utf-8 \
        LESS="-j.5 -R"
 
-if [ "$TERM" != "screen-256color" ]; then
+if [[ "$TERM" != "screen-256color" ]]; then
     export TERM=screen-256color
+fi
+
+# Persist ssh-agent
+if [[ -z "$SSH_AUTH_SOCK" ]]; then
+    if [[ ! -d "$HOME/.ssh/ssh_agent" ]]; then
+        eval "$(ssh-agent)"
+        ln -s $SSH_AUTH_SOCK $HOME/.ssh/ssh_agent
+    else
+        export SSH_AUTH_SOCK="$HOME/.ssh/ssh_agent"
+    fi
 fi
