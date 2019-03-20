@@ -28,7 +28,7 @@ fi
 
 # Persist ssh-agent
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
-    if [[ ! -d "$HOME/.ssh/ssh_agent" ]]; then
+    if [[ ! -e "$HOME/.ssh/ssh_agent" ]]; then
         eval "$(ssh-agent)"
         ln -s $SSH_AUTH_SOCK $HOME/.ssh/ssh_agent
     else
