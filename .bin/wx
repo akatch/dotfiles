@@ -52,6 +52,7 @@ _check_md5sum() {
 }
 
 refresh() {
+    [[ ! -d "$(dirname $CACHE)" ]] && mkdir -p $(dirname $CACHE)
     data=$(curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL | tr "\n" " ")
     [[ "$data" != "" &&  $(_check_md5sum <<< $data) != $(_check_md5sum $CACHE) ]] && echo $data > $CACHE
 }
