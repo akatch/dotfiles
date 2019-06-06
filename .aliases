@@ -9,9 +9,6 @@ fi
 
 ## mutt
 alias mail='mutt -F ~/.mutt/account.gmail'
-#alias mail_hlgy='mutt -F ~/.mutt/account.hireology'
-#alias mail_im='mutt -F ~/.mutt/account.witsmd'
-#alias mail_opmbx='mutt -F ~/.mutt/account.opmbx'
 
 ## Clipboard
 # only on Linux
@@ -32,6 +29,7 @@ if [[ `uname` == "Darwin" ]]; then
     alias l='ls -lhG'
     alias la='ls -lahG'
     alias lr='ls -RG'
+    alias mute='osascript -e "set volume 0"'
 fi
 
 ## General stuff
@@ -97,6 +95,12 @@ alias vst='vagrant status'
 alias vp='time vagrant provision'
 alias vsc='vagrant ssh-config'
 alias vpp='time vagrant provision --provision-with'
+
+## Docker
+alias d='docker '
+alias dc='docker-compose '
+alias dp='docker ps '
+alias dct='docker container '
 
 ## postgres
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
