@@ -90,5 +90,11 @@ let g:better_whitespace_filetypes_blacklist=['mail']
 let g:strip_whitespace_on_save = 1
 "let g:better_whitespace_ctermcolor='214'
 
+" ale
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier'],
+\}
 " TODO j2-lint integration
 " TODO new panes bottom / right
