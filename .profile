@@ -21,7 +21,7 @@ export LESS_TERMCAP_mb=$'\e[38;5;24m' \
        LESS_TERMCAP_me=$'\e[0m' \
        LESS_TERMCAP_se=$'\e[0m' \
        LESSCHARSET=utf-8 \
-       LESS="-j.5 -R"
+       LESS="-j.5 -R -F -X"
 
 if [[ "$TERM" != "screen-256color" ]]; then
     export TERM=screen-256color
