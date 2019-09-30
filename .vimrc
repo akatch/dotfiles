@@ -98,3 +98,4 @@ let g:ale_fixers = {
 \}
 " TODO j2-lint integration
 " TODO new panes bottom / right
+au BufRead,BufNewFile *.go set filetype=go

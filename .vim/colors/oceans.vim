@@ -1,4 +1,4 @@
-" ~/.vim/colors/cyberpunklisafrank.vim
+" ~/.vim/colors/oceans.vim
 " A modified version of the relaxedgreen colorscheme by Dave Vehrs
 "
 " Original Copyright:
@@ -11,10 +11,10 @@
 " Usage:
 " Place this file in the users colors directory (~/.vim/colors) or
 " in the shared colors directory (/usr/shared/vim/vim<version>/colors/),
-" then load it with :colorscheme chillaxedgreen
+" then load it with :colorscheme oceans
 "
 
-set background=dark	
+set background=dark
 hi clear
 if exists("syntax_on")
     syntax reset
@@ -124,3 +124,9 @@ hi link GitGutterAdd DiffAdd
 hi link GitGutterChange DiffChange
 hi link GitGutterDelete DiffDelete
 hi link GitGutterChangeDelete DiffChange
+
+" html
+hi htmlItalic               term=italic                 cterm=italic ctermfg=233 ctermbg=white
+hi htmlBoldItalic           term=bold,italic            cterm=bold,italic ctermfg=233 ctermbg=white
+hi htmlBoldUnderlineItalic  term=bold,underline,italic  cterm=bold,underline,italic ctermfg=233 ctermbg=white
+hi htmlUnderlineItalic      term=underline,italic       cterm=underline,italic ctermfg=233 ctermbg=white
