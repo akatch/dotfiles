@@ -14,8 +14,8 @@
 # bc
 
 ## Constants
-STATION=KMSN
-# STATION=KMDW
+# STATION=KMSN
+STATION=KMDW
 # STATION=KHNB
 DATA_URI="data/observations/metar/stations/$STATION.TXT"
 DATA_URL="https://tgftp.nws.noaa.gov/$DATA_URI"
@@ -23,10 +23,17 @@ CACHE="$HOME/.cache/wx/metar"
 TIMEOUT=10
 PLATFORM=$(uname)
 
+[[ ! -d "$(dirname $CACHE)" ]] && mkdir -p "$(dirname $CACHE)"
+[[ ! -f "$CACHE" ]] && touch $CACHE
+
+# TODO uuoc
 metar=`cat $CACHE`
 
 _check_last_modified() {
-    last_modified=$(curl -I -s $DATA_URL | grep Last-Modified | awk -F': ' '{ print $2 }')
+    # TODO test last_modified is not empty!!!
+    curl -I -s $DATA_URL | grep Last-Modified| awk -F': ' '{ print $2 }'
+    #printf "Last-Modified: %s" $last_modified
+    #last_modified=$(curl -I -s $DATA_URL | grep Last-Modified | awk -F': ' '{ print $2 }')
     case $PLATFORM in
         Linux)
             src=$(date --date="$last_modified" +'%s')
@@ -34,7 +41,7 @@ _check_last_modified() {
         ;;
         Darwin)
             src=$(date -j -f "%a, %e %b %Y %T %Z" "$last_modified" "+%s")
-            cache=$(stat -f "%m" $CACHE)
+            cache=$(stat -f "%m" -q $CACHE)
         ;;
     esac
     [[ "$src" > "$cache" ]] && return 1 || return 0
@@ -52,7 +59,6 @@ _check_md5sum() {
 }
 
 refresh() {
-    [[ ! -d "$(dirname $CACHE)" ]] && mkdir -p $(dirname $CACHE)
     data=$(curl --connect-timeout $TIMEOUT --create-dirs -s $DATA_URL | tr "\n" " ")
     [[ "$data" != "" &&  $(_check_md5sum <<< $data) != $(_check_md5sum $CACHE) ]] && echo $data > $CACHE
 }
