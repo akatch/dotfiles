@@ -30,10 +30,9 @@ PLATFORM=$(uname)
 metar=`cat $CACHE`
 
 _check_last_modified() {
-    # TODO test last_modified is not empty!!!
-    curl -I -s $DATA_URL | grep Last-Modified| awk -F': ' '{ print $2 }'
-    #printf "Last-Modified: %s" $last_modified
-    #last_modified=$(curl -I -s $DATA_URL | grep Last-Modified | awk -F': ' '{ print $2 }')
+    last_modified=$(curl -I -s $DATA_URL | grep Last\-Modified | awk -F': ' '{ print $2 }')
+    [[ "$last_modified" == "" ]] && return 1
+
     case $PLATFORM in
         Linux)
             src=$(date --date="$last_modified" +'%s')
