@@ -9,6 +9,7 @@
 ## References:
 # http://www.met.tamu.edu/class/metar/quick-metar.html
 # http://www.dixwx.com/wxdecoding.htm
+# https://en.wikipedia.org/wiki/Wind_chill#North_American_and_United_Kingdom_wind_chill_index
 
 ## Dependencies:
 # bc
@@ -244,6 +245,13 @@ humidity() {
 temp() {
     _temperature_dewpoint
     _temperature_conversion $temp $1
+}
+
+wind_chill() {
+    _temperature_dewpoint
+    _wind_speed
+    wind_chill=$(bc <<< "13.12 + (0.6215 * $temp) - (11.37 * $wind_speed^0.16) + (0.3965 * $temp * $wind_speed^0.16)")
+    _temperature_conversion $wind_chill $1
 }
 
 $@ && _check_last_modified || refresh
