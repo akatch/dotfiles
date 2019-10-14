@@ -40,7 +40,7 @@ _check_last_modified() {
             cache=$(date -r $CACHE +'%s')
         ;;
         Darwin)
-            src=$(date -j -f "%a, %e %b %Y %T %Z" "$last_modified" "+%s")
+            src=$(date -j -f "%a, %e %b %Y %T %Z" "$last_modified" "+%s" 2&> /dev/null)
             cache=$(stat -f "%m" -q $CACHE)
         ;;
     esac
@@ -232,7 +232,7 @@ _temperature_conversion() {
     case $2 in
         k|K) bc <<< "$1 + 270" | awk '{printf "%.0fK", $0}' ;;
         f|F) bc <<< "$1 * 9 / 5 + 32" | awk '{printf "%.0f°F", $0}' ;;
-        **) printf "%d°C" $1 ;;
+        **) printf "%.0f°C" $1 ;;
     esac
 }
 
@@ -250,7 +250,9 @@ temp() {
 wind_chill() {
     _temperature_dewpoint
     _wind_speed
-    wind_chill=$(bc <<< "13.12 + (0.6215 * $temp) - (11.37 * $wind_speed^0.16) + (0.3965 * $temp * $wind_speed^0.16)")
+    # bc does not support floating point exponents
+    y=$(awk -v "wc=$wind_speed" 'BEGIN {print wc**0.16}')
+    wind_chill=$(bc <<< "13.12 + (0.6215 * $temp) - (11.37 * $y) + (0.3965 * $temp * $y)")
     _temperature_conversion $wind_chill $1
 }
 
