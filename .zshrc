@@ -102,9 +102,12 @@ bwhite="%{[01;37m%}"
 normal="%{[0;0m%}"
 
 # prompt
+# TODO only display pipe if git_branch not empty
+# TODO display git diff --shortstat
 export PS1="
- %(?.${green}.${yellow})%m ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+ %(?.${green}.${yellow})%m ${gray}|%(?.${green}.${yellow}) ${git_branch} ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
 export PS2="   ${gray}>${normal} "
-export RPROMPT="${gray}<%(?.${green}.${yellow}) ${git_branch} ${gray}>${normal}"
+#export RPROMPT="${gray}<%(?.${green}.${yellow}) ${git_branch} ${gray}>${normal}"
+unset RPROMPT
 
 eval "$(direnv hook zsh)"

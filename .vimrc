@@ -16,15 +16,16 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/rbenv-ctags'
-Plugin 'udalov/kotlin-vim'
+"Plugin 'tpope/vim-rails'
+"Plugin 'tpope/vim-endwise'
+"Plugin 'tpope/rbenv-ctags'
+"Plugin 'udalov/kotlin-vim'
 Plugin 'w0rp/ale'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rust-lang/rust.vim'
-Plugin 'tpope/vim-commentary'
+"Plugin 'tpope/vim-commentary'
+Plugin 'fatih/vim-go'
 call vundle#end()
 
 filetype plugin indent on
@@ -38,6 +39,7 @@ colorscheme oceans
 set background=dark laststatus=2
 set nocompatible ignorecase nohlsearch ttyfast expandtab autoindent number cursorline nocursorcolumn incsearch
 set shiftwidth=4 tabstop=4
+set backspace=indent,eol,start
 
 " Insert cursor at previous position
 if has("autocmd")
@@ -88,6 +90,8 @@ let g:ctrlp_switch_buffer = 'Et'
 " vim-better-whitespace
 let g:better_whitespace_filetypes_blacklist=['mail']
 let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
+let g:strip_whitelines_at_eof=1
 "let g:better_whitespace_ctermcolor='214'
 
 " ale
@@ -98,4 +102,4 @@ let g:ale_fixers = {
 \}
 " TODO j2-lint integration
 " TODO new panes bottom / right
-au BufRead,BufNewFile *.go set filetype=go
+"au BufRead,BufNewFile *.go set filetype=go
