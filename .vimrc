@@ -69,7 +69,6 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 nmap <silent> <leader>n :set number!<CR>
 nmap <silent> <leader>p :set paste!<CR>
-" show/hide nerdtree
 nmap <silent> <leader>t :NERDTreeToggle<CR>
 nmap <leader>r :so ~/.vimrc<CR>
 nmap <silent> <leader>v :tabe ~/.vimrc<CR>
@@ -88,7 +87,7 @@ let g:ctrlp_map = '<s-f>'
 let g:ctrlp_switch_buffer = 'Et'
 
 " vim-better-whitespace
-let g:better_whitespace_filetypes_blacklist=['mail']
+let g:better_whitespace_filetypes_blacklist=['mail','text']
 let g:strip_whitespace_on_save = 1
 let g:strip_whitespace_confirm = 0
 let g:strip_whitelines_at_eof=1
@@ -103,3 +102,20 @@ let g:ale_fixers = {
 " TODO j2-lint integration
 " TODO new panes bottom / right
 "au BufRead,BufNewFile *.go set filetype=go
+
+"vim-go stuff
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
