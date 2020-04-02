@@ -50,6 +50,10 @@ alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt &
 alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
 alias nb=newsbeuter
 alias ipt='sudo iptables -L --line-number'
+alias rmq='rabbitmqctl '
+
+## Golang
+alias gt='go test '
 
 ## Git
 alias gst='git status'
@@ -81,7 +85,7 @@ alias ave='ansible-vault edit'
 alias avx='ansible-vault encrypt'
 alias avr='ansible-vault rekey '
 alias avv='ansible-vault view '
-alias ap='time ansible-playbook --diff'
+alias ap='time ansible-playbook'
 alias a='time ansible'
 alias agi='ansible-galaxy init '
 

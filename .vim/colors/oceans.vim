@@ -57,7 +57,7 @@ hi Special       term=bold         	ctermfg=34 ctermbg=none
 hi Constant      term=underline    	ctermfg=34 ctermbg=none
 hi Character     term=none          ctermfg=35 ctermbg=none
 hi Number        term=none    	    ctermfg=36 ctermbg=none
-hi Float         term=none 	        ctermfg=37 ctermbg=none
+hi link Float Number
 
 " keywords
 hi Operator      term=none          ctermfg=72 ctermbg=none
