@@ -36,7 +36,7 @@ bindkey '\e[B' down-line-or-beginning-search
 ### end stuff from graysky2
 
 # enable color support
-if [ -x /usr/bin/dircolors ]; then
+if [[ -x /usr/bin/dircolors && -e ~/.config/dircolors ]]; then
     eval "`dircolors -b ~/.config/dircolors`"
 fi
 
@@ -62,18 +62,10 @@ zstyle ':vcs_info:*' formats       \
     #'%F{5}(%F{2}%s%F{5})%F{8}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
-zstyle ':vcs_info:*' enable git cvs svn
+zstyle ':vcs_info:*' enable git
 
-# or use pre_cmd, see man zshcontrib
-unset grey
-vcs_info_wrapper() {
-  vcs_info
-  if [ -n "$vcs_info_msg_0_" ]; then
-    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
-  fi
-}
+# or use precmd, see man zshcontrib
 
-git_branch=$'$(vcs_info_wrapper)'
 
 #
 # Colors
@@ -102,12 +94,19 @@ bwhite="%{[01;37m%}"
 normal="%{[0;0m%}"
 
 # prompt
-# TODO only display pipe if git_branch not empty
 # TODO display git diff --shortstat
-export PS1="
+precmd() {
+    vcs_info
+    git_branch=${vcs_info_msg_0_}
+
+    if [[ "$git_branch" == "" ]]; then
+        export PS1="
+ %(?.${green}.${yellow})%m ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+    else
+        export PS1="
  %(?.${green}.${yellow})%m ${gray}|%(?.${green}.${yellow}) ${git_branch} ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+    fi
+}
 export PS2="   ${gray}>${normal} "
-#export RPROMPT="${gray}<%(?.${green}.${yellow}) ${git_branch} ${gray}>${normal}"
-unset RPROMPT
 
 eval "$(direnv hook zsh)"

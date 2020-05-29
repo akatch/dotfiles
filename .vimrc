@@ -12,7 +12,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/nerdtree'
@@ -20,12 +19,13 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'tpope/vim-endwise'
 "Plugin 'tpope/rbenv-ctags'
 "Plugin 'udalov/kotlin-vim'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rust-lang/rust.vim'
 "Plugin 'tpope/vim-commentary'
 Plugin 'fatih/vim-go'
+Plugin 'jamessan/vim-gnupg'
 call vundle#end()
 
 filetype plugin indent on
@@ -100,6 +100,32 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
 \}
-" TODO j2-lint integration
+
+let g:ale_linters = {'go': ['gofmt', 'golint', 'go vet', 'gopls']}
+"TODO j2-lint integration
 " TODO new panes bottom / right
-"au BufRead,BufNewFile *.go set filetype=go
+"
+"vim-go stuff
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_doc_url = "https://pkg.go.dev"
+
+" vim-gnupg
+let g:GPGPreferArmor=1
+
+" completion
+set wildmode=longest,list,full
+set wildmenu

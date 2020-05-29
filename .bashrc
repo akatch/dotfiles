@@ -19,19 +19,8 @@ if [ -e ~/.profile ]; then
     source ~/.profile
 fi
 
-# tmux completion
-if [ -e `which bash_completion_tmux.sh` ]; then
-    source bash_completion_tmux.sh
-fi
-
-case "$TERM" in
-    rxvt-unicode-256color)
-        TERM=xterm-color
-        ;;
-esac
-
 #
-# Environment variables
+# Colors
 #
 
 black="\[\e[00;30m\]"
@@ -56,10 +45,7 @@ b_gray="\[\e[1;38m\]"
 
 normal="\[\e[00m\]"
 
-export PS1="$b_green> $green\h $b_green[$green\w$b_green] >\n> $normal"
-export RPROMPT="${b_green}[${red}\${?##0}${bgreen}]"
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
-export PATH=$PATH:/opt/cisco/anyconnect/bin
+export PS1="
+ $green\h $b_black|$green $git_branch $b_black>$green>$b_black>$normal "
 
 #. ~/.utf8

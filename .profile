@@ -8,6 +8,7 @@ export LANG=en_US.UTF-8 \
        EDITOR="$(which vim)" \
        PATH="$HOME/.local/bin:/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/games" \
        VISUAL="$(which vim)" \
+       GPG_TTY=$(tty) \
        GREP_COLORS="mt=38;5;214:sl=:cx=:fn=38;5;236:ln=32:bn=32:se=38;5;233" \
        GREP_COLOR="38;5;214" \
        MANWIDTH=60

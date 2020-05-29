@@ -9,6 +9,7 @@ fi
 
 ## mutt
 alias mail='mutt -F ~/.mutt/account.gmail'
+alias workmail='mutt -F ~/.mutt/account.hireology'
 
 ## Clipboard
 # only on Linux
@@ -42,18 +43,19 @@ alias b='. ~/.bashrc'
 alias c='clear'
 alias p='ping '
 alias ly=lynx
-alias tmux='tmux -2u '
 alias ta='tmux attach -t'
+alias tl='tmux ls'
 
 ## Random
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
-alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
-alias nb=newsbeuter
+#alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
+alias news=newsbeuter
 alias ipt='sudo iptables -L --line-number'
 alias rmq='rabbitmqctl '
 
 ## Golang
-alias gt='go test '
+alias gt='go test -cover '
+alias gta='go test -cover ./...'
 
 ## Git
 alias gst='git status'
