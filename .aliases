@@ -21,6 +21,7 @@ if [[ `uname` == "Linux" ]]; then
     alias l='ls -lh --color'
     alias lah='ls -lah --color'
     alias lr='ls -R --color'
+    alias ipv4='ip a | grep '\''inet\b'\'' | awk '\''{print $2}'\'''
 fi
 
 # only on OSX
@@ -31,6 +32,7 @@ if [[ `uname` == "Darwin" ]]; then
     alias la='ls -lahG'
     alias lr='ls -RG'
     alias mute='osascript -e "set volume 0"'
+    alias ipv4='ifconfig | grep '\''inet\b'\'' | awk '\''{print $2}'\'''
 fi
 
 ## General stuff
@@ -52,6 +54,8 @@ alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt &
 alias news=newsbeuter
 alias ipt='sudo iptables -L --line-number'
 alias rmq='rabbitmqctl '
+alias shortdate='date +%Y%m%d'
+alias epoch='date +%s'
 
 ## Golang
 alias gt='go test -cover '
