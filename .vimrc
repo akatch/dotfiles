@@ -15,17 +15,11 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'tpope/vim-rails'
-"Plugin 'tpope/vim-endwise'
-"Plugin 'tpope/rbenv-ctags'
-"Plugin 'udalov/kotlin-vim'
 Plugin 'dense-analysis/ale'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rust-lang/rust.vim'
-"Plugin 'tpope/vim-commentary'
 Plugin 'fatih/vim-go'
-Plugin 'jamessan/vim-gnupg'
 call vundle#end()
 
 filetype plugin indent on
@@ -101,10 +95,12 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \}
 
-let g:ale_linters = {'go': ['gofmt', 'golint', 'go vet', 'gopls']}
-"TODO j2-lint integration
+" FIXME why doesn't this work?
+let g:ale_linters = {'go': ['gofmt', 'golint', 'go vet', 'gopls'],}
+" TODO j2-lint integration
 " TODO new panes bottom / right
-"
+" TODO middle click = set paste/insert/set nopaste
+
 "vim-go stuff
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_chan_whitespace_error = 1
@@ -122,9 +118,6 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 1
 let g:go_doc_url = "https://pkg.go.dev"
-
-" vim-gnupg
-let g:GPGPreferArmor=1
 
 " completion
 set wildmode=longest,list,full

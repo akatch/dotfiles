@@ -31,10 +31,10 @@ fi
 # Persist ssh-agent
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
     if [[ -L "$HOME/.ssh/ssh_agent" && -e "$HOME/.ssh/ssh_agent" ]]; then
-        echo "found ssh_auth_sock"
+        # found ssh_auth_sock, use it
         export SSH_AUTH_SOCK="$HOME/.ssh/ssh_agent"
     else
-        echo "didn't find ssh_auth_sock"
+        # didn't find ssh_auth_sock, start ssh-agent
         eval "$(ssh-agent)"
         ln -sf $SSH_AUTH_SOCK $HOME/.ssh/ssh_agent
     fi

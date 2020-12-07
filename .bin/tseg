@@ -62,4 +62,4 @@ disk_size () {
     df -h | grep '^\(\/dev\|\/\/\)' | awk '{ printf " %.2s: %s ", $6, $5 }'
 }
 
-$1 $2
+$@

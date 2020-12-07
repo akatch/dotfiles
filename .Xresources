@@ -46,5 +46,6 @@
 *.color7: #cccccc
 *.color15: #ffffff
 
-Xautolock.locker: i3lock -c 000000
+Xautolock.locker: i3lock -c 080808
 Xautolock.time: 60
+Xcursor.size: 16
