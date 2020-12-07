@@ -1,0 +1,9 @@
+" ~/.vimrc
+
+set shiftwidth=4 tabstop=4
+set nohlsearch expandtab number cursorline
+
+" Keybinds
+nmap <silent> <C-p> :tabprevious<cr>
+nmap <silent> <C-n> :tabnext<cr>
+nmap <silent> <C-t> :tabnew<cr>
