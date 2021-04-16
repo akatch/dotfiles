@@ -8,8 +8,8 @@ if [[ -z `which bundle` || -d $HOME/.rbenv ]]; then
 fi
 
 ## mutt
-alias mail='mutt -F ~/.mutt/account.gmail'
-alias workmail='mutt -F ~/.mutt/account.hireology'
+alias mail='neomutt -F ~/.mutt/account.gmail'
+alias workmail='neomutt -F ~/.mutt/account.hireology'
 
 ## Clipboard
 # only on Linux
@@ -47,15 +47,19 @@ alias p='ping '
 alias ly=lynx
 alias ta='tmux attach -t'
 alias tl='tmux ls'
+alias ncdu='ncdu --color'
 
 ## Random
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
 #alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
-alias news=newsbeuter
+alias news=newsboat
 alias ipt='sudo iptables -L --line-number'
 alias rmq='rabbitmqctl '
 alias shortdate='date +%Y%m%d'
 alias epoch='date +%s'
+alias pts='phoronix-test-suite'
+alias pp='prettyping --nolegend'
+alias jctl='sudo journalctl -f'
 
 ## Golang
 alias gt='go test -cover '
@@ -80,7 +84,7 @@ alias ai="sudo apt-get install"
 alias aa="sudo apt-get autoremove"
 alias ar="sudo apt-get remove"
 alias update='sudo apt-get update'
-alias upgrade='sudo apt-get update && sudo apt-get upgrade'
+alias upgrade='sudo apt update && sudo apt -y upgrade'
 
 ## Ansible
 alias ad='ansible-doc'
