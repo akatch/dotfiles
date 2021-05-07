@@ -2,12 +2,7 @@
 # ~/.bashrc
 #
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b ~/.dircolors`"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-fi
+shopt -s autocd cmdhist histappend hostcomplete nocaseglob
 
 # source aliases
 if [ -e  ~/.aliases ]; then
@@ -45,7 +40,13 @@ b_gray="\[\e[1;38m\]"
 
 normal="\[\e[00m\]"
 
-export PS1="
+if [[ "$git_branch" == "" ]]; then
+    export PS1="
+ $green\h $b_black>$green>$b_black>$normal "
+else
+    export PS1="
  $green\h $b_black|$green $git_branch $b_black>$green>$b_black>$normal "
+fi
 
+eval "$(direnv hook bash)"
 #. ~/.utf8

@@ -42,8 +42,8 @@ endif
 
 " State directories
 for dir in [ 'backup', 'swap', 'undo' ]
-    if isdirectory($HOME . '/.vim/' . dir) == 0
-        :silent !mkdir -p ~/.vim/{dir} >/dev/null 1>&1
+    if !isdirectory($HOME . '/.vim/' . dir)
+        call mkdir($HOME . '/.vim/' . dir, 'p')
     endif
 endfor
 

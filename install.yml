@@ -29,6 +29,11 @@
     register: script_manifest
     check_mode: no
 
+  - name: Create binary dir
+    file:
+      path: '{{ ansible_env.HOME }}/.local/bin'
+      state: directory
+
   - name: Create symlinks
     file:
       src: '{{ item.path | relpath(ansible_env.HOME ~ "/.local/bin") }}'
@@ -44,4 +49,3 @@
       dest: '{{ ansible_env.HOME }}/.vim/colors'
       state: link
       force: true
-

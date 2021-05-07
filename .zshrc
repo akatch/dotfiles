@@ -35,11 +35,6 @@ bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 ### end stuff from graysky2
 
-# enable color support
-if [[ -x /usr/bin/dircolors && -e ~/.config/dircolors ]]; then
-    eval "`dircolors -b ~/.config/dircolors`"
-fi
-
 # source aliases
 if [ -e  ~/.aliases ]; then
     source ~/.aliases

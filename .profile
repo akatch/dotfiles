@@ -28,6 +28,11 @@ if [[ "$TERM" != "screen-256color" ]]; then
     export TERM=screen-256color
 fi
 
+# enable color support
+if [[ -x /usr/bin/dircolors && -e ~/.config/dircolors ]]; then
+    eval "`dircolors -b ~/.config/dircolors`"
+fi
+
 # Persist ssh-agent
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
     if [[ -L "$HOME/.ssh/ssh_agent" && -e "$HOME/.ssh/ssh_agent" ]]; then
@@ -40,7 +45,9 @@ if [[ -z "$SSH_AUTH_SOCK" ]]; then
     fi
 fi
 
-for file in $(find $HOME/.profile.d -name '*.sh')
-do
-    source $file
-done
+if [[ -d $HOME/.profile.d ]]; then
+    for file in $(find $HOME/.profile.d -name '*.sh')
+    do
+        source $file
+    done
+fi
