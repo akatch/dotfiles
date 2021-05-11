@@ -5,7 +5,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory autocd extendedglob notify
+setopt autocd extendedglob notify
 unsetopt beep nomatch
 zstyle :compinstall filename '${HOME}/.zshrc'
 autoload -Uz compinit
@@ -16,14 +16,6 @@ setopt hist_expire_dups_first
 setopt hist_ignore_space
 setopt inc_append_history
 setopt share_history
-
-# fix zsh annoying history behavior
-h() {
-    if [ -z "$*" ]; then
-        history 1;
-    else history 1 | egrep "$@";
-    fi;
-}
 
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
@@ -63,35 +55,7 @@ zstyle ':vcs_info:*' formats       \
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
 zstyle ':vcs_info:*' enable git
-
 # or use precmd, see man zshcontrib
-
-
-#
-# Colors
-#
-
-# normal
-black="%{[0;30m%}"
-red="%{[0;31m%}"
-green="%{[0;32m%}"
-yellow="%{[0;33m%}"
-blue="%{[0;34m%}"
-magenta="%{[0;35m%}"
-cyan="%{[0;36m%}"
-white="%{[0;37m%}"
-
-# bold (grey is actually bold black)
-gray="%{[01;30m%}"
-bred="%{[01;31m%}"
-bgreen="%{[01;32m%}"
-byellow="%{[01;33m%}"
-bblue="%{[01;34m%}"
-bmagenta="%{[01;35m%}"
-bcyan="%{[01;36m%}"
-bwhite="%{[01;37m%}"
-
-normal="%{[0;0m%}"
 
 # prompt
 # TODO display git diff --shortstat
@@ -100,13 +64,13 @@ precmd() {
     git_branch=${vcs_info_msg_0_}
 
     if [[ "$git_branch" == "" ]]; then
-        export PS1="
- %(?.${green}.${yellow})%m ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+        export PS1=" %F{236}%~%f
+ %F{%(?.28.208)}%m%f %F{236}>%f "
     else
-        export PS1="
- %(?.${green}.${yellow})%m ${gray}|%(?.${green}.${yellow}) ${git_branch} ${gray}>%(?.${green}.${yellow})>${gray}>${normal} "
+        export PS1=" %F{236}%~%f
+ %F{%(?.28.208)}%m%f %F{236}|%F{%(?.28.208)} ${git_branch} %F{236}>%f "
     fi
 }
-export PS2="   ${gray}>${normal} "
+export PS2="   %F{236}>%f "
 
 eval "$(direnv hook zsh)"

@@ -47,7 +47,8 @@ alias p='ping '
 alias ly=lynx
 alias ta='tmux attach -t'
 alias tl='tmux ls'
-alias ncdu='ncdu --color'
+alias ncdu='ncdu --color dark'
+alias dl='duf -only local'
 
 ## Random
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
