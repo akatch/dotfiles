@@ -8,8 +8,8 @@ if [[ -z `which bundle` || -d $HOME/.rbenv ]]; then
 fi
 
 ## mutt
-alias mail='neomutt -F ~/.mutt/account.gmail'
-alias workmail='neomutt -F ~/.mutt/account.hireology'
+alias mail='neomutt -F ~/.config/neomutt/account.gmail'
+alias workmail='neomutt -F ~/.config/neomutt/account.hireology'
 
 ## Clipboard
 # only on Linux

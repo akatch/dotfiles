@@ -20,6 +20,7 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
+" had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
 filetype plugin indent on
