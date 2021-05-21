@@ -11,7 +11,8 @@ export LANG=en_US.UTF-8 \
        GPG_TTY=$(tty) \
        GREP_COLORS="mt=38;5;214:sl=:cx=:fn=38;5;236:ln=32:bn=32:se=38;5;233" \
        GREP_COLOR="38;5;214" \
-       MANWIDTH=60
+       MANWIDTH=60 \
+       QUOTING_STYLE=literal
 
 # 256 color ANSI sequences https://en.wikipedia.org/wiki/ANSI_escape_code
 export LESS_TERMCAP_mb=$'\e[38;5;24m' \
