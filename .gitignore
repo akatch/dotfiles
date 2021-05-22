@@ -1,0 +1,5 @@
+account.*
+.config/cmus/
+.config/beets/
+.config/neomutt/
+.config/newsboat/
