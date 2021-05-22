@@ -1,0 +1,18 @@
+
+colorscheme cyberpunklisafrank
+set aaa_mode=all
+set lib_sort=title
+set show_current_bitrate=true
+set show_all_tracks=true
+set auto_expand_albums_follow=false
+set output_plugin=pulse
+
+set format_current= %a%=%l (%y)
+set format_playlist= %t%=%a
+set format_statusline= %{?show_playback_position?%{position}} %{status} %{?bpm>0?at %{bpm} BPM }%{?stream?buf: %{buffer} }%{?show_current_bitrate & bitrate>0?%{bitrate} kbps}%=%{?repeat_current?repeat current?%{?play_library?%{playlist_mode} from %{?play_sorted?sorted }library?playlist}} %{status} %{total} %{status} %1{continue}%1{follow}%1{repeat}%1{shuffle}
+set format_title=%a - %l - %t (%y)
+set format_trackwin=%3n %t%=
+set format_trackwin_album= %l
+set format_trackwin_va=%3n. %t (%a)%= %y %d
+set format_treewin=  %l
+set format_treewin_artist=%a

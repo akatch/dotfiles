@@ -1,0 +1,42 @@
+#
+# ~/.config/newsboat/config
+#
+
+# TODO dateformat should match mutt
+
+auto-reload yes
+articlelist-format "%D    %?T?|%-17T| ?%t"
+browser "firefox %u"
+datetime-format " %e %b %k:%M"
+#define-filter "tech feeds" "tags # \"tech\""
+download-full-page yes
+feed-sort-order title
+feedlist-format " %S %t %u"
+goto-next-feed no
+#notify-program #perhaps for use with dunst?
+refresh-on-startup yes
+swap-title-and-hints yes
+text-width 80
+toggleitemread-jumps-to-next-unread yes
+
+# keys
+unbind-key j
+unbind-key k
+bind-key j down
+bind-key k up
+
+# colors
+color listnormal            color239    default
+color listnormal_unread     color208    default
+color listfocus             color28     color233
+color listfocus_unread      color214    color233    bold
+color info                  color235    default
+color background            default     default
+color article               default     default
+#color end-of-text-marker    color233    default
+
+search-highlight-colors     color214    default     bold
+highlight article "^(Feed|Title):.*$" color28 default
+highlight article "^(Author|Link|Date):.*$" color239 default
+highlight article "^(Links):.*$" color235 default
+highlight article "\[[0-9]+\]:.*$" color235 default

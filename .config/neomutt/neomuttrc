@@ -1,0 +1,50 @@
+#
+# ~/.mutt/muttrc
+#
+
+source ~/.config/neomutt/aliases
+source ~/.config/neomutt/macros
+source ~/.config/neomutt/mutt-colors256
+source ~/.config/neomutt/pgp
+
+set from                    = "$realname <$imap_user>"
+set send_charset            = "utf-8"
+set ssl_starttls            = yes
+set ssl_force_tls           = yes
+
+set folder=~/.config/neomutt/mail
+set alias_file=~/.config/neomutt/aliases
+set timeout = 15
+set mail_check = 120
+set imap_keepalive = 180
+
+set sort = threads
+set sort_aux = reverse-date-received
+set header_cache = ~/.config/neomutt/cache
+set date_format = " %e %b %k:%M"
+set index_format = "%D   %-20.18F %s"
+set mark_old = no
+set tilde = yes
+unset delete
+set confirmappend = no
+set fast_reply
+set ssl_force_tls
+set collapse_all
+set tmpdir = ~/.tmp
+unset markers
+unset resolve
+
+alternative_order text/plain text/html
+auto_view text/html
+my_hdr X-PGP-Key:
+
+bind pager t display-toggle-weed
+bind pager M imap-fetch-mail
+bind index M imap-fetch-mail
+
+bind pager n next-entry
+bind pager p previous-entry
+bind pager j next-line
+bind pager k previous-line
+
+# TODO next/previous search hit in help menu

@@ -1,0 +1,24 @@
+
+library: ~/.config/beets/library.db
+directory: ~/music
+path_format: $albumartist/$album/$track $title
+
+import:
+  copy: true
+  write: true
+  resume: ask
+  art: true
+  quiet_fallback: skip
+  timid: false
+  log: beetslog.txt
+art_filename: albumart
+threaded: true
+
+ui:
+  color: true
+
+paths:
+  default: $albumartist/$album/$track $title
+  singleton: $albumartist/$title
+  comp: $albumartist/$album/$track $title
+  albumtype:soundtrack: Soundtracks/$album/$track $title
