@@ -28,12 +28,12 @@ bindkey '\e[B' down-line-or-beginning-search
 ### end stuff from graysky2
 
 # source aliases
-if [ -e  ~/.aliases ]; then
+if [[ -e  ~/.aliases ]]; then
     source ~/.aliases
 fi
 
 # source profile
-if [ -e ~/.profile ]; then
+if [[ -e ~/.profile ]]; then
     source ~/.profile
 fi
 
