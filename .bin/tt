@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SOUND="$HOME/sync/sounds/dry-pop-up.wav"
+sleep $1
+mplayer -really-quiet $SOUND
+notify-send "tea is done"
