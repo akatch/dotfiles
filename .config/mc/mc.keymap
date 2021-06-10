@@ -1,0 +1,10 @@
+[main]
+Quit = q
+
+[panel]
+Down = down; ctrl-n; j
+Up = up; ctrl-p; k
+Left = left; h
+Right = right; l
+PageUp = pgup; ctrl-b; shift-space
+PageDown = pgdn; ctrl-f; space
