@@ -57,15 +57,13 @@ zstyle ':vcs_info:*' enable git
 precmd() {
     vcs_info
     git_branch=${vcs_info_msg_0_}
-}
 
-if [[ "$git_branch" == "" ]]; then
-    export PS1=" %F{236}%~%f
- %F{%(?.28.208)}%m%f %F{236}>%f "
-else
-    export PS1=" %F{236}%~%f
- %F{%(?.28.208)}%m%f %F{236}|%F{%(?.28.208)} ${git_branch} %F{236}>%f "
-fi
+    if [[ "$git_branch" == "" ]]; then
+        export PS1="%F{%(?.28.208)}%m%f %F{237}%~%f %F{237}>%f "
+    else
+        export PS1="%F{%(?.28.208)}%m%f %F{237}%~%F{%(?.28.208)} ${git_branch} %F{237}>%f "
+    fi
+}
 export PS2="   %F{236}>%f "
 
 eval "$(direnv hook zsh)"

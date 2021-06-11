@@ -10,5 +10,5 @@ mkdir -p $DEST/$HOSTNAME
 cd $DEST/$HOSTNAME
 
 # TODO encrypt tarball
-tar --create --file backup-$DATE.tar.zst --zstd $SOURCES
-find ./ -mindepth 1 -maxdepth 1 -ctime +3 -exec rm -rf '{}' \;
+tar --create --file $USER@$HOSTNAME-$DATE.tar.zst --zstd $SOURCES
+find ./ -mindepth 1 -maxdepth 1 -ctime +2 -exec rm -rf '{}' \;
