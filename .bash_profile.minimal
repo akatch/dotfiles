@@ -1,0 +1,25 @@
+#
+# ~/.bash_profile
+# minimalist edition
+#
+
+shopt -s autocd cmdhist histappend hostcomplete nocaseglob
+
+# history search like zsh
+bind '"\e[A": history-search-backward'
+bind '"\eOA": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\eOB": history-search-forward'
+
+# tabcomplete like zsh
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
+normal="\[\e[00m\]"
+dark_gray="\[\e[38;05;237m\]"
+green="\[\e[38;05;28m\]"
+yellow="\[\e[38;05;208m\]"
+
+export PS1="$yellow\h $dark_gray\w \$$normal "
+
+#. ~/.utf8
