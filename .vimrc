@@ -25,6 +25,8 @@ call vundle#end()
 
 filetype plugin indent on
 autocmd Filetype yaml,ansible,ruby setlocal shiftwidth=2 tabstop=2
+autocmd BufNewFile,BufRead todo.txt set filetype=todotxt
+autocmd BufNewFile,BufRead *.yml set filetype=ansible
 
 if has("syntax")
     syntax on
@@ -66,9 +68,6 @@ nmap <silent> <leader>n :set number!<CR>
 nmap <silent> <leader>p :set paste!<CR>
 " show/hide nerdtree
 nmap <silent> <leader>t :NERDTreeToggle<CR>
-nmap <leader>r :so ~/.vimrc<CR>
-nmap <silent> <leader>v :tabe ~/.vimrc<CR>
-nmap <silent> <leader>W :StripWhitespace<CR>
 nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
 nmap <silent> <leader>c :color oceans<CR>
 nmap <silent> <A-j> :ALENextWrap<CR>
@@ -96,8 +95,10 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \}
 
-" FIXME why doesn't this work?
-let g:ale_linters = {'go': ['gofmt', 'golint', 'go vet', 'gopls'],}
+let g:ale_linters = {
+\    'go': ['gofmt', 'golint', 'go vet', 'gopls'],
+\    'ansible': ['ansible-lint'],
+\}
 " TODO j2-lint integration
 " TODO new panes bottom / right
 " TODO middle click = set paste/insert/set nopaste

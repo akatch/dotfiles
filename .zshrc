@@ -27,6 +27,11 @@ bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 ### end stuff from graysky2
 
+# fix home, end, del keys
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[4~' end-of-line
+bindkey '^[[3~' delete-char
+
 # source aliases
 if [[ -e  ~/.aliases ]]; then
     source ~/.aliases
