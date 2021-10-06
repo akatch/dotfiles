@@ -2,11 +2,6 @@
 # ~/.aliases
 #
 
-## rbenv
-if [[ -z `which bundle` || -d $HOME/.rbenv ]]; then
-    alias be='bundle exec'
-fi
-
 ## mutt
 alias mail='neomutt -F ~/.config/neomutt/account.gmail'
 alias workmail='neomutt -F ~/.config/neomutt/account.hireology'
@@ -19,9 +14,11 @@ if [[ `uname` == "Linux" ]]; then
     alias xcopy='xsel --output'
     alias xpaste='xsel --input'
     alias l='ls -lh --color'
+    alias lt='ls -lht --color'
     alias lah='ls -lah --color'
     alias lr='ls -R --color'
     alias ipv4='ip a | grep '\''inet\b'\'' | awk '\''{print $2}'\'''
+    alias shot='import $HOME/pictures/screenshots/$(datetime).png'
 fi
 
 # only on OSX
@@ -29,6 +26,7 @@ if [[ `uname` == "Darwin" ]]; then
     alias showhidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
     alias noshowhidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
     alias l='ls -lhG'
+    alias lt='ls -lhGt'
     alias la='ls -lahG'
     alias lr='ls -RG'
     alias mute='osascript -e "set volume 0"'
@@ -42,24 +40,21 @@ alias gri='g -ri'
 alias isomount='sudo mount -o loop,exec'
 alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
-alias c='clear'
-alias p='ping '
-alias ly=lynx
 alias ta='tmux attach -t'
 alias tl='tmux ls'
 alias ncdu='ncdu --color dark'
-alias dl='duf -only local'
 
 ## Random
 alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
-#alias toff='xsetwacom --set "Wacom Intuos PT M 2 Finger touch" Touch off'
 alias news=newsboat
 alias ipt='sudo iptables -L --line-number'
-alias rmq='rabbitmqctl '
+alias fw='sudo firewall-cmd'
+alias fwls='sudo firewall-cmd --list-all'
+alias rmq='sudo rabbitmqctl '
 alias shortdate='date +%Y%m%d'
+alias datetime='date +%Y%m%d.%H%M%S'
 alias epoch='date +%s'
 alias pts='phoronix-test-suite'
-alias pp='prettyping --nolegend'
 alias jctl='sudo journalctl -f'
 
 ## Golang
@@ -67,7 +62,7 @@ alias gt='go test -cover '
 alias gta='go test -cover ./...'
 
 ## Git
-alias gst='git status'
+alias gst='git status -s'
 alias gco='git checkout'
 alias gs='git stash'
 alias gsa='git stash apply'
@@ -84,8 +79,12 @@ alias acsh="apt-cache show"
 alias ai="sudo apt-get install"
 alias aa="sudo apt-get autoremove"
 alias ar="sudo apt-get remove"
-alias update='sudo apt-get update'
-alias upgrade='sudo apt update && sudo apt -y upgrade'
+
+## dnf
+alias di='sudo dnf install'
+alias ds='sudo dnf search'
+alias dr='sudo dnf remove'
+alias upgrade='sudo dnf -y update'
 
 ## Ansible
 alias ad='ansible-doc'
@@ -98,7 +97,6 @@ alias avr='ansible-vault rekey '
 alias avv='ansible-vault view '
 alias ap='time ansible-playbook'
 alias a='time ansible'
-alias agi='ansible-galaxy init '
 
 ## Vagrant
 alias v='vagrant'
@@ -120,10 +118,6 @@ alias dct='docker container '
 ## postgres
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
-if [[ ! -z `which vimpager` ]]; then
-    alias psql='PAGER=vimpager psql';
-fi
-
 # search for processes and keep column headings
 pg() {
     ps x | grep --color=auto $1
@@ -134,7 +128,14 @@ h() {
     history | grep --color=auto $1
 }
 
-## Make JSON pretty
-pj() {
-    jq . $1 | less
+## Pull code into correct dir
+ghclone() {
+    git clone git@github.com:$1 ~/code/$1
+}
+
+## network reset
+nwreset() {
+    nmcli n off
+    nmcli n on
+    nmcli con up enp5s0
 }
