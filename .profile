@@ -12,12 +12,13 @@ export LANG=en_US.UTF-8 \
        GREP_COLORS="mt=38;5;214:sl=:cx=:fn=38;5;236:ln=32:bn=32:se=38;5;233" \
        GREP_COLOR="38;5;214" \
        MANWIDTH=60 \
+       MANROFFOPT="-c" \
        QUOTING_STYLE=literal
 
 # 256 color ANSI sequences https://en.wikipedia.org/wiki/ANSI_escape_code
 export LESS_TERMCAP_mb=$'\e[38;5;24m' \
        LESS_TERMCAP_md=$'\e[01;38;5;28m' \
-       LESS_TERMCAP_so=$'\e[38;5;23m' \
+       LESS_TERMCAP_so=$'\e[38;5;214m' \
        LESS_TERMCAP_us=$'\e[04;38;5;34m' \
        LESS_TERMCAP_ue=$'\e[0m' \
        LESS_TERMCAP_me=$'\e[0m' \
@@ -36,6 +37,7 @@ fi
 
 # Persist ssh-agent
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
+    # TODO verify the process is still alive....
     if [[ -L "$HOME/.ssh/ssh_agent" && -e "$HOME/.ssh/ssh_agent" ]]; then
         # found ssh_auth_sock, use it
         export SSH_AUTH_SOCK="$HOME/.ssh/ssh_agent"

@@ -3,17 +3,16 @@
 #
 
 [global]
-font = Monospace 12
-format = "- %s -\n%b"
-allow_markup = yes
+font = fixed 12
+markup = full
+format = "<b>%s</b>\n%b"
 sort = yes
 indicate_hidden = yes
 alignment = left
-bounce_freq = 0
 show_age_threshold = 120
 word_wrap = yes
 ignore_newline = no
-geometry = "300x5-5-5"
+geometry = "300x3-5-45"
 shrink = no
 transparency = 0
 idle_threshold = 30
@@ -27,35 +26,31 @@ padding = 8
 horizontal_padding = 8
 separator_color = frame
 separator_height = 1
-startup_notification = false
 dmenu = dmenu -p dunst:
 browser = firefox -new-tab
-icon_position = off
-icon_folders = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
-
-[frame]
-width = 1
-color = "#3a3a3a"
-
-[shortcuts]
-close = mod1+n
-close_all = mod4+n
-context = ctrl+shift+period
-history = ctrl+grave
+min_icon_size = 25
+max_icon_size = 50
+icon_position = left
+icon_path = /usr/share/icons/Adwaita/scalable/status/
+frame_width = 1
+frame_color = "#3a3a3a"
 
 [urgency_low]
 background = "#121212"
 foreground = "#767676"
 timeout = 30
+icon = "dialog-information-symbolic"
 
 [urgency_normal]
 background = "#121212"
 foreground = "#ffaf00"
 timeout = 60
+icon = "dialog-information-symbolic"
 
 [urgency_critical]
 background = "#121212"
 foreground = "#ffaf00"
 timeout = 0
+icon = "dialog-error-symbolic"
 
 # vim: ft=cfg
