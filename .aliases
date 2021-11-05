@@ -115,6 +115,10 @@ alias dc='docker-compose '
 alias dp='docker ps '
 alias dct='docker container '
 
+## AWS
+alias cb='aws codebuild '
+alias s3='aws s3 '
+
 ## postgres
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
