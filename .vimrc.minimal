@@ -7,3 +7,8 @@ set nohlsearch expandtab number cursorline
 nmap <silent> <C-p> :tabprevious<cr>
 nmap <silent> <C-n> :tabnext<cr>
 nmap <silent> <C-t> :tabnew<cr>
+
+hi TabLine       term=none          cterm=none ctermbg=none ctermfg=239
+hi TabLineFill   term=none          cterm=none ctermbg=none ctermfg=233
+hi TabLineSel    term=none          cterm=none ctermbg=none ctermfg=130
+hi CursorLine    term=reverse       cterm=none ctermbg=233 ctermfg=none
