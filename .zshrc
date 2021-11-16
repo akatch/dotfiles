@@ -70,5 +70,3 @@ precmd() {
     fi
 }
 export PS2="   %F{236}>%f "
-
-eval "$(direnv hook zsh)"

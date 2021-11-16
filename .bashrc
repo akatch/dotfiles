@@ -31,5 +31,4 @@ yellow="\[\e[38;05;208m\]"
 
 export PS1="$green\h $dark_gray\w $green\$(git symbolic-ref --short HEAD 2> /dev/null) $dark_gray\$$normal "
 
-eval "$(direnv hook bash)"
 #. ~/.utf8
