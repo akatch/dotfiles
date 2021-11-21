@@ -47,6 +47,8 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindsym $mod+x rename workspace 1 to temporary; rename workspace 10 to 1; rename workspace temporary to 10
+
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit i3?' -b 'yes' 'i3-msg exit'"
