@@ -120,8 +120,13 @@ alias cb='aws codebuild '
 alias s3='aws s3 '
 alias ec2='aws ec2 '
 
-## terraform
+## Terraform
 alias tf='terraform '
+alias tfp='terraform plan '
+alias tfa='terraform apply '
+
+## openqa
+alias oca='openqa-cli api '
 
 ## postgres
 alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"

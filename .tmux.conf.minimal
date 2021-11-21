@@ -4,6 +4,7 @@ set -g status-fg colour238
 set -g status-bg colour232
 set -g message-fg colour172
 set -g message-bg colour232
+set -g pane-active-border-style fg=colour22
 bind -r h select-pane -L
 bind -r j select-pane -D
 bind -r k select-pane -U
