@@ -11,6 +11,7 @@ export LANG=en_US.UTF-8 \
        GPG_TTY=$(tty) \
        GREP_COLORS="mt=38;5;214:sl=:cx=:fn=38;5;236:ln=32:bn=32:se=38;5;233" \
        GREP_COLOR="38;5;214" \
+       JQ_COLORS="1;30:0;37:0;37:0;37:0;32:1;37:1;37" \
        MANWIDTH=60 \
        MANROFFOPT="-c" \
        QUOTING_STYLE=literal
@@ -32,7 +33,7 @@ fi
 
 # enable color support
 if [[ -x /usr/bin/dircolors && -e ~/.config/dircolors ]]; then
-    eval "`dircolors -b ~/.config/dircolors`"
+    eval "$(dircolors -b ~/.config/dircolors)"
 fi
 
 # Persist ssh-agent
@@ -44,13 +45,10 @@ if [[ -z "$SSH_AUTH_SOCK" ]]; then
     else
         # didn't find ssh_auth_sock, start ssh-agent
         eval "$(ssh-agent)"
-        ln -sf $SSH_AUTH_SOCK $HOME/.ssh/ssh_agent
+        ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_agent"
     fi
 fi
 
 if [[ -d $HOME/.profile.d ]]; then
-    for file in $(find $HOME/.profile.d -name '*.sh')
-    do
-        source $file
-    done
+    find "$HOME/.profile.d/" -name '*.sh' -exec source '{}' \;
 fi
