@@ -8,63 +8,11 @@ bindsym $mod+Return exec xterm
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+l exec "i3lock -c 000000"
-#bindsym $mod+l exec "xscreensaver-command -lock"
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-bindsym $mod+f fullscreen toggle
-bindsym $mod+w layout tabbed
-bindsym $mod+t layout toggle split
-bindsym $mod+Shift+space floating toggle
 bindsym $mod+h exec "firefox -P hireology"
 bindsym $mod+e exec "firefox -P eli"
 bindsym $mod+k exec keepassxc
 
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-
 bindsym $mod+x rename workspace 1 to temporary; rename workspace 10 to 1; rename workspace temporary to 10
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit i3?' -b 'yes' 'i3-msg exit'"
-
-mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
 
 set $m Mod1
 set $m2 Ctrl
@@ -73,6 +21,7 @@ font $font
 new_window none
 new_float none
 focus_follows_mouse no
+focus_wrapping workspace
 workspace_layout tabbed
 workspace_auto_back_and_forth no
 
@@ -82,13 +31,8 @@ set $aux_display "DP-2"
 
 workspace 1 output $left_display
 workspace 2 output $right_display
-workspace 3 output $right_display
 workspace 4 output $aux_display
 workspace 5 output $right_display
-workspace 6 output $right_display
-workspace 7 output $right_display
-workspace 8 output $right_display
-workspace 9 output $right_display
 workspace 10 output $right_display
 
 # TODO cycle focus between windows on this workspace
@@ -147,6 +91,8 @@ client.unfocused        $background $background $background #292d2e   #222222
 client.urgent           $background $background $brightgreen #900000   #900000
 client.placeholder      $background $background $foreground #000000   #0c0c0c
 client.background       $background
+
+include defaults.conf
 
 # set keyboard map
 exec i3-msg 'exec xkbcomp $HOME/.config/keymap.xkb $DISPLAY'
