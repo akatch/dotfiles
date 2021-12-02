@@ -2,7 +2,7 @@
 set -e
 
 DATE=`date +%F`
-SOURCES="$HOME/pictures $HOME/code $HOME/documents $HOME/ebooks/archive"
+SOURCES="$HOME/pictures $HOME/code $HOME/documents $HOME/ebooks/archive /etc/fstab"
 RSYNCOPTS="-rzxl --delete --delete-excluded --exclude-from=$HOME/.config/rsync/exclude"
 DEST="$HOME/backups"
 
@@ -10,5 +10,6 @@ mkdir -p $DEST/$HOSTNAME
 cd $DEST/$HOSTNAME
 
 # TODO encrypt tarball
-tar --create --file $USER@$HOSTNAME-$DATE.tar.zst --zstd $SOURCES
+# TODO find a way to not output 'removing leading / from [...]'
+tar --create --file $USER@$HOSTNAME-$DATE.tar.zst --use-compress-program=zstd $SOURCES
 find ./ -mindepth 1 -maxdepth 1 -ctime +2 -exec rm -rf '{}' \;
