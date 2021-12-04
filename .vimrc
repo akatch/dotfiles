@@ -94,11 +94,14 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
+\    'terraform': ['terraform']
 \}
 
 let g:ale_linters = {
 \    'go': ['gofmt', 'golint', 'go vet', 'gopls'],
 \    'ansible': ['ansible-lint'],
+\    'perl': ['perlcritic'],
+\    'terraform': ['terraform'],
 \}
 " TODO j2-lint integration
 " TODO new panes bottom / right
@@ -123,5 +126,7 @@ let g:go_highlight_variable_assignments = 1
 let g:go_doc_url = "https://pkg.go.dev"
 
 " completion
+" TODO fix colors - currently selected item is gray, others green. selected
+" item should be green.
 set wildmode=longest,list,full
 set wildmenu
