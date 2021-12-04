@@ -6,8 +6,8 @@
 !*faceName: xft:Noto Mono:antialias=false:pixelsize=14
 
 *.font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
-xterm*eightBitInput: false
-xterm*metaSendsEscape: true
+xterm*eightBitInput: true
+xterm*metaSendsEscape: false
 *.saveLines: 10000
 *.scrollKey: true
 xterm*scrollBar: false
@@ -18,7 +18,7 @@ xterm*scrollBar: false
 *.cursorBlink: true
 
 !! Colors
-*.cursorColor: #df8700
+*.cursorColor: #5f8700
 *.background: #080808
 *.foreground: #767676
 ! black
