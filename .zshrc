@@ -57,6 +57,9 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:*' enable git
 # or use precmd, see man zshcontrib
 
+# TODO only if `which direnv` succeeds
+eval "$(direnv hook zsh)"
+
 # prompt
 # TODO display git diff --shortstat
 precmd() {
@@ -64,9 +67,9 @@ precmd() {
     git_branch=${vcs_info_msg_0_}
 
     if [[ "$git_branch" == "" ]]; then
-        export PS1="%F{%(?.28.208)}%m%f %F{237}%~%f %F{237}>%f "
+        export PS1="%F{237}%m%f %F{%(?.28.208)}%~%f %F{%(?.28.208)}%#%f "
     else
-        export PS1="%F{%(?.28.208)}%m%f %F{237}%~%F{%(?.28.208)} ${git_branch} %F{237}>%f "
+        export PS1="%F{237}%m%f %F{%(?.28.208)}%~%F{237} ${git_branch} %F{%(?.28.208)}%#%f "
     fi
 }
 export PS2="   %F{236}>%f "
