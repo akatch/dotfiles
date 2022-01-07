@@ -67,6 +67,9 @@ alias gco='git checkout'
 alias gs='git stash'
 alias gsa='git stash apply'
 alias gsp='git stash pop'
+alias gpo='git push origin'
+alias gpoh='git push origin HEAD'
+alias gp='git pull'
 
 ## vim
 alias e='vim -p '
@@ -127,9 +130,6 @@ alias tfa='terraform apply '
 
 ## openqa
 alias oca='openqa-cli api '
-
-## postgres
-alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
 
 # search for processes and keep column headings
 pg() {
