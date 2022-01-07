@@ -34,7 +34,7 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 
 ## General stuff
-alias g='grep --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
+alias g='grep -I --color=auto --exclude-dir=.git --exclude-dir=.vagrant --exclude-dir=logs --exclude=*.log'
 alias gr='g -r'
 alias gri='g -ri'
 alias isomount='sudo mount -o loop,exec'
@@ -67,6 +67,9 @@ alias gco='git checkout'
 alias gs='git stash'
 alias gsa='git stash apply'
 alias gsp='git stash pop'
+alias gpo='git push origin'
+alias gpoh='git push origin HEAD'
+alias gp='git pull'
 
 ## vim
 alias e='vim -p '
@@ -115,8 +118,18 @@ alias dc='docker-compose '
 alias dp='docker ps '
 alias dct='docker container '
 
-## postgres
-alias dbcons="psql -e 'SELECT datname,usename,client_addr,waiting,query_start,current_query FROM pg_stat_activity;'"
+## AWS
+alias cb='aws codebuild '
+alias s3='aws s3 '
+alias ec2='aws ec2 '
+
+## Terraform
+alias tf='terraform '
+alias tfp='terraform plan '
+alias tfa='terraform apply '
+
+## openqa
+alias oca='openqa-cli api '
 
 # search for processes and keep column headings
 pg() {

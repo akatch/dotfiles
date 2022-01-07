@@ -11,13 +11,15 @@ export LANG=en_US.UTF-8 \
        GPG_TTY=$(tty) \
        GREP_COLORS="mt=38;5;214:sl=:cx=:fn=38;5;236:ln=32:bn=32:se=38;5;233" \
        GREP_COLOR="38;5;214" \
+       JQ_COLORS="1;30:0;37:0;37:0;37:0;32:1;37:1;37" \
        MANWIDTH=60 \
+       MANROFFOPT="-c" \
        QUOTING_STYLE=literal
 
 # 256 color ANSI sequences https://en.wikipedia.org/wiki/ANSI_escape_code
 export LESS_TERMCAP_mb=$'\e[38;5;24m' \
        LESS_TERMCAP_md=$'\e[01;38;5;28m' \
-       LESS_TERMCAP_so=$'\e[38;5;23m' \
+       LESS_TERMCAP_so=$'\e[38;5;214m' \
        LESS_TERMCAP_us=$'\e[04;38;5;34m' \
        LESS_TERMCAP_ue=$'\e[0m' \
        LESS_TERMCAP_me=$'\e[0m' \
@@ -31,24 +33,22 @@ fi
 
 # enable color support
 if [[ -x /usr/bin/dircolors && -e ~/.config/dircolors ]]; then
-    eval "`dircolors -b ~/.config/dircolors`"
+    eval "$(dircolors -b ~/.config/dircolors)"
 fi
 
 # Persist ssh-agent
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
+    # TODO verify the process is still alive....
     if [[ -L "$HOME/.ssh/ssh_agent" && -e "$HOME/.ssh/ssh_agent" ]]; then
         # found ssh_auth_sock, use it
         export SSH_AUTH_SOCK="$HOME/.ssh/ssh_agent"
     else
         # didn't find ssh_auth_sock, start ssh-agent
         eval "$(ssh-agent)"
-        ln -sf $SSH_AUTH_SOCK $HOME/.ssh/ssh_agent
+        ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_agent"
     fi
 fi
 
 if [[ -d $HOME/.profile.d ]]; then
-    for file in $(find $HOME/.profile.d -name '*.sh')
-    do
-        source $file
-    done
+    find "$HOME/.profile.d/" -name "*.sh" | while read -r file; do source "$file"; done
 fi

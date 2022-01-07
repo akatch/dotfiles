@@ -62,4 +62,8 @@ disk_size () {
     df -h | grep '^\(\/dev\|\/\/\)' | awk '{ printf " %.2s: %s ", $6, $5 }'
 }
 
+public_ping() {
+    ping -c 1 "$1" | grep from | awk -F '=' '{ printf "%.0f ms", $4 }'
+}
+
 $@

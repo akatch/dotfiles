@@ -5,22 +5,22 @@
 !*font: -*-noto mono-*-*-*-*-*-*-*-*-*-*-*-1
 !*faceName: xft:Noto Mono:antialias=false:pixelsize=14
 
-*font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
-!*eightBitInput: false
-!*metaSendsEscape: true
-*saveLines: 10000
-*scrollKey: true
-*scrollBar: false
-*locale: true
-*utf8: true
-*utf8Fonts: true
-*allowScrollLock: true
-*cursorBlink: true
+*.font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+xterm*eightBitInput: true
+xterm*metaSendsEscape: false
+*.saveLines: 10000
+*.scrollKey: true
+xterm*scrollBar: false
+*.locale: true
+*.utf8: true
+*.utf8Fonts: true
+*.allowScrollLock: true
+*.cursorBlink: true
 
 !! Colors
-*cursorColor: #262626
-*background: #080808
-*foreground: #767676
+*.cursorColor: #5f8700
+*.background: #080808
+*.foreground: #767676
 ! black
 *.color0: #121212
 *.color8: #3a3a3a

@@ -17,9 +17,9 @@ bind 'TAB:menu-complete'
 
 normal="\[\e[00m\]"
 dark_gray="\[\e[38;05;237m\]"
-green="\[\e[38;05;28m\]"
+green="\[\e[38;05;40m\]"
 yellow="\[\e[38;05;208m\]"
 
-export PS1="$yellow\h $dark_gray\w \$$normal "
+export PS1="$green\h $dark_gray\w \$$normal "
 
 #. ~/.utf8

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## wx: a METAR parser written in Bash
-# (c) 2016 Allyson Bowles
+# (c) 2021 Allyson Bowles
 
 ## Usage:
 # wx [[ temp [ f|F | c|C | k|K ]] | humidity | wind | altimeter | visibility | rvr | condition | phenomena | metar | remarks | refresh ]
@@ -10,14 +10,15 @@
 # http://www.met.tamu.edu/class/metar/quick-metar.html
 # http://www.dixwx.com/wxdecoding.htm
 # https://en.wikipedia.org/wiki/Wind_chill#North_American_and_United_Kingdom_wind_chill_index
+# https://en.wikipedia.org/wiki/Heat_index#Formula
 
 ## Dependencies:
 # bc
 
 ## Constants
-# STATION=KMSN
-STATION=KMDW
-# STATION=KHNB
+STATION=KRYV
+#STATION=KMDW
+#STATION=KHNB
 DATA_URI="data/observations/metar/stations/$STATION.TXT"
 DATA_URL="https://tgftp.nws.noaa.gov/$DATA_URI"
 CACHE="$HOME/.cache/wx/metar"
@@ -37,6 +38,7 @@ _check_last_modified() {
     case $PLATFORM in
         Linux)
             src=$(date --date="$last_modified" +'%s')
+            # FIXME are we handling the case where $CACHE is empty?
             cache=$(date -r $CACHE +'%s')
         ;;
         Darwin)
@@ -236,9 +238,13 @@ _temperature_conversion() {
     esac
 }
 
+_relative_humidity() {
+    humidity=$(bc -l <<< "100 * (e((17.625 * $dp)/(243.04 + $dp))/e((17.625 * $temp)/(243.04 + $temp)))")
+}
+
 humidity() {
     _temperature_dewpoint
-    humidity=$(bc -l <<< "100 * (e((17.625 * $dp)/(243.04 + $dp))/e((17.625 * $temp)/(243.04 + $temp)))")
+    _relative_humidity
     printf "%.0f%%" $humidity
 }
 
@@ -254,6 +260,22 @@ wind_chill() {
     y=$(awk -v "wc=$wind_speed" 'BEGIN {print wc**0.16}')
     wind_chill=$(bc <<< "13.12 + (0.6215 * $temp) - (11.37 * $y) + (0.3965 * $temp * $y)")
     _temperature_conversion $wind_chill $1
+}
+
+heat_index() {
+    _temperature_dewpoint
+    _relative_humidity
+    c1="-8.78469475556"
+    c2="1.61139411"
+    c3="2.33854883889"
+    c4="-0.14611605"
+    c5="-0.012308094"
+    c6="-0.0164248277778"
+    c7="0.002211732"
+    c8="0.00072546"
+    c9="-0.000003582"
+    heat_index=$(bc <<< "$c1 + ($c2 * $temp) + ($c3 * $humidity) + ($c4 * $temp * $humidity) + ($c5 * $temp ^ 2) + ($c6 * $humidity ^ 2) + ($c7 * $temp ^ 2 * $humidity) + ($c8 * $temp * $humidity ^ 2) + ($c9 * $temp ^ 2 * $humidity ^ 2)")
+    _temperature_conversion $heat_index $1
 }
 
 $@ && _check_last_modified || refresh
