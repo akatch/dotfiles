@@ -12,7 +12,7 @@ alignment = left
 show_age_threshold = 120
 word_wrap = yes
 ignore_newline = no
-geometry = "300x3-5-45"
+geometry = "400x3-5-45"
 shrink = no
 transparency = 0
 idle_threshold = 30
@@ -22,16 +22,16 @@ sticky_history = yes
 history_length = 20
 show_indicators = no
 line_height = 0
-padding = 8
-horizontal_padding = 8
+padding = 20
+horizontal_padding = 20
 separator_color = frame
 separator_height = 1
 dmenu = dmenu -p dunst:
 browser = firefox -new-tab
-min_icon_size = 25
+min_icon_size = 40
 max_icon_size = 50
 icon_position = left
-icon_path = /usr/share/icons/Adwaita/scalable/status/
+icon_path = /usr/share/icons/Adwaita/scalable/status/:/usr/share/icons/Adwaita/scalable/actions/
 frame_width = 1
 frame_color = "#3a3a3a"
 
@@ -43,14 +43,20 @@ icon = "dialog-information-symbolic"
 
 [urgency_normal]
 background = "#121212"
-foreground = "#ffaf00"
-timeout = 60
+foreground = "#5f8700"
+timeout = 30
 icon = "dialog-information-symbolic"
 
 [urgency_critical]
 background = "#121212"
 foreground = "#ffaf00"
-timeout = 0
+timeout = 60
 icon = "dialog-error-symbolic"
+
+[slack]
+summary = "New message*"
+new_icon = "chat-message-new-symbolic"
+urgency = "critical"
+#format = "%b"
 
 # vim: ft=cfg

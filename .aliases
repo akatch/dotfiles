@@ -85,7 +85,7 @@ alias ar="sudo apt-get remove"
 
 ## dnf
 alias di='sudo dnf install'
-alias ds='sudo dnf search'
+alias ds='dnf search'
 alias dr='sudo dnf remove'
 alias upgrade='sudo dnf -y update'
 
