@@ -1,11 +1,6 @@
-# vim: ft=conf
+# vim: ft=tmux
 set -g prefix 'C-a'
-set -g status-fg colour238
-set -g status-bg colour232
-set -g message-fg colour172
-set -g message-bg colour232
-set -g pane-active-border-style fg=colour22
-set -g pane-border-style fg=colour234
+
 bind -r h select-pane -L
 bind -r j select-pane -D
 bind -r k select-pane -U
@@ -13,6 +8,13 @@ bind -r l select-pane -R
 bind s split-window
 bind v split-window -h
 bind r source-file ~/.tmux.conf
+
+set -g status-fg colour238
+set -g status-bg colour232
+set -g message-fg colour172
+set -g message-bg colour232
+set -g pane-active-border-style fg=colour22
+set -g pane-border-style fg=colour234
 
 # TODO more obvious current window indicator in statusline
 set status-left "[#S] #H #W "
