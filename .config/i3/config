@@ -5,14 +5,11 @@
 set $mod Mod4
 floating_modifier $mod
 bindsym $mod+Return exec xterm
-#bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
-bindsym $mod+l exec "i3lock -c 000000"
-bindsym $mod+h exec "firefox -P hireology"
-bindsym $mod+e exec "firefox -P eli"
-bindsym $mod+k exec keepassxc
-
-bindsym $mod+x rename workspace 1 to temporary; rename workspace 10 to 1; rename workspace temporary to 10
+bindsym $mod+Shift+l exec "i3lock -c 000000"
+bindsym $mod+Shift+h exec "firefox -P hireology"
+bindsym $mod+Shift+e exec "firefox"
+bindsym $mod+Shift+k exec keepassxc
 
 set $m Mod1
 set $m2 Ctrl
@@ -25,28 +22,17 @@ focus_wrapping workspace
 workspace_layout tabbed
 workspace_auto_back_and_forth no
 
-set $left_display "HDMI-1"
-set $right_display "HDMI-2"
-set $aux_display "DP-2"
+workspace 3 output "HDMI-1"
 
-workspace 1 output $left_display
-workspace 2 output $right_display
-workspace 4 output $aux_display
-workspace 5 output $right_display
-workspace 10 output $right_display
-
-# TODO cycle focus between windows on this workspace
 bindsym $mod+Tab focus right
 bindsym $m+Tab focus left
 # FIXME this doesn't actually work
 #bindsym Print exec "import $HOME/pictures/screenshots/$(date +'%Y%m%d_%H%M%S').png"
-bindsym $mod+space exec dmenu_run -i -l 5 -bw 2 -sb '#262626' -sf '#dfaf00' -nb '#121212' -nf '#767676' -fn 'fixed:size=12' -c
-bindsym $m+space workspace 10
+bindsym $mod+space exec dmenu_run -i -l 5 -bw 2 -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'fixed:size=12' -c
+bindsym $m+space workspace 2
 bindsym $m2+space workspace 1
 bindsym $mod+p scratchpad show
 bindsym $mod+o move scratchpad
-bindsym $mod+$m+Right move workspace to output right
-bindsym $mod+$m+Left move workspace to output left
 
 # Music
 bindsym F9 exec cmus-remote -u
@@ -58,22 +44,14 @@ bindsym F12 exec amixer sset Master 5%+
 # notifications
 bindsym $mod+n exec dunstctl close-all
 
-assign [class="Firefox"] 3
-assign [class="Tor Browser"] 3
-assign [class="MPlayer"] 2
-assign [class="calibre"] 2
-assign [class="App"] 4
-assign [class="[Z|z]oom"] 3
+assign [class="calibre"] 4
 
-# TODO floating enable by default?
-#for_window [class="Browser"] floating enable
-for_window [class="[Z|z]oom"] floating enable, move position right
+for_window [class="[Z|z]oom"] floating enable
 for_window [class="page-info"] floating enable
 for_window [class="XFontSel|XEv|XCalc|feh"] floating enable
 for_window [class="[V|v]mware"] floating enable
 for_window [class="KeePassXC"] floating enable
-for_window [class="VirtualBox"] floating enable, resize set 800 600, move position center
-for_window [class="[V|v]iewnior"] floating enable, resize set 800 600
+for_window [class="VirtualBox"] floating enable
 for_window [class="[A|a]randr"] floating enable
 for_window [class="qt5ct"] floating enable, resize set 800 600
 for_window [class="Vncviewer"] floating enable
@@ -95,7 +73,10 @@ client.background       $background
 include defaults.conf
 
 # set keyboard map
-exec i3-msg 'exec xkbcomp $HOME/.config/keymap.xkb $DISPLAY'
+exec xkbcomp '$HOME/.config/keymap.xkb $DISPLAY'
+exec setxkbmap -option ctrl:swapcaps
 
 # Startup wpplications
-exec i3-msg 'exec xterm; exec firefox; exec calibre'
+exec i3-msg 'workspace 1; exec xterm; exec firefox'
+exec i3-msg 'workspace 2; exec xterm; exec firefox -P hireology'
+exec calibre
