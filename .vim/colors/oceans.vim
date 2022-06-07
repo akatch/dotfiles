@@ -126,7 +126,7 @@ hi link GitGutterDelete DiffDelete
 hi link GitGutterChangeDelete DiffChange
 
 " html
-hi htmlItalic               term=italic                 cterm=italic ctermfg=233 ctermbg=white
-hi htmlBoldItalic           term=bold,italic            cterm=bold,italic ctermfg=233 ctermbg=white
-hi htmlBoldUnderlineItalic  term=bold,underline,italic  cterm=bold,underline,italic ctermfg=233 ctermbg=white
-hi htmlUnderlineItalic      term=underline,italic       cterm=underline,italic ctermfg=233 ctermbg=white
+hi htmlItalic               term=italic                 cterm=none ctermfg=white ctermbg=none
+hi htmlBoldItalic           term=bold,italic            cterm=bold ctermfg=white ctermbg=none
+hi htmlBoldUnderlineItalic  term=bold,underline,italic  cterm=bold,underline ctermfg=white ctermbg=none
+hi htmlUnderlineItalic      term=underline,italic       cterm=underline ctermfg=white ctermbg=none
