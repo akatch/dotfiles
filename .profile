@@ -31,11 +31,6 @@ if [[ "$TERM" != "screen-256color" ]]; then
     export TERM=screen-256color
 fi
 
-# enable color support
-if [[ -x /usr/bin/dircolors && -e ~/.config/dircolors ]]; then
-    eval "$(dircolors -b ~/.config/dircolors)"
-fi
-
 # Persist ssh-agent
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
     # TODO verify the process is still alive....
