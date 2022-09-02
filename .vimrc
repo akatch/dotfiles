@@ -13,7 +13,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'chase/vim-ansible-yaml'
 Plugin 'scrooloose/nerdtree'
 Plugin 'dense-analysis/ale'
 Plugin 'Glench/Vim-Jinja2-Syntax'
@@ -21,13 +20,13 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
 Plugin 'hashivim/vim-terraform'
+Plugin 'pearofducks/ansible-vim'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
 filetype plugin indent on
 autocmd Filetype yaml,ansible,ruby setlocal shiftwidth=2 tabstop=2
-autocmd BufNewFile,BufRead todo.txt set filetype=todotxt
-autocmd BufNewFile,BufRead *.yml set filetype=ansible
+autocmd BufNewFile,BufRead *.txt set filetype=todotxt
 
 if has("syntax")
     syntax on
@@ -91,6 +90,9 @@ let g:strip_whitelines_at_eof=1
 
 " ale
 let g:ale_fix_on_save = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
@@ -103,6 +105,7 @@ let g:ale_linters = {
 \    'perl': ['perlcritic'],
 \    'terraform': ['terraform'],
 \}
+" TODO markdown linter
 " TODO j2-lint integration
 " TODO new panes bottom / right
 " TODO middle click = set paste/insert/set nopaste
