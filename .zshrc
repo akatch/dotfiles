@@ -5,6 +5,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+
+fpath=($HOME/.local/share/zsh/site-functions $fpath)
 setopt autocd extendedglob notify
 unsetopt beep nomatch
 zstyle :compinstall filename '${HOME}/.zshrc'
@@ -67,9 +69,9 @@ precmd() {
     git_branch=${vcs_info_msg_0_}
 
     if [[ "$git_branch" == "" ]]; then
-        export PS1="%F{237}%m%f %F{%(?.28.208)}%~%f %F{%(?.28.208)}%#%f "
+        export PS1="%F{237}%m%f %F{%(?.64.208)}%~%f %F{%(?.64.208)}%#%f "
     else
-        export PS1="%F{237}%m%f %F{%(?.28.208)}%~%F{237} ${git_branch} %F{%(?.28.208)}%#%f "
+        export PS1="%F{237}%m%f %F{%(?.64.208)}%~%F{237} ${git_branch} %F{%(?.64.208)}%#%f "
     fi
 }
 export PS2="   %F{236}>%f "
