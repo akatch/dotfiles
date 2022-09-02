@@ -10,5 +10,5 @@ cd "$DEST/$HOSTNAME"
 
 # TODO encrypt tarball
 # TODO find a way to not output 'removing leading / from [...]'
-tar --create --file "$USER@$HOSTNAME-$DATE.tar.zst" --use-compress-program=zstd "$SOURCES"
+tar --create --file "$USER@$HOSTNAME-$DATE.tar.zst" --use-compress-program=zstd $SOURCES
 find ./ -mindepth 1 -maxdepth 1 -ctime +2 -exec rm -rf '{}' \;
