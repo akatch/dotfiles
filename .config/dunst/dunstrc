@@ -3,7 +3,7 @@
 #
 
 [global]
-font = fixed 12
+font = fixed 14
 markup = full
 format = "<b>%s</b>\n%b"
 sort = yes
@@ -12,7 +12,9 @@ alignment = left
 show_age_threshold = 120
 word_wrap = yes
 ignore_newline = no
-geometry = "400x3-1515+5"
+width = 400
+origin = top-right
+offset = 0x25
 shrink = no
 transparency = 0
 idle_threshold = 30
@@ -33,6 +35,7 @@ icon_position = left
 icon_path = /usr/share/icons/Adwaita/scalable/status/:/usr/share/icons/Adwaita/scalable/actions/
 frame_width = 1
 frame_color = "#3a3a3a"
+progress_bar = true
 
 [urgency_low]
 background = "#121212"
