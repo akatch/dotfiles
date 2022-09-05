@@ -1,5 +1,4 @@
 
-colorscheme cyberpunklisafrank
 set aaa_mode=all
 set lib_sort=title
 set show_current_bitrate=true
@@ -16,3 +15,40 @@ set format_trackwin_album= %l
 set format_trackwin_va=%3n. %t (%a)%= %y %d
 set format_treewin=  %l
 set format_treewin_artist=%a
+
+# colors
+set color_error=89
+set color_info=208
+set color_separator=233
+set color_win_dir=30
+set color_win_cur=30
+
+set color_cmdline_bg=default
+set color_cmdline_fg=208
+
+set color_statusline_bg=default
+set color_statusline_fg=70
+
+set color_titleline_bg=default
+set color_titleline_fg=70
+
+set color_win_bg=default
+set color_win_fg=237
+
+set color_win_cur_sel_bg=233
+set color_win_cur_sel_fg=70
+
+set color_win_inactive_cur_sel_bg=default
+set color_win_inactive_cur_sel_fg=64
+
+set color_win_inactive_sel_bg=233
+set color_win_inactive_sel_fg=22
+
+set color_win_sel_bg=233
+set color_win_sel_fg=28
+set color_win_sel_attr=bold
+
+set color_win_title_bg=default
+set color_win_title_fg=235
+
+set color_trackwin_album_fg=238
