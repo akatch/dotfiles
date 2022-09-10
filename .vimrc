@@ -96,7 +96,8 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
-\    'terraform': ['terraform']
+\   'terraform': ['terraform'],
+\   'yaml': ['yamlfix']
 \}
 
 let g:ale_linters = {

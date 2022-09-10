@@ -8,7 +8,8 @@ font:
 
 cursor:
   style:
-    blinking: On
+    blinking: 'On'
+    # blinking: true
 
 alt_send_esc: false
 draw_bold_text_with_bright_colors: true
@@ -29,24 +30,24 @@ colors:
     foreground: '#767676'
 
   normal:
-    #black:
-    red:     '#d7005f'  # 161
-    green:   '#00af00'  # 34
-    yellow:  '#ffaf00'  # 214
-    blue:    '#0000ff'  # 21
+    # black:
+    red: '#d7005f'      # 161
+    green: '#00af00'    # 34
+    yellow: '#ffaf00'   # 214
+    blue: '#0000ff'     # 21
     magenta: '#8700ff'  # 93
-    cyan:    '#00afaf'  # 37
-    white:   '#444444'  # 238
+    cyan: '#00afaf'     # 37
+    white: '#444444'    # 238
 
   bright:
-    black:   '#303030'  # 236
-    red:     '#d75f5f'  # 167
-    green:   '#00ff00'  # 46
-    yellow:  '#ffd700'  # 220
-    blue:    '#005fff'  # 27
+    black: '#303030'    # 236
+    red: '#d75f5f'      # 167
+    green: '#00ff00'    # 46
+    yellow: '#ffd700'   # 220
+    blue: '#005fff'     # 27
     magenta: '#875fff'  # 99
-    cyan:    '#00d7af'  # 43
-    #white:
+    cyan: '#00d7af'     # 43
+    # white:
 
   hints:
     start:
@@ -61,16 +62,20 @@ colors:
     background: '#303030'
 
   footer_bar:
-    background: CellBackground
-    foreground: '#d75f5f'
+    background: '#d75f5f'
+    foreground: CellForeground
 
 key_bindings:
-- { key: V,       mods: Control,        action: Paste }
-- { key: V,       mods: Control|Shift,  action: PasteSelection }
-- { key: Equals,  mods: Control,        action: IncreaseFontSize }
-- { key: Minus,   mods: Control,        action: DecreaseFontSize }
+  - {key: V, mods: Control, action: Paste}
+  - {key: V, mods: Control|Shift, action: PasteSelection}
+  - {key: Equals, mods: Control, action: IncreaseFontSize}
+  - {key: Minus, mods: Control, action: DecreaseFontSize}
 
-#hints:
+# TODO
+# mouse_bindings:
+# Scroll wheel
+# URL click
+# hints:
 #  enabled:
 # - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
 #   hyperlinks: true
@@ -83,4 +88,3 @@ key_bindings:
 #   binding:
 #     key: Y
 #     mods: Control|Shift
-...
