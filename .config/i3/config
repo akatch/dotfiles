@@ -4,23 +4,26 @@
 
 set $mod Mod4
 floating_modifier $mod
-bindsym $mod+Return exec xterm
+bindsym $mod+Return exec alacritty msg create-window
+bindsym $mod+Shift+Return exec alacritty msg create-window --class floating
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+l exec "i3lock -c 000000"
 bindsym $mod+Shift+h exec "firefox -P hireology"
 bindsym $mod+Shift+e exec "firefox"
 bindsym $mod+Shift+k exec keepassxc
+bindsym $mod+Shift+p exec "btconnect.sh pixbuds"
 
 set $m Mod1
 set $m2 Ctrl
-set_from_resource $font i3wm.font
-font $font
+font pango:Terminus 14
 new_window none
 new_float none
 focus_follows_mouse no
 focus_wrapping workspace
-workspace_layout tabbed
+workspace_layout default
 workspace_auto_back_and_forth no
+default_border pixel 1
+# TODO append_layout
 
 workspace 3 output "HDMI-1"
 
@@ -28,55 +31,127 @@ bindsym $mod+Tab focus right
 bindsym $m+Tab focus left
 # FIXME this doesn't actually work
 #bindsym Print exec "import $HOME/pictures/screenshots/$(date +'%Y%m%d_%H%M%S').png"
-bindsym $mod+space exec dmenu_run -i -l 5 -bw 2 -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'fixed:size=12' -c
+bindsym $mod+space exec dmenu_run -i -l 5 -bw 2 -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'monospace:size=14' -c
 bindsym $m+space workspace 2
 bindsym $m2+space workspace 1
 bindsym $mod+p scratchpad show
 bindsym $mod+o move scratchpad
 
 # Music
-bindsym F9 exec cmus-remote -u
-bindsym F10 exec cmus-remote -n
-bindsym $m+F10 exec cmus-remote --seek 0
+bindsym F9 exec playerctl -p cmus play-pause
+bindsym F10 exec playerctl -p cmus next
+bindsym $m+F10 exec playerctl -p cmus position 0
 bindsym F11 exec amixer sset Master 5%-
 bindsym F12 exec amixer sset Master 5%+
-
+bindsym XF86AudioPause exec playerctl -p cmus play-pause
+bindsym XF86AudioNext exec playerctl -p cmus next
+bindsym XF86AudioPrev exec playerctl -p cmus position 0
+bindsym $mod+m exec alacritty msg create-window  --class floating -e pulsemixer
 # notifications
 bindsym $mod+n exec dunstctl close-all
 
 assign [class="calibre"] 4
+assign [instance="work"] 2
 
 for_window [class="[Z|z]oom"] floating enable
 for_window [class="page-info"] floating enable
+for_window [class="[Q|q]emu*"] floating enable
 for_window [class="XFontSel|XEv|XCalc|feh"] floating enable
 for_window [class="[V|v]mware"] floating enable
 for_window [class="KeePassXC"] floating enable
 for_window [class="VirtualBox"] floating enable
 for_window [class="[A|a]randr"] floating enable
 for_window [class="qt5ct"] floating enable, resize set 800 600
+for_window [class="firefox"] split v
 for_window [class="Vncviewer"] floating enable
+for_window [instance="floating"] floating enable
+for_window [class=".*"] border pixel 1
 
 # colors
-set_from_resource $background i3wm.background #000000
-set_from_resource $foreground i3wm.foreground #ffffff
-set_from_resource $green i3wm.color2 #008700
-set_from_resource $brightgreen i3wm.color10 #5f8700
+set $background 	#080808
+set $foreground  	#767676
 
-# class                 border  	backgr. 	text    	indicator 	child_border
-client.focused          $background $background $foreground #2e9ef4   #285577
-client.focused_inactive $background $background $background #484e50   #5f676a
-client.unfocused        $background $background $background #292d2e   #222222
-client.urgent           $background $background $brightgreen #900000   #900000
-client.placeholder      $background $background $foreground #000000   #0c0c0c
+set $black #000000
+set $red #d7005f
+set $green #00af00
+set $yellow #ffaf00
+set $blue #0000ff
+set $magenta #8700ff
+set $cyan #00afaf
+set $silver #444444
+
+set $gray #303030
+set $brightred #d75f5f
+set $brightgreen #00ff00
+set $brightyellow #ffd700
+set $brightblue #005fff
+set $brightmagenta #875fff
+set $brightcyan #01d7af
+set $white #ffffff
+
+# class                 border  	backgr. 	text    	    indicator 	child_border
+client.focused          $background $background $foreground     #5f8700     #5f8700
+client.focused_inactive $background $background $background     $gray       $gray
+client.unfocused        $background $background $background     $gray       $gray
+client.urgent           $background $background $brightgreen    $yellow 	$yellow
+client.placeholder      $background $background $foreground     $silver		$silver
 client.background       $background
 
-include defaults.conf
+# default keybinds we'd like to retain
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+w layout tabbed
+bindsym $mod+t layout toggle split
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+v split h
+bindsym $mod+s split v
+bindsym $mod+a focus parent
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+
+bar {
+    i3bar_command i3bar --transparency
+    status_command i3status
+    workspace_buttons no
+    separator_symbol " | "
+    position top
+
+    colors {
+        separator #444444
+		background #121212
+        statusline #5f8700
+    }
+}
+
+# i3-gaps
+gaps inner 25
 
 # set keyboard map
 exec xkbcomp '$HOME/.config/keymap.xkb $DISPLAY'
 exec setxkbmap -option ctrl:swapcaps
 
 # Startup wpplications
-exec i3-msg 'workspace 1; exec xterm; exec firefox'
-exec i3-msg 'workspace 2; exec xterm; exec firefox -P hireology'
+exec i3-msg 'workspace 1; exec firefox; exec alacritty -e tmux attach a'
+exec i3-msg 'workspace 2; exec firefox -P hireology; exec alacritty msg create-window --class work'
 exec calibre
