@@ -45,7 +45,7 @@ alias tl='tmux ls'
 alias ncdu='ncdu --color dark'
 
 ## Random
-alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/documents/txt/notes.txt && vim + -c "startinsert" $HOME/documents/txt/notes.txt'
+alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/sync/notes.md && vim + -c "startinsert" $HOME/sync/notes.md'
 alias news=newsboat
 alias ipt='sudo iptables -L --line-number'
 alias fw='sudo firewall-cmd'
@@ -118,6 +118,14 @@ alias dc='docker-compose '
 alias dp='docker ps '
 alias dct='docker container '
 
+dish() {
+    # docker interactive shell
+    docker exec -it $1 /bin/bash
+
+    # if this doesn't work try
+    #docker run -it --entrypoint /bin/bash $1
+}
+
 ## AWS
 alias cb='aws codebuild '
 alias s3='aws s3 '
@@ -151,4 +159,11 @@ nwreset() {
     nmcli n off
     nmcli n on
     nmcli con up enp5s0
+}
+
+## destroy a virt-install guest
+vnuke() {
+    virsh destroy --gracefully $1
+    virsh undefine $1
+    virsh vol-delete --pool default $1.qcow2
 }
