@@ -1,0 +1,78 @@
+#
+# ~/.config/i3status/config
+#
+
+general {
+    interval = 5
+    markup = pango
+
+    color_good = "#4e4e4e"
+    color_degraded = "#ffd700"
+    color_bad = "#d75f5f"
+}
+
+order += "disk /"
+order += "disk /var"
+order += "disk /home"
+order += "memory"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "load"
+order += "read_file weather"
+order += "time"
+order += "tztime utc"
+
+read_file weather {
+    path = "~/.wx"
+    format = "<span foreground='#5f8700'>%content</span>"
+}
+
+cpu_usage {
+    format = "cpu: %usage"
+    degraded_threshold = 55
+    separator = "no"
+}
+
+cpu_temperature 0 {
+    format = "%degrees °C"
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+    separator = "no"
+}
+
+disk "/" {
+    format = "/: %used (%percentage_used)"
+    separator = "no"
+}
+
+disk "/var" {
+    format = "/var: %used (%percentage_used)"
+    separator = "no"
+}
+
+disk "/home" {
+    format = "/home: %used (%percentage_used)"
+}
+
+memory {
+    format = "ram: %used (%percentage_used)"
+    threshold_degraded = "20%"
+    threshold_critical = "10%"
+}
+
+load {
+    format = "%1min   %5min   %15min"
+    max_threshold = "16"
+}
+
+time {
+    format = "%e %b %Y   %k:%M"
+    separator = "no"
+}
+
+tztime utc {
+    format = "%k:%M  "
+    timezone = "Etc/Utc"
+    #min_width = 2890
+}
+
+#vim: ft=i3config
