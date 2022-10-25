@@ -93,20 +93,26 @@ let g:ale_fix_on_save = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_list_window_size = 5
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
+\   'json': ['jq'],
 \   'terraform': ['terraform'],
-\   'yaml': ['yamlfix']
+\   'yaml': ['yamlfix'],
 \}
 
 let g:ale_linters = {
-\    'go': ['gofmt', 'golint', 'go vet', 'gopls'],
+\    'go': ['gofmt', 'golint', 'go vet', 'gopls', 'golangci-lint'],
 \    'ansible': ['ansible-lint'],
 \    'perl': ['perlcritic'],
 \    'terraform': ['terraform'],
+\    'ruby': ['rubocop'],
+\    'javascript': ['eslint'],
 \}
 " TODO markdown linter
+
+"let b:ale_ruby_rubocop_executable = './vendor/bundle/ruby/2.6.0/bin/rubocop'
 " TODO j2-lint integration
 " TODO new panes bottom / right
 " TODO middle click = set paste/insert/set nopaste
