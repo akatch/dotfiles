@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ## wx: a METAR parser written in Bash
-# (c) 2021 Allyson Bowles
+# (c) 2022 Al Bowles
 
 ## Usage:
-# wx [[ temp [ f|F | c|C | k|K ]] | humidity | wind | altimeter | visibility | rvr | condition | phenomena | metar | remarks | refresh ]
+# wx [[ temp [ f|F | c|C | k|K ]] | humidity | wind | altimeter | visibility | rvr | condition | phenomena | metar | remarks | feelslike ]
 
 ## References:
 # http://www.met.tamu.edu/class/metar/quick-metar.html
@@ -214,6 +214,7 @@ temp() {
 
 wind_chill() {
     _temperature_dewpoint
+    [[ "$temp" < 11 ]] || return 1
     _wind_speed
     # bc does not support floating point exponents
     y=$(awk -v "wc=$wind_speed" 'BEGIN {print wc**0.16}')
@@ -223,6 +224,7 @@ wind_chill() {
 
 heat_index() {
     _temperature_dewpoint
+    [[ "$temp" > 26 ]] || return 1
     _relative_humidity
     c1="-8.78469475556"
     c2="1.61139411"
@@ -237,8 +239,13 @@ heat_index() {
     _temperature_conversion $heat_index $1
 }
 
+feelslike() {
+    wind_chill $1 || heat_index $1
+}
+
 summary() {
     temp f
+    printf " (%s)" $(feelslike f)
     phenomena || condition
 }
 
