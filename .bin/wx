@@ -27,6 +27,7 @@ metar=`curl --connect-timeout 2 -s $DATA_URL | tr "\n" " "`
 metar() {
     echo $metar
 }
+
 remarks() {
     awk -F 'RMK' '{print $2}' <<< $metar
 }
@@ -90,9 +91,9 @@ phenomena() {
     if [[ -n "$qual" || -n "$desc" || -n "$precip" || -n "$obsc" || -n "$other" ]]
     then
         printf " %s" $qual $desc $precip $obsc $other
-        exit 0
+        return 0
     else
-        exit 1
+        return 1
     fi
 }
 
@@ -108,7 +109,7 @@ condition() {
         **) condition="" ;;
     esac
 
-    printf " %s" $condition
+    printf " $condition"
 }
 
 visibility() {
@@ -241,4 +242,4 @@ summary() {
     phenomena || condition
 }
 
-"$@"
+$@
