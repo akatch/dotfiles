@@ -278,4 +278,9 @@ heat_index() {
     _temperature_conversion $heat_index $1
 }
 
-$@ && _check_last_modified || refresh
+summary() {
+    temp f
+    phenomena || condition
+}
+
+"$@" && _check_last_modified || refresh
