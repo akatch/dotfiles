@@ -54,7 +54,7 @@ hi SpecialChar   term=bold         	ctermfg=64 ctermbg=none
 hi Special       term=bold         	ctermfg=34 ctermbg=none
 
 " values
-hi Constant      term=underline    	ctermfg=34 ctermbg=none
+hi Constant      term=underline    	ctermfg=40 ctermbg=none
 hi Character     term=none          ctermfg=35 ctermbg=none
 hi Number        term=none    	    ctermfg=36 ctermbg=none
 hi link Float Number
@@ -92,7 +92,7 @@ hi Comment       term=italic        ctermfg=239 ctermbg=none
 hi SpecialComment       term=italic    ctermfg=242 ctermbg=none
 hi Folded        term=italic        ctermfg=239 ctermbg=none
 hi FoldColumn    term=italic        ctermfg=239 ctermbg=none
-hi Title         term=reverse      	ctermfg=61 ctermbg=none
+hi Title         term=reverse      	ctermfg=28 ctermbg=none
 hi Search        term=reverse      	cterm=none ctermfg=208 ctermbg=none
 hi IncSearch     term=reverse       cterm=none ctermfg=208 ctermbg=none
 hi Tag           term=bold         	ctermfg=79 ctermbg=none
@@ -100,7 +100,7 @@ hi Tag           term=bold         	ctermfg=79 ctermbg=none
 " types
 hi StorageClass  term=standout     	ctermfg=31 ctermbg=none
 hi String        term=none    	    ctermfg=26 ctermbg=none
-hi Type          term=standout     	ctermfg=33 ctermbg=none
+hi Type          term=standout     	ctermfg=29 ctermbg=none
 hi Typedef       term=standout     	ctermfg=32 ctermbg=none
 hi Boolean      term=none    	ctermfg=30 ctermbg=none
 hi Structure     term=standout     	ctermfg=30 ctermbg=none
