@@ -82,10 +82,10 @@ let g:ctrlp_map = '<s-f>'
 let g:ctrlp_switch_buffer = 'Et'
 
 " vim-better-whitespace
-let g:better_whitespace_filetypes_blacklist=['mail']
-let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm = 0
-let g:strip_whitelines_at_eof=1
+"let g:better_whitespace_filetypes_blacklist=['mail']
+"let g:strip_whitespace_on_save = 1
+"let g:strip_whitespace_confirm = 0
+"let g:strip_whitelines_at_eof=1
 "let g:better_whitespace_ctermcolor='214'
 
 " ale
@@ -93,7 +93,6 @@ let g:ale_fix_on_save = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_list_window_size = 5
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
