@@ -213,18 +213,24 @@ temp() {
 }
 
 wind_chill() {
+    # Wind chill is only a useful metric at or below 10C /and/
+    # when wind speeds exceed 4.8 kph.
     _temperature_dewpoint
-    [[ "$temp" < 11 ]] || return 1
+    [[ $(bc <<< "$temp < 11") == 1 ]] || return 1
     _wind_speed
+    x=$(_wind_speed_conversion "$wind_speed" kph)
+    [[ $(bc <<< "$x > 4.8") == 1 ]] || return 1
+
     # bc does not support floating point exponents
-    y=$(awk -v "wc=$wind_speed" 'BEGIN {print wc**0.16}')
+    y=$(awk -v "wc=$x" 'BEGIN {print wc**0.16}')
     wind_chill=$(bc <<< "13.12 + (0.6215 * $temp) - (11.37 * $y) + (0.3965 * $temp * $y)")
     _temperature_conversion $wind_chill $1
 }
 
 heat_index() {
+    # heat index is only a useful metric at or above 26C
     _temperature_dewpoint
-    [[ "$temp" > 26 ]] || return 1
+    [[ $(bc <<< "$temp > 26") == 1 ]] || return 1
     _relative_humidity
     c1="-8.78469475556"
     c2="1.61139411"
@@ -240,11 +246,12 @@ heat_index() {
 }
 
 feelslike() {
-    wind_chill $1 || heat_index $1
+    wind_chill $1 || heat_index $1 || return 1
 }
 
 summary() {
     temp f
+    # TODO don't print if feelslike returns 1
     printf " (%s)" $(feelslike f)
     phenomena || condition
 }
