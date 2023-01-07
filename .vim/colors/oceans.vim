@@ -21,112 +21,112 @@ if exists("syntax_on")
 endif
 let g:colors_name = "oceans"
 
-" peripheral if
-" FIXME why won't these link?
-hi Visual        term=reverse       cterm=none ctermfg=none ctermbg=234
-hi VisualNOS     term=reverse       cterm=none ctermfg=none ctermbg=234
-hi Cursor        term=none          cterm=none ctermbg=237 ctermfg=none
-hi CursorIM      term=reverse       cterm=none ctermbg=237 ctermfg=none
-hi CursorColumn  term=none          cterm=bold ctermbg=233 ctermfg=none
-hi SignColumn                      	ctermfg=168 ctermbg=none
-hi ColorColumn   term=none          ctermfg=70 ctermbg=none
-hi CursorLine    term=none          cterm=none ctermbg=233 ctermfg=none
-hi CursorLineNr  term=none          cterm=none ctermfg=34 ctermbg=none
-hi LineNr        term=bold         	cterm=none ctermfg=239 ctermbg=none
-hi StatusLine    term=reverse      	cterm=none ctermfg=34 ctermbg=none
-hi StatusLineNC  term=reverse      	cterm=none ctermfg=239 ctermbg=none
-hi TabLine       term=none          cterm=none ctermbg=none ctermfg=none
-hi TabLineFill   term=none          cterm=none ctermbg=none
-hi TabLineSel    term=none      	ctermfg=34 ctermbg=none
-hi VertSplit     term=none      	ctermfg=232 ctermbg=235
+" core UI
+" Visual and VisualNOS won't link, not sure why
+hi Visual        ctermbg=234
+hi VisualNOS     ctermbg=234
+hi Cursor        ctermbg=237
+hi CursorIM      ctermfg=none ctermbg=237 cterm=none
+hi CursorColumn  ctermfg=none ctermbg=233 cterm=bold
+hi SignColumn    ctermfg=168 ctermbg=none
+hi ColorColumn   ctermfg=70
+hi CursorLine    ctermbg=233 cterm=none
+hi CursorLineNr  ctermfg=34 cterm=none
+hi LineNr        ctermfg=239
+hi StatusLine    ctermfg=34 ctermbg=none cterm=none
+hi StatusLineNC  ctermfg=239 ctermbg=none cterm=none
+hi TabLine       ctermfg=239 ctermbg=none cterm=none
+hi TabLineFill   ctermbg=none cterm=none
+hi TabLineSel    ctermfg=34 ctermbg=none cterm=none
+hi VertSplit     ctermfg=232 ctermbg=235
 
 " menus
-hi WildMenu     term=reverse      	ctermfg=237 ctermbg=none
-hi Pmenu         term=reverse      	ctermfg=237 ctermbg=none
-hi PmenuSel      term=bold         	cterm=none ctermfg=28  ctermbg=234
-hi PmenuSbar     term=reverse      	ctermfg=237 ctermbg=none
-hi PmenuThumb    term=reverse      	ctermfg=gray ctermbg=none
+hi WildMenu      ctermfg=237 ctermbg=none
+hi Pmenu         ctermfg=237 ctermbg=none
+hi PmenuSel      ctermfg=28 ctermbg=234 cterm=none
+hi PmenuSbar     ctermfg=237 ctermbg=none
+hi PmenuThumb    ctermfg=gray ctermbg=none
 
 " characters
-hi MatchParen    term=bold          ctermbg=none ctermfg=220
-hi Delimiter     term=bold         	ctermfg=35 ctermbg=none
-hi SpecialChar   term=bold         	ctermfg=64 ctermbg=none
-hi Special       term=bold         	ctermfg=34 ctermbg=none
+hi MatchParen    ctermfg=220 ctermbg=none
+hi Delimiter     ctermfg=35 ctermbg=none
+hi SpecialChar   ctermfg=64 ctermbg=none
+hi Special       ctermfg=34 ctermbg=none
 
 " values
-hi Constant      term=underline    	ctermfg=40 ctermbg=none
-hi Character     term=none          ctermfg=35 ctermbg=none
-hi Number        term=none    	    ctermfg=36 ctermbg=none
+hi Constant      ctermfg=40
+hi Character     ctermfg=35
+hi Number        ctermfg=36
 hi link Float Number
 
 " keywords
-hi Operator      term=none          ctermfg=72 ctermbg=none
-hi Question      term=none     	    ctermfg=37 ctermbg=none
-hi Directory     term=underline    	ctermfg=33 ctermbg=none
-hi Function      term=standout     	ctermfg=32 ctermbg=none
-hi link Repeat         Question
-hi link Conditional    Repeat
-hi Statement     term=standout     	ctermfg=66 ctermbg=none
-hi link Exception     Statement
-hi link Keyword       Statement
-hi link Label         Statement
-hi PreProc       term=standout     	ctermfg=34 ctermbg=none
-hi link Define         PreProc
-hi link Include        PreProc
-hi link Macro          PreProc
-hi link PreCondit      PreProc
+hi Operator      ctermfg=72 ctermbg=none
+hi Question      ctermfg=37 ctermbg=none
+hi Directory     ctermfg=33 ctermbg=none
+hi Function      ctermfg=32 ctermbg=none
+hi Statement     ctermfg=66 ctermbg=none
+hi PreProc       ctermfg=34 ctermbg=none
+hi link Repeat Question
+hi link Conditional Repeat
+hi link Exception Statement
+hi link Keyword Statement
+hi link Label Statement
+hi link Define PreProc
+hi link Include PreProc
+hi link Macro PreProc
+hi link PreCondit PreProc
 
 " messages
-hi ModeMsg       term=bold          ctermfg=22 ctermbg=none
-hi MoreMsg       term=bold          ctermfg=28 ctermbg=none
-hi Debug         term=bold         	ctermfg=208 ctermbg=none
-hi WarningMsg    term=none      	ctermfg=208 ctermbg=none
-hi Error         term=reverse,bold 	ctermfg=202 ctermbg=none
-hi ErrorMsg      term=reverse,bold 	ctermfg=202 ctermbg=none
+hi ModeMsg       ctermfg=22 ctermbg=none
+hi MoreMsg       ctermfg=28 ctermbg=none
+hi Debug         ctermfg=208 ctermbg=none
+hi WarningMsg    ctermfg=208 ctermbg=none
+hi Error         ctermfg=202 ctermbg=none
+hi ErrorMsg      ctermfg=202 ctermbg=none
 
 " annotations
-hi Ignore                          	ctermfg=237 ctermbg=none
-hi Identifier    term=underline    	ctermfg=30 ctermbg=none
-hi Todo          term=none          ctermfg=28 ctermbg=none
-hi Comment       term=italic        ctermfg=239 ctermbg=none
-hi SpecialComment       term=italic    ctermfg=242 ctermbg=none
-hi Folded        term=italic        ctermfg=239 ctermbg=none
-hi FoldColumn    term=italic        ctermfg=239 ctermbg=none
-hi Title         term=reverse      	ctermfg=28 ctermbg=none
-hi Search        term=reverse      	cterm=none ctermfg=208 ctermbg=none
-hi IncSearch     term=reverse       cterm=none ctermfg=208 ctermbg=none
-hi Tag           term=bold         	ctermfg=79 ctermbg=none
+hi Ignore           ctermfg=237 ctermbg=none
+hi Identifier       ctermfg=30 ctermbg=none
+hi Todo             ctermfg=28 ctermbg=none
+hi Comment          ctermfg=239 ctermbg=none
+hi SpecialComment   ctermfg=242 ctermbg=none
+hi Folded           ctermfg=239 ctermbg=none
+hi FoldColumn       ctermfg=239 ctermbg=none
+hi Title           	ctermfg=28 ctermbg=none
+hi Search         	cterm=none ctermfg=208 ctermbg=none
+hi IncSearch        cterm=none ctermfg=208 ctermbg=none
+hi Tag           	ctermfg=79 ctermbg=none
 
 " types
-hi StorageClass  term=standout     	ctermfg=31 ctermbg=none
-hi String        term=none    	    ctermfg=26 ctermbg=none
-hi Type          term=standout     	ctermfg=29 ctermbg=none
-hi Typedef       term=standout     	ctermfg=32 ctermbg=none
-hi Boolean      term=none    	ctermfg=30 ctermbg=none
-hi Structure     term=standout     	ctermfg=30 ctermbg=none
+hi StorageClass  ctermfg=31 ctermbg=none
+hi String        ctermfg=26 ctermbg=none
+hi Type          ctermfg=29 ctermbg=none
+hi Typedef       ctermfg=32 ctermbg=none
+hi Boolean       ctermfg=30 ctermbg=none
+hi Structure     ctermfg=30 ctermbg=none
 
-hi NonText                         	ctermfg=235 ctermbg=none
-hi Normal                          	ctermfg=none ctermbg=none
-hi SpecialKey    term=bold         	ctermfg=37 ctermbg=none
+hi NonText       ctermfg=235 ctermbg=none
+hi Normal        ctermfg=none ctermbg=none
+hi SpecialKey    ctermfg=37 ctermbg=none
 
 " spelling
-hi SpellBad      term=reverse        cterm=underline	ctermfg=220 ctermbg=none
-hi SpellCap      term=reverse        cterm=underline	ctermfg=214 ctermbg=none
-hi SpellLocal    term=reverse        cterm=underline	ctermfg=blue ctermbg=none
-hi SpellRare     term=reverse        cterm=underline	ctermfg=70 ctermbg=none
+hi SpellBad      ctermfg=220 ctermbg=none cterm=underline
+hi SpellCap      ctermfg=214 ctermbg=none cterm=underline
+hi SpellLocal    ctermfg=blue ctermbg=none cterm=underline
+hi SpellRare   	 ctermfg=70 ctermbg=none  cterm=underline
 
 " diffs
-hi DiffAdd                           ctermfg=70 ctermbg=none
-hi DiffChange                        ctermfg=220 ctermbg=none
-hi DiffDelete                        ctermfg=red ctermbg=none
-hi DiffText                          ctermfg=76 ctermbg=none
+hi DiffAdd       ctermfg=70 ctermbg=none
+hi DiffChange    ctermfg=220 ctermbg=none
+hi DiffDelete    ctermfg=red ctermbg=none
+hi DiffText      ctermfg=76 ctermbg=none
 hi link GitGutterAdd DiffAdd
 hi link GitGutterChange DiffChange
 hi link GitGutterDelete DiffDelete
 hi link GitGutterChangeDelete DiffChange
 
 " html
-hi htmlItalic               term=italic                 cterm=none ctermfg=white ctermbg=none
-hi htmlBoldItalic           term=bold,italic            cterm=bold ctermfg=white ctermbg=none
-hi htmlBoldUnderlineItalic  term=bold,underline,italic  cterm=bold,underline ctermfg=white ctermbg=none
-hi htmlUnderlineItalic      term=underline,italic       cterm=underline ctermfg=white ctermbg=none
+hi htmlItalic               cterm=none ctermfg=white ctermbg=none
+hi htmlBoldItalic           cterm=bold ctermfg=white ctermbg=none
+hi htmlBoldUnderlineItalic  cterm=bold,underline ctermfg=white ctermbg=none
+hi htmlUnderlineItalic      cterm=underline ctermfg=white ctermbg=none
