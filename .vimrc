@@ -21,6 +21,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
 Plugin 'hashivim/vim-terraform'
 Plugin 'pearofducks/ansible-vim'
+Plugin 'elixir-editors/vim-elixir'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
@@ -96,6 +97,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_list_window_size = 5
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'elixir': ['mix_format'],
 \   'javascript': ['prettier'],
 \   'json': ['jq'],
 \   'terraform': ['terraform'],
@@ -105,6 +107,7 @@ let g:ale_fixers = {
 let g:ale_linters = {
 \    'go': ['gofmt', 'golint', 'go vet', 'gopls', 'golangci-lint'],
 \    'ansible': ['ansible-lint'],
+\    'elixir': ['elixir-ls'],
 \    'perl': ['perlcritic'],
 \    'terraform': ['terraform'],
 \    'ruby': ['rubocop'],
@@ -134,6 +137,8 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 1
 let g:go_doc_url = "https://pkg.go.dev"
+
+let g:ale_elixir_elixir_ls_release = expand("~/code/elixir-lsp/elixir-ls/rel")
 
 " completion
 " TODO fix colors - currently selected item is gray, others green. selected
