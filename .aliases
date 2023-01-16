@@ -163,7 +163,7 @@ nwreset() {
 
 ## destroy a virt-install guest
 vnuke() {
-    virsh destroy --gracefully $1
+    virsh destroy $1
     virsh undefine $1
     virsh vol-delete --pool default $1.qcow2
 }
