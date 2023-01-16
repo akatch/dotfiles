@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## wx: a METAR parser written in Bash
-# (c) 2022 Al Bowles
+# (c) 2023 Al Bowles
 
 ## Usage:
 # wx [[ temp [ f|F | c|C | k|K ]] | humidity | wind | altimeter | visibility | rvr | condition | phenomena | metar | remarks | feelslike ]
@@ -22,10 +22,10 @@ STATION=KRYV
 DATA_URI="data/observations/metar/stations/$STATION.TXT"
 DATA_URL="https://tgftp.nws.noaa.gov/$DATA_URI"
 
-metar=`curl --connect-timeout 2 -s $DATA_URL | tr "\n" " "`
+metar=$(curl --connect-timeout 2 -s $DATA_URL)
 
 metar() {
-    echo $metar
+    echo "$metar"
 }
 
 remarks() {
@@ -81,7 +81,6 @@ phenomena() {
 
     case ${phen[0]} in
         *SQ*) other="squall" ;;
-        *FC*) other="funnel cloud" ;;
         *SS*) other="sandstorm" ;;
         *FC*) other="tornado" ;;
         *DS*) other="dust storm" ;;
@@ -216,7 +215,7 @@ wind_chill() {
     # Wind chill is only a useful metric at or below 10C /and/
     # when wind speeds exceed 4.8 kph.
     _temperature_dewpoint
-    [[ $(bc <<< "$temp < 11") == 1 ]] || return 1
+    [[ $(bc <<< "$temp <= 10") == 1 ]] || return 1
     _wind_speed
     x=$(_wind_speed_conversion "$wind_speed" kph)
     [[ $(bc <<< "$x > 4.8") == 1 ]] || return 1
@@ -252,7 +251,7 @@ feelslike() {
 summary() {
     temp f
     # TODO don't print if feelslike returns 1
-    printf " (%s)" $(feelslike f)
+    printf " (%s)" "$(feelslike f)"
     phenomena || condition
 }
 
