@@ -22,6 +22,7 @@ Plugin 'fatih/vim-go'
 Plugin 'hashivim/vim-terraform'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'elixir-editors/vim-elixir'
+Plugin 'carlsmedstad/vim-bicep'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
@@ -70,7 +71,6 @@ nmap <silent> <leader>p :set paste!<CR>
 " show/hide nerdtree
 nmap <silent> <leader>t :NERDTreeToggle<CR>
 nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
-nmap <silent> <leader>c :color oceans<CR>
 nmap <silent> <A-j> :ALENextWrap<CR>
 nmap <silent> <A-k> :ALEPreviousWrap<CR>
 nmap <silent> <A-d> :ALEDetail<CR>
@@ -81,13 +81,6 @@ set fillchars+=vert:\│
 " ctrlp
 let g:ctrlp_map = '<s-f>'
 let g:ctrlp_switch_buffer = 'Et'
-
-" vim-better-whitespace
-let g:better_whitespace_filetypes_blacklist=['mail']
-let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm = 0
-let g:strip_whitelines_at_eof=1
-"let g:better_whitespace_ctermcolor='214'
 
 " ale
 let g:ale_fix_on_save = 1
@@ -101,7 +94,6 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'json': ['jq'],
 \   'terraform': ['terraform'],
-\   'yaml': ['yamlfix'],
 \}
 
 let g:ale_linters = {
@@ -112,6 +104,7 @@ let g:ale_linters = {
 \    'terraform': ['terraform'],
 \    'ruby': ['rubocop'],
 \    'javascript': ['eslint'],
+\    'bicep': ['bicep'],
 \}
 " TODO markdown linter
 
