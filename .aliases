@@ -139,6 +139,11 @@ alias tfa='terraform apply '
 ## openqa
 alias oca='openqa-cli api '
 
+## viSQL
+if [[ ! -z `which vimpager` ]]; then
+    alias psql='PAGER=vimpager psql';
+fi
+
 # search for processes and keep column headings
 pg() {
     ps x | grep --color=auto $1
