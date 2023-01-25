@@ -163,7 +163,7 @@ ghclone() {
 nwreset() {
     nmcli n off
     nmcli n on
-    nmcli con up enp5s0
+    nmcli con up 'Wired connection 1'
 }
 
 ## destroy a virt-install guest
