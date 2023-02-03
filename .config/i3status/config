@@ -11,6 +11,7 @@ general {
     color_bad = "#d75f5f"
 }
 
+order += "read_file fahstats"
 order += "disk /"
 order += "disk /var"
 order += "disk /home"
@@ -22,9 +23,14 @@ order += "read_file weather"
 order += "time"
 order += "tztime utc"
 
+read_file fahstats {
+    path = "~/.fahstats"
+    format = "<span foreground='#5f8700'>f@h: %content</span>"
+}
+
 read_file weather {
     path = "~/.wx"
-    format = "<span foreground='#5f8700'>%content</span>"
+    format = "<span foreground='#5faf00'>%content</span>"
 }
 
 cpu_usage {
@@ -35,7 +41,7 @@ cpu_usage {
 
 cpu_temperature 0 {
     format = "%degrees °C"
-    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
     separator = "no"
 }
 
@@ -65,12 +71,12 @@ load {
 }
 
 time {
-    format = "%e %b %Y   %k:%M"
+    format = "<span foreground='#5faf00'>%e %b %Y   %k:%M:%S</span>"
     separator = "no"
 }
 
 tztime utc {
-    format = "%k:%M  "
+    format = "<span foreground='#5faf00'>%k:%M</span>  "
     timezone = "Etc/Utc"
     #min_width = 2890
 }
