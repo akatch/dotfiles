@@ -13,7 +13,6 @@ general {
 
 order += "read_file fahstats"
 order += "disk /"
-order += "disk /var"
 order += "disk /home"
 order += "memory"
 order += "cpu_usage"
@@ -47,11 +46,6 @@ cpu_temperature 0 {
 
 disk "/" {
     format = "/: %used (%percentage_used)"
-    separator = "no"
-}
-
-disk "/var" {
-    format = "/var: %used (%percentage_used)"
     separator = "no"
 }
 
