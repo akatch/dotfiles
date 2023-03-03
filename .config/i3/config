@@ -12,6 +12,7 @@ bindsym $mod+Shift+h exec "firefox -P hireology"
 bindsym $mod+Shift+e exec "firefox"
 bindsym $mod+Shift+k exec keepassxc
 bindsym $mod+Shift+p exec "btconnect.sh pixbuds"
+bindsym $mod+Shift+j exec "btconnect.sh 'Jabra Elite 45h'"
 
 set $m Mod1
 set $m2 Ctrl
@@ -23,14 +24,14 @@ focus_wrapping workspace
 workspace_layout default
 workspace_auto_back_and_forth no
 default_border pixel 1
-# TODO append_layout
 
-workspace 3 output "HDMI-1"
+workspace 1 output "DP-0"
+workspace 2 output "DP-0"
+workspace 3 output "HDMI-0"
+workspace 4 output "DP-0"
 
 bindsym $mod+Tab focus right
 bindsym $m+Tab focus left
-# FIXME this doesn't actually work
-#bindsym Print exec "import $HOME/pictures/screenshots/$(date +'%Y%m%d_%H%M%S').png"
 bindsym $mod+space exec dmenu_run -i -l 5 -bw 2 -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'monospace:size=14' -c
 bindsym $m+space workspace 2
 bindsym $m2+space workspace 1
@@ -43,10 +44,11 @@ bindsym F10 exec playerctl -p cmus next
 bindsym $m+F10 exec playerctl -p cmus position 0
 bindsym F11 exec amixer sset Master 5%-
 bindsym F12 exec amixer sset Master 5%+
-bindsym XF86AudioPause exec playerctl -p cmus play-pause
+bindsym XF86AudioPlay exec playerctl -p cmus play-pause
 bindsym XF86AudioNext exec playerctl -p cmus next
 bindsym XF86AudioPrev exec playerctl -p cmus position 0
 bindsym $mod+m exec alacritty msg create-window  --class floating -e pulsemixer
+
 # notifications
 bindsym $mod+n exec dunstctl close-all
 
@@ -61,10 +63,10 @@ for_window [class="[V|v]mware"] floating enable
 for_window [class="KeePassXC"] floating enable
 for_window [class="VirtualBox"] floating enable
 for_window [class="[A|a]randr"] floating enable
-for_window [class="qt5ct"] floating enable, resize set 800 600
-for_window [class="firefox"] split v
 for_window [class="Vncviewer"] floating enable
+for_window [class="openrgb"] floating enable
 for_window [instance="floating"] floating enable
+
 for_window [class=".*"] border pixel 1
 
 # colors
@@ -136,6 +138,7 @@ bar {
     workspace_buttons no
     separator_symbol " | "
     position top
+    output primary
 
     colors {
         separator #444444
@@ -152,6 +155,6 @@ exec xkbcomp '$HOME/.config/keymap.xkb $DISPLAY'
 exec setxkbmap -option ctrl:swapcaps
 
 # Startup wpplications
-exec i3-msg 'workspace 1; exec firefox; exec alacritty -e tmux attach a'
-exec i3-msg 'workspace 2; exec firefox -P hireology; exec alacritty msg create-window --class work'
+exec i3-msg 'workspace 2; exec firefox -P hireology; exec alacritty --class work; exec alacritty msg create-window --class work'
+exec i3-msg 'workspace 1; exec firefox; exec alacritty msg create-window; exec flatpak run org.signal.Signal'
 exec calibre
