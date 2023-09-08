@@ -23,6 +23,7 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'carlsmedstad/vim-bicep'
+Plugin 'lervag/vimtex'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
@@ -74,6 +75,10 @@ nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
 nmap <silent> <A-j> :ALENextWrap<CR>
 nmap <silent> <A-k> :ALEPreviousWrap<CR>
 nmap <silent> <A-d> :ALEDetail<CR>
+nmap <silent> <leader>d :r!date "+\%F"<CR>
+nmap <silent> <leader>z :VimtexView<CR>
+" TODO prepend 'x [DATE] ' to line
+" TODO :W -> :w
 
 " pane separators like tmux
 set fillchars+=vert:\│
@@ -87,6 +92,7 @@ let g:ale_fix_on_save = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_json_jq_options = '--indent 4'
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'elixir': ['mix_format'],
@@ -132,8 +138,13 @@ let g:go_doc_url = "https://pkg.go.dev"
 
 let g:ale_elixir_elixir_ls_release = expand("~/code/elixir-lsp/elixir-ls/rel")
 
+" needs latexmk
+let g:vimtex_view_method = 'zathura_simple'
+
+
 " completion
 " TODO fix colors - currently selected item is gray, others green. selected
 " item should be green.
+" TODO macro to prepend 'x YYYY-MM-DD " (current date) to current line
 set wildmode=longest,list,full
 set wildmenu
