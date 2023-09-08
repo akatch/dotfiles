@@ -8,6 +8,9 @@ DEST="$HOME/backups"
 mkdir -p "$DEST/$HOSTNAME"
 cd "$DEST/$HOSTNAME"
 
+# Back up cron jobs
+crontab -l > cron.tab
+
 # TODO encrypt tarball
 # TODO find a way to not output 'removing leading / from [...]'
 tar --create \
