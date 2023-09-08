@@ -45,5 +45,7 @@ if [[ -z "$SSH_AUTH_SOCK" ]]; then
 fi
 
 if [[ -d $HOME/.profile.d ]]; then
-    find "$HOME/.profile.d/" -name "*.sh" | while read -r file; do source "$file"; done
+    for file in $(find "$HOME/.profile.d/" -name "*.sh"); do
+        source $file
+    done
 fi
