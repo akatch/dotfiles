@@ -45,7 +45,7 @@ alias tl='tmux ls'
 alias ncdu='ncdu --color dark'
 
 ## Random
-alias n='echo "\n"`date +%Y/%m/%d" | "%R`"\n" >> $HOME/sync/notes.md && vim + -c "startinsert" $HOME/sync/notes.md'
+alias n='vim + -c "startinsert" $HOME/sync/notes.md'
 alias news=newsboat
 alias ipt='sudo iptables -L --line-number'
 alias fw='sudo firewall-cmd'
@@ -157,6 +157,11 @@ h() {
 ## Pull code into correct dir
 ghclone() {
     git clone git@github.com:$1 ~/code/$1
+}
+
+## fetch a pull request into a new branch
+gf() {
+    git fetch upstream pull/${1}/head:pr${1}
 }
 
 ## network reset
