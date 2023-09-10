@@ -7,7 +7,7 @@
 - hosts: localhost
   tasks:
   - name: Gather file manifest
-    find:
+    ansible.builtin.find:
       paths: '{{ playbook_dir }}'
       patterns: '.*'
       hidden: true
@@ -15,7 +15,7 @@
     check_mode: no
 
   - name: Create symlinks
-    file:
+    ansible.builtin.file:
       src: '{{ item.path | relpath(ansible_env.HOME) }}'
       dest: '{{ ansible_env.HOME }}/{{ item.path | basename }}'
       state: link
@@ -24,18 +24,18 @@
     tags: links
 
   - name: Gather script manifest
-    find:
+    ansible.builtin.find:
       paths: '{{ playbook_dir }}/.bin'
     register: script_manifest
     check_mode: no
 
   - name: Create binary dir
-    file:
+    ansible.builtin.file:
       path: '{{ ansible_env.HOME }}/.local/bin'
       state: directory
 
   - name: Create symlinks
-    file:
+    ansible.builtin.file:
       src: '{{ item.path | relpath(ansible_env.HOME ~ "/.local/bin") }}'
       dest: '{{ ansible_env.HOME }}/.local/bin/{{ item.path | basename }}'
       state: link
@@ -44,7 +44,7 @@
     tags: links
 
   - name: Link vim colors
-    file:
+    ansible.builtin.file:
       src: '{{ (playbook_dir ~ "/.vim/colors") | relpath(ansible_env.HOME ~ "/.vim/") }}/'
       dest: '{{ ansible_env.HOME }}/.vim/colors'
       state: link
