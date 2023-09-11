@@ -59,9 +59,6 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 zstyle ':vcs_info:*' enable git
 # or use precmd, see man zshcontrib
 
-# TODO only if `which direnv` succeeds
-eval "$(direnv hook zsh)"
-
 # prompt
 # TODO display git diff --shortstat
 precmd() {
