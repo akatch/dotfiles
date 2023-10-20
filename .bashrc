@@ -37,4 +37,5 @@ yellow="\[\e[38;05;208m\]"
 
 export PS1="$dark_gray\h $bgreen\w $dark_gray\$(git branch --show-current 2> /dev/null) $bgreen\$$normal "
 
+fortune
 #. ~/.utf8
