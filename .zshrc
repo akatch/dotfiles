@@ -10,6 +10,7 @@ fpath=($HOME/.local/share/zsh/site-functions $fpath)
 setopt autocd extendedglob notify
 unsetopt beep nomatch
 zstyle :compinstall filename '${HOME}/.zshrc'
+zstyle ':completion:*' rehash true
 autoload -Uz compinit
 compinit
 
