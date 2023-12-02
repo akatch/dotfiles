@@ -40,6 +40,7 @@ set background=dark laststatus=2
 set nocompatible ignorecase nohlsearch ttyfast expandtab autoindent number cursorline nocursorcolumn incsearch
 set shiftwidth=4 tabstop=4
 set backspace=indent,eol,start
+set fileformats=unix
 
 " Insert cursor at previous position
 if has("autocmd")
