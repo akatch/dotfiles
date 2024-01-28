@@ -24,6 +24,7 @@ Plugin 'pearofducks/ansible-vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'carlsmedstad/vim-bicep'
 Plugin 'lervag/vimtex'
+Plugin 'akatch/vim-oceans'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
