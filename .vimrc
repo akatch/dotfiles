@@ -17,14 +17,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'dense-analysis/ale'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'fatih/vim-go'
-Plugin 'hashivim/vim-terraform'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'carlsmedstad/vim-bicep'
 Plugin 'lervag/vimtex'
 Plugin 'akatch/vim-oceans'
+Plugin 'sheerun/vim-polyglot'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
