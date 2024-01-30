@@ -74,8 +74,6 @@ nmap <silent> <A-k> :ALEPreviousWrap<CR>
 nmap <silent> <A-d> :ALEDetail<CR>
 nmap <silent> <leader>d :r!date "+\%F"<CR>
 nmap <silent> <leader>z :VimtexView<CR>
-" TODO prepend 'x [DATE] ' to line
-" TODO :W -> :w
 
 " pane separators like tmux
 set fillchars+=vert:\│
@@ -108,12 +106,8 @@ let g:ale_linters = {
 \    'javascript': ['eslint'],
 \    'bicep': ['bicep'],
 \}
-" TODO markdown linter
 
 "let b:ale_ruby_rubocop_executable = './vendor/bundle/ruby/2.6.0/bin/rubocop'
-" TODO j2-lint integration
-" TODO new panes bottom / right
-" TODO middle click = set paste/insert/set nopaste
 
 "vim-go stuff
 let g:go_highlight_array_whitespace_error = 1
@@ -140,8 +134,5 @@ let g:vimtex_view_method = 'zathura_simple'
 
 
 " completion
-" TODO fix colors - currently selected item is gray, others green. selected
-" item should be green.
-" TODO macro to prepend 'x YYYY-MM-DD " (current date) to current line
 set wildmode=longest,list,full
 set wildmenu
