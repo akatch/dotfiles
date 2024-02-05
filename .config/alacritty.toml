@@ -1,0 +1,84 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#303030"
+blue = "#005fff"
+cyan = "#00d7af"
+green = "#00ff00"
+magenta = "#875fff"
+red = "#d75f5f"
+yellow = "#ffd700"
+
+[colors.footer_bar]
+background = "#767676"
+foreground = "#d75f5f"
+
+[colors.hints.end]
+background = "#080808"
+foreground = "#767676"
+
+[colors.hints.start]
+background = "#080808"
+foreground = "#ffd700"
+
+[colors.normal]
+blue = "#0000ff"
+cyan = "#00afaf"
+green = "#00af00"
+magenta = "#8700ff"
+red = "#d7005f"
+white = "#444444"
+yellow = "#ffaf00"
+
+[colors.primary]
+background = "#080808"
+foreground = "#767676"
+
+[colors.selection]
+background = "#303030"
+foreground = "#00ff00"
+
+[cursor.style]
+blinking = "On"
+
+[font]
+size = 18
+
+[font.normal]
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Return"
+mode = "Vi|~Search"
+
+[selection]
+save_to_clipboard = true
+
+[window]
+opacity = 1.0
+
+[window.padding]
+x = 10
+y = 10
