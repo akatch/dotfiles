@@ -11,8 +11,7 @@ bind r source-file ~/.tmux.conf
 
 set -g status-fg colour238
 set -g status-bg colour232
-set -g message-fg colour172
-set -g message-bg colour232
+set -g message-style fg=colour172,bg=colour232
 set -g pane-active-border-style fg=colour22
 set -g pane-border-style fg=colour234
 
