@@ -1,0 +1,70 @@
+---
+font:
+  size: 18
+  normal:
+    style: Regular
+
+cursor:
+  style:
+    blinking: 'On'
+
+draw_bold_text_with_bright_colors: true
+
+selection:
+  save_to_clipboard: true
+
+window:
+  opacity: 1.0
+  padding:
+    x: 10
+    y: 10
+
+# https://www.ditig.com/256-colors-cheat-sheet
+colors:
+  primary:
+    background: '#080808'
+    foreground: '#767676'
+
+  normal:
+    # black:
+    red: '#d7005f'      # 161
+    green: '#00af00'    # 34
+    yellow: '#ffaf00'   # 214
+    blue: '#0000ff'     # 21
+    magenta: '#8700ff'  # 93
+    cyan: '#00afaf'     # 37
+    white: '#444444'    # 238
+
+  bright:
+    black: '#303030'    # 236
+    red: '#d75f5f'      # 167
+    green: '#00ff00'    # 46
+    yellow: '#ffd700'   # 220
+    blue: '#005fff'     # 27
+    magenta: '#875fff'  # 99
+    cyan: '#00d7af'     # 43
+    # white:
+
+  hints:
+    start:
+      foreground: '#ffd700'
+      background: '#080808'
+    end:
+      foreground: '#767676'
+      background: '#080808'
+
+
+  selection:
+    text: '#00ff00'
+    background: '#303030'
+
+  footer_bar:
+    background: '#d75f5f'
+    foreground: '#767676'
+
+key_bindings:
+  - {key: V, mods: Control, action: Paste}
+  - {key: V, mods: Control|Shift, action: PasteSelection}
+  - {key: Equals, mods: Control, action: IncreaseFontSize}
+  - {key: Minus, mods: Control, action: DecreaseFontSize}
+  - {key: Return, mode: Vi|~Search, action: ToggleViMode}
