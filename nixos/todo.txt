@@ -1,0 +1,9 @@
+2024-02-07 run +hammerbros +dev site
+2024-02-07 +dev against +mastodon go-chat-bot plugin under specified +go version
+2024-02-07 upgrade +go version for +mastodon plugin
+2024-02-07 start sway by default
+2024-02-08 bluetooth
+2024-02-08 +dev against wx +exs
+2024-02-09 mount samba share
+2024-02-10 swaylock on idle, lid close
+2024-02-10 startup applications tmux, alacritty, firefox
