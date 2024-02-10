@@ -20,23 +20,24 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'lervag/vimtex'
 Plugin 'akatch/vim-oceans'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'vim-scripts/todo-txt.vim'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
 filetype plugin indent on
-autocmd Filetype yaml,ansible,ruby setlocal shiftwidth=2 tabstop=2
-autocmd BufNewFile,BufRead *.txt set filetype=todotxt
 
 if has("syntax")
     syntax on
 endif
 
 colorscheme oceans
-set background=dark laststatus=2
-set nocompatible ignorecase nohlsearch ttyfast expandtab autoindent number cursorline nocursorcolumn incsearch
-set shiftwidth=4 tabstop=4
+set background=dark
+set laststatus=2
+set shiftwidth=4
+set tabstop=4
 set backspace=indent,eol,start
 set fileformats=unix
+set nocompatible nohlsearch ttyfast expandtab autoindent number cursorline nocursorcolumn incsearch
 
 " Insert cursor at previous position
 if has("autocmd")
@@ -66,7 +67,6 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 nmap <silent> <leader>n :set number!<CR>
 nmap <silent> <leader>p :set paste!<CR>
-" show/hide nerdtree
 nmap <silent> <leader>t :NERDTreeToggle<CR>
 nmap <silent> <leader>h :so $VIMRUNTIME/syntax/hitest.vim<CR>
 nmap <silent> <A-j> :ALENextWrap<CR>
@@ -107,8 +107,6 @@ let g:ale_linters = {
 \    'bicep': ['bicep'],
 \}
 
-"let b:ale_ruby_rubocop_executable = './vendor/bundle/ruby/2.6.0/bin/rubocop'
-
 "vim-go stuff
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_chan_whitespace_error = 1
@@ -131,7 +129,6 @@ let g:ale_elixir_elixir_ls_release = expand("~/code/elixir-lsp/elixir-ls/rel")
 
 " needs latexmk
 let g:vimtex_view_method = 'zathura_simple'
-
 
 " completion
 set wildmode=longest,list,full
