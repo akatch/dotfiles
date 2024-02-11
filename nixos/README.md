@@ -32,8 +32,14 @@ $PATH is very different in nixos than other Linuxes. Be sure it is set correctly
 
 Had to hunt around a bit before I found [the correct way to set up my keyboard][Input configuration]
 
+[Font packages][Fonts in NixOS] go in their own specific configuration section
+
 ## Thoughts
-Install was pretty painless (once I found a USB stick that wasn't failing)
+Install was pretty painless (once I found a USB stick that wasn't failing).
+
+Most of the fiddling I had to do was more related to replacing X11 with Wayland than with NixOS itself. The NixOS documentation is very good.
+
+I outlined a series of setup tasks in [todo.txt][] and archived these to [done.txt][] upon completion.
 
 ## Questions
 
@@ -59,9 +65,10 @@ How do I run an arbitrary package without installing it?
 > `nix run nixpkgs#somepkg`
 
 # Resources
-[NixOS installation guide][]
-[NixOS manual][]
-[Input configuration][]
+* [NixOS installation guide][]
+* [NixOS manual][]
+* [Input configuration][]
+* [Zero to Nix][]
 
 [NixOS installation guide]: https://nixos.wiki/wiki/NixOS_Installation_Guide
 [NixOS manual]: https://nixos.org/manual/nixos/stable/
@@ -69,3 +76,6 @@ How do I run an arbitrary package without installing it?
 [Screenshots]: https://github.com/swaywm/sway/wiki#taking-screenshots
 [Searching packages]: https://nixos.wiki/wiki/Searching_packages
 [Zero to Nix]: https://zero-to-nix.com/start
+[Fonts in NixOS]: https://nixos.wiki/wiki/Fonts
+[todo.txt]: ./todo.txt
+[done.txt]: ./done.txt
