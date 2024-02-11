@@ -20,7 +20,7 @@
   programs.sway.enable = true;
   programs.zsh.enable = true;
 
-  #hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
 
   services.pipewire = {
     enable = true;
@@ -39,7 +39,7 @@
 
   users.users.al = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ];
     shell = "/run/current-system/sw/bin/zsh";
     packages = with pkgs; [
       firefox
@@ -50,8 +50,6 @@
       dunst
       syncthing
       i3status
-      noto-fonts-color-emoji
-      terminus-nerdfont
     ];
   };
 
@@ -59,8 +57,23 @@
     vim
   ];
 
+  fonts = {
+	packages = with pkgs; [
+	  noto-fonts
+	  noto-fonts-color-emoji
+	  terminus-nerdfont
+	];
+	fontconfig = {
+      # Can this be set per-user?
+	  defaultFonts = {
+		serif = [ "Noto Serif" ];
+		sansSerif = [ "Noto Sans" ];
+		monospace = [ "Terminess Nerd Font" ];
+	  };
+	};
+  };
+
   # NO TOUCHING.
   # See `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11";
-
 }
