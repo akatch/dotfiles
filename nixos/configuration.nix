@@ -39,7 +39,7 @@
 
   users.users.al = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "video" ];
     shell = "/run/current-system/sw/bin/zsh";
     packages = with pkgs; [
       firefox
@@ -50,6 +50,7 @@
       dunst
       syncthing
       i3status
+      brightnessctl
     ];
   };
 
@@ -58,19 +59,19 @@
   ];
 
   fonts = {
-	packages = with pkgs; [
-	  noto-fonts
-	  noto-fonts-color-emoji
-	  terminus-nerdfont
-	];
-	fontconfig = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-color-emoji
+      terminus_font
+    ];
+    fontconfig = {
       # Can this be set per-user?
-	  defaultFonts = {
-		serif = [ "Noto Serif" ];
-		sansSerif = [ "Noto Sans" ];
-		monospace = [ "Terminess Nerd Font" ];
-	  };
-	};
+      defaultFonts = {
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Noto Sans" ];
+        monospace = [ "Terminus" ];
+      };
+    };
   };
 
   # NO TOUCHING.

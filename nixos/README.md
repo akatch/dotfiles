@@ -26,7 +26,7 @@ Had to create /etc/wpa_supplicant.conf
 
 $PATH is very different in nixos than other Linuxes. Be sure it is set correctly:
 
-    export PATH=
+    export PATH="/run/wrappers/bin:$HOME/.nix-profile/bin:/nix/profile/bin:$HOME/.local/state/nix/profile/bin:/etc/profiles/per-user/$USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
 
 `scrot` returns blank black images, [use `grim` instead][Screenshots]
 
@@ -58,7 +58,7 @@ How can I search for packages (in the terminal)?
 
 Is there an existing file I can source to get the correct environment variables (eeg `$PATH`)?
 
->
+> Allegedly [yes][NixOS user environments] but I didn't have this...
 
 How do I run an arbitrary package without installing it?
 
@@ -79,3 +79,4 @@ How do I run an arbitrary package without installing it?
 [Fonts in NixOS]: https://nixos.wiki/wiki/Fonts
 [todo.txt]: ./todo.txt
 [done.txt]: ./done.txt
+[NixOS user environments]: https://nixos.wiki/wiki/User_Environment
