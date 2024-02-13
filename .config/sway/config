@@ -1,0 +1,67 @@
+#vim: ft=swayconfig
+
+# cp /etc/sway/config ~/.config/sway/defaults
+# comment the options we overwrite here
+# TODO figure out how to overwrite defaults in this file
+# TODO include /etc/sway/config
+include ~/.config/sway/defaults
+include ~/.config/sway/colors
+
+font pango:monospace 18
+default_border pixel 1
+gaps inner 15
+smart_gaps on
+smart_borders on
+focus_follows_mouse no
+set $term alacritty
+set $menu_opts -i -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'monospace:size=18'
+set $menu dmenu_path | dmenu $menu_opts | xargs swaymsg exec --
+
+# hotkeys
+bindsym $mod+Shift+w exec "firefox"
+bindsym $mod+n exec "dunstctl close-all"
+bindsym Ctrl+space workspace 1
+bindsym Alt+space workspace 2
+bindsym Ctrl+Shift+l exec swaylock -c 000000
+bindswitch lid:on exec swaylock -c 000000
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+
+bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+
+
+# input devices
+input "type:keyboard" {
+    xkb_options ctrl:swapcaps
+    repeat_delay 300
+    repeat_rate 30
+}
+
+input "type:touchpad" {
+    tap enabled
+}
+
+# background color
+output "*" background $darkgray solid_color
+
+#
+bar {
+    position top
+    workspace_buttons no
+    separator_symbol " | "
+
+    status_command i3status
+
+    colors {
+        separator $silver
+        statusline $brightgreen
+		background $black
+    }
+}
+
+exec tmux new -s $USER -d
+exec alacritty
+exec firefox

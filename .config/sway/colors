@@ -1,0 +1,33 @@
+# colors
+# TODO inherit from terminal
+set $background #080808
+set $foreground	#767676
+set $darkgray #1c1c1c
+
+set $black #121212
+set $red #d7005f
+set $green #00af00
+set $yellow #ffaf00
+set $blue #0000ff
+set $magenta #8700ff
+set $cyan #00afaf
+set $silver #444444
+
+set $gray #303030
+set $brightred #d75f5f
+set $brightgreen #5f8700
+set $brightyellow #ffd700
+set $brightblue #005fff
+set $brightmagenta #875fff
+set $brightcyan #01d7af
+set $white #ffffff
+
+# class                 border  	backgr. 	text    	    indicator 	 child_border
+client.focused          $background $background $foreground     $brightgreen $brightgreen
+client.focused_inactive $background $background $background     $gray        $gray
+client.unfocused        $background $background $background     $gray        $gray
+client.urgent           $background $background $brightgreen    $yellow 	 $yellow
+client.placeholder      $background $background $foreground     $silver		 $silver
+client.background       $background
+
+#vim: ft=swayconfig
