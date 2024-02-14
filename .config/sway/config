@@ -8,11 +8,12 @@ include ~/.config/sway/defaults
 include ~/.config/sway/colors
 
 font pango:monospace 18
-default_border pixel 1
 gaps inner 15
 smart_gaps on
 smart_borders on
+default_border pixel 1
 focus_follows_mouse no
+
 set $term alacritty
 set $menu_opts -i -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'monospace:size=18'
 set $menu dmenu_path | dmenu $menu_opts | xargs swaymsg exec --

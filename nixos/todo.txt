@@ -1,5 +1,4 @@
-2024-02-07 +dev against +mastodon go-chat-bot plugin under specified +go version
-2024-02-07 upgrade +go version for +dev against +mastodon plugin
+2024-02-07 +flake for go-chat-bot +mastodon plugin
+2024-02-07 upgrade +go version for go-chat-bot +mastodon plugin
 2024-02-07 start sway by default
-2024-02-08 +dev against wx +exs
-2024-02-09 mount samba share
+2024-02-14 set gtk highlight color to green

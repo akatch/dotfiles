@@ -45,7 +45,7 @@ I outlined a series of setup tasks in [todo.txt][] and archived these to [done.t
 
 Is there a user-specific configuration I can define in my home directory?
 
->
+> [Home-manager][]
 
 What idiomatic processes exist?
 
@@ -58,7 +58,7 @@ How can I search for packages (in the terminal)?
 
 Is there an existing file I can source to get the correct environment variables (eeg `$PATH`)?
 
-> Allegedly [yes][NixOS user environments] but I didn't have this...
+> Allegedly [yes][NixOS user environments] but I didn't have this symlink
 
 How do I run an arbitrary package without installing it?
 
@@ -80,3 +80,4 @@ How do I run an arbitrary package without installing it?
 [todo.txt]: ./todo.txt
 [done.txt]: ./done.txt
 [NixOS user environments]: https://nixos.wiki/wiki/User_Environment
+[Home-manager]: https://nixos.wiki/wiki/Home_Manager

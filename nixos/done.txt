@@ -26,3 +26,5 @@ x 2024-02-11 2024-02-08 bluetooth
 x 2024-02-11 2024-02-10 swaylock on idle, lid close
 x 2024-02-11 2024-02-10 startup applications tmux, alacritty, firefox
 x 2024-02-11 2024-02-11 brightness and volume buttons
+x 2024-02-14 2024-02-08 +flake for wx
+x 2024-02-14 2024-02-13 +flake for +hammerbros
