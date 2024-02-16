@@ -59,7 +59,7 @@ bar {
     colors {
         separator $silver
         statusline $brightgreen
-		background $black
+		background $background
     }
 }
 
