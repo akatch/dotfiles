@@ -65,6 +65,10 @@ How do I run an arbitrary package without installing it?
 
 > `nix run nixpkgs#somepkg`
 
+How do I upgrade all packages?
+
+> `sudo nixos-rebuild switch --upgrade`
+
 # Resources
 * [NixOS installation guide][]
 * [NixOS manual][]

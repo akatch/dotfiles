@@ -2,6 +2,6 @@
 2024-02-07 upgrade +go version for go-chat-bot +mastodon plugin
 2024-02-07 start sway by default
 2024-02-14 set gtk highlight color to green
-2024-03-22 upgrade all packages
+x 2024-03-24 2024-03-22 upgrade all packages
 x 2024-03-24 2024-03-22 start swaylock after 30 minutes of inactivity
 2024-03-24 customize nix develop prompt
