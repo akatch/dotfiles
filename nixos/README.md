@@ -58,7 +58,8 @@ How can I search for packages (in the terminal)?
 
 Is there an existing file I can source to get the correct environment variables (eeg `$PATH`)?
 
-> Allegedly [yes][NixOS user environments] but I didn't have this symlink
+> Allegedly [yes][NixOS user environments] ~~but I didn't have this symlink~~
+> update: letting the OS set $PATH for me instead of setting it in ~/.profile fixed this
 
 How do I run an arbitrary package without installing it?
 
