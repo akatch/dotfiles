@@ -8,23 +8,27 @@ include ~/.config/sway/defaults
 include ~/.config/sway/colors
 
 font pango:monospace 18
-gaps inner 15
+gaps inner 25
 smart_gaps on
 smart_borders on
 default_border pixel 1
 focus_follows_mouse no
+focus_wrapping workspace
 
 set $term alacritty
-set $menu_opts -i -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'monospace:size=18'
-set $menu dmenu_path | dmenu $menu_opts | xargs swaymsg exec --
+set $menu_opts -i -l 5 -bw 2 -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'monospace:size=18' -c
+set $menu dmenu_run $menu_opts
+set $locker swaylock -f -c 000000
+set $player spotify
 
 # hotkeys
+bindsym $mod+Shift+Return exec alacritty -o "$(cat ~/.config/work.toml)"
 bindsym $mod+Shift+w exec "firefox"
 bindsym $mod+n exec "dunstctl close-all"
 bindsym Ctrl+space workspace 1
 bindsym Alt+space workspace 2
-bindsym Ctrl+Shift+l exec swaylock -c 000000
-bindswitch lid:on exec swaylock -c 000000
+bindsym Ctrl+Shift+l exec $locker
+bindswitch lid:on exec $locker
 
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
@@ -33,10 +37,23 @@ bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
 bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
 bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 
+bindsym F9 exec playerctl -p $player play-pause
+bindsym F10 exec playerctl -p $player next
+bindsym Alt+F10 exec playerctl -p $player position 0
+bindsym XF86AudioPlay exec playerctl -p $player play-pause
+bindsym XF86AudioNext exec playerctl -p $player next
+bindsym XF86AudioPrev exec playerctl -p $player position 0
 
 # input devices
 input "type:keyboard" {
+    # TODO
+    # F9 XF86AudioPlay
+    # F10 XF86AudioNext
+    # F11 XF86AudioRaiseVolume
+    # F12 XF86AudioLowerVolume
+
     xkb_options ctrl:swapcaps
+    xkb_numlock enable
     repeat_delay 300
     repeat_rate 30
 }
@@ -63,6 +80,11 @@ bar {
     }
 }
 
+exec swayidle -w \
+    timeout 1800 '$locker' \
+    timeout 3600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep '$locker'
 exec tmux new -s $USER -d
 exec alacritty
 exec firefox
