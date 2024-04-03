@@ -28,3 +28,6 @@ x 2024-02-11 2024-02-10 startup applications tmux, alacritty, firefox
 x 2024-02-11 2024-02-11 brightness and volume buttons
 x 2024-02-14 2024-02-08 +flake for wx
 x 2024-02-14 2024-02-13 +flake for +hammerbros
+x 2024-03-27 2024-02-07 start sway by default
+x 2024-03-24 2024-03-22 upgrade all packages
+x 2024-03-24 2024-03-22 start swaylock after 30 minutes of inactivity
