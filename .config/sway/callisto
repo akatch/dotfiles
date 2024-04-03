@@ -1,0 +1,24 @@
+#vim: ft=swayconfig
+
+# TODO map the following https://www.charvolant.org/doug/xkb/html/node5.html
+# F9 XF86AudioPlay
+# F10 XF86AudioNext
+# F11 XF86AudioRaiseVolume
+# F12 XF86AudioLowerVolume
+
+set $main "DP-1"
+set $aux "HDMI-A-1"
+set $gapwidth 25
+set $menu_opts -i -l 5 -bw 2 -sb '$darkgray' -sf '$brightgreen' -nb '$black' -nf '$foreground' -fn 'monospace:size=18' -c
+set $menu dmenu_run $menu_opts
+
+workspace 1 output $main
+workspace 2 output $main
+workspace 3 output $aux
+workspace 4 output $main
+
+bindsym F9 exec playerctl -p $player play-pause
+bindsym F10 exec playerctl -p $player next
+bindsym Alt+F10 exec playerctl -p $player position 0
+
+for_window [title="zoom"] floating enable

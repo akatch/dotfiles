@@ -6,9 +6,10 @@
 # TODO include /etc/sway/config
 include ~/.config/sway/defaults
 include ~/.config/sway/colors
+include ~/.config/sway/*.enabled
 
 font pango:monospace 18
-gaps inner 25
+gaps inner $gapwidth
 smart_gaps on
 smart_borders on
 default_border pixel 1
@@ -16,15 +17,14 @@ focus_follows_mouse no
 focus_wrapping workspace
 
 set $term alacritty
-set $menu_opts -i -l 5 -bw 2 -sb '#262626' -sf '#5f8700' -nb '#121212' -nf '#767676' -fn 'monospace:size=18' -c
-set $menu dmenu_run $menu_opts
-set $locker swaylock -f -c 000000
 set $player spotify
+set $locker swaylock -f -c 000000
 
 # hotkeys
-bindsym $mod+Shift+Return exec alacritty -o "$(cat ~/.config/work.toml)"
+bindsym $mod+Shift+Return exec alacritty -o "$(cat ~/.config/work.toml)"; splitv
 bindsym $mod+Shift+w exec "firefox"
 bindsym $mod+n exec "dunstctl close-all"
+bindsym $mod+m exec alacritty msg create-window -e pulsemixer
 bindsym Ctrl+space workspace 1
 bindsym Alt+space workspace 2
 bindsym Ctrl+Shift+l exec $locker
@@ -37,21 +37,12 @@ bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
 bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
 bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
 
-bindsym F9 exec playerctl -p $player play-pause
-bindsym F10 exec playerctl -p $player next
-bindsym Alt+F10 exec playerctl -p $player position 0
 bindsym XF86AudioPlay exec playerctl -p $player play-pause
 bindsym XF86AudioNext exec playerctl -p $player next
 bindsym XF86AudioPrev exec playerctl -p $player position 0
 
 # input devices
 input "type:keyboard" {
-    # TODO
-    # F9 XF86AudioPlay
-    # F10 XF86AudioNext
-    # F11 XF86AudioRaiseVolume
-    # F12 XF86AudioLowerVolume
-
     xkb_options ctrl:swapcaps
     xkb_numlock enable
     repeat_delay 300
