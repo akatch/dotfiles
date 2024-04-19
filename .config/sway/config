@@ -1,0 +1,81 @@
+#vim: ft=swayconfig
+
+# cp /etc/sway/config ~/.config/sway/defaults
+# comment the options we overwrite here
+# TODO figure out how to overwrite defaults in this file
+# TODO include /etc/sway/config
+include ~/.config/sway/defaults
+include ~/.config/sway/colors
+include ~/.config/sway/*.enabled
+
+font pango:monospace 18
+gaps inner $gapwidth
+smart_gaps on
+smart_borders on
+default_border pixel 1
+focus_follows_mouse no
+focus_wrapping workspace
+
+set $term alacritty
+set $player spotify
+set $locker swaylock -f -c 000000
+
+# hotkeys
+bindsym $mod+Shift+Return exec alacritty -o "$(cat ~/.config/work.toml)"; splitv
+bindsym $mod+Shift+w exec "firefox"
+bindsym $mod+n exec "dunstctl close-all"
+bindsym $mod+m exec alacritty msg create-window -e pulsemixer
+bindsym Ctrl+space workspace 1
+bindsym Alt+space workspace 2
+bindsym Ctrl+Shift+l exec $locker
+bindswitch lid:on exec $locker
+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+
+bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+
+bindsym XF86AudioPlay exec playerctl -p $player play-pause
+bindsym XF86AudioNext exec playerctl -p $player next
+bindsym XF86AudioPrev exec playerctl -p $player position 0
+
+# input devices
+input "type:keyboard" {
+    xkb_options ctrl:swapcaps
+    xkb_numlock enable
+    repeat_delay 300
+    repeat_rate 30
+}
+
+input "type:touchpad" {
+    tap enabled
+}
+
+# background color
+output "*" background $darkgray solid_color
+
+#
+bar {
+    position top
+    workspace_buttons no
+    separator_symbol " | "
+
+    status_command i3status
+
+    colors {
+        separator $silver
+        statusline $brightgreen
+		background $background
+    }
+}
+
+exec swayidle -w \
+    timeout 1800 '$locker' \
+    timeout 3600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep '$locker'
+exec tmux new -s $USER -d
+exec alacritty
+exec firefox

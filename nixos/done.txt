@@ -1,0 +1,33 @@
+x 2024-02-07 2024-02-07 default install per the guide
+x 2024-02-07 2024-02-07 zsh
+x 2024-02-07 2024-02-07 git
+x 2024-02-07 2024-02-07 dotfiles
+x 2024-02-07 2024-02-07 wayland
+x 2024-02-07 2024-02-07 sway
+x 2024-02-08 2024-02-07 alacritty
+x 2024-02-09 2024-02-07 run neofetch and take screenshot +grim
+x 2024-02-08 2024-02-07 firefox
+x 2024-02-09 2024-02-08 set alacritty as +user default terminal emulator
+x 2024-02-09 2024-02-08 dmenu_run or equivalent
+x 2024-02-08 2024-02-08 set zsh as +user shell
+x 2024-02-08 2024-02-08 audio
+x 2024-02-09 2024-02-08 sway gaps
+x 2024-02-09 2024-02-08 tap to click
+x 2024-02-09 2024-02-08 +user keyboard configuration
+x 2024-02-09 2024-02-08 swaylock
+x 2024-02-10 2024-02-08 dunst or equivalent
+x 2024-02-10 2024-02-08 syncthing
+x 2024-02-09 2024-02-09 background fill color
+x 2024-02-10 2024-02-09 i3status or equivalent
+x 2024-02-10 2024-02-08 color emoji +font
+x 2024-02-10 2024-02-09 terminus +font
+x 2024-02-11 2024-02-07 run +hammerbros +dev site
+x 2024-02-11 2024-02-08 bluetooth
+x 2024-02-11 2024-02-10 swaylock on idle, lid close
+x 2024-02-11 2024-02-10 startup applications tmux, alacritty, firefox
+x 2024-02-11 2024-02-11 brightness and volume buttons
+x 2024-02-14 2024-02-08 +flake for wx
+x 2024-02-14 2024-02-13 +flake for +hammerbros
+x 2024-03-27 2024-02-07 start sway by default
+x 2024-03-24 2024-03-22 upgrade all packages
+x 2024-03-24 2024-03-22 start swaylock after 30 minutes of inactivity
