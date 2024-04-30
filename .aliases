@@ -33,7 +33,6 @@ alias z='. ~/.zshrc'
 alias b='. ~/.bashrc'
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'
-alias tl='tmux ls'
 
 ## vim
 alias e='vim -p '

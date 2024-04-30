@@ -21,10 +21,12 @@ Plugin 'lervag/vimtex'
 Plugin 'akatch/vim-oceans'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'vim-scripts/todo-txt.vim'
+Plugin 'Einenlum/yaml-revealer'
 " had to also `go get golang.org/x/tools/gopls`
 call vundle#end()
 
 filetype plugin indent on
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 if has("syntax")
     syntax on
